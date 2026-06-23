@@ -1,6 +1,6 @@
-import { GROUP_IDS, type GroupId, type GroupMatch, type GroupStanding, type Team } from "./types";
-import { isPlayed } from "./records";
-import { orderGroup } from "./tiebreakers";
+import { isPlayed } from './records';
+import { orderGroup } from './tiebreakers';
+import { GROUP_IDS, type GroupId, type GroupMatch, type GroupStanding, type Team } from './types';
 
 function expectedMatchCount(n: number): number {
   return (n * (n - 1)) / 2; // turno único; 4 seleções → 6 jogos

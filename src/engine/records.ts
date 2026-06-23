@@ -1,5 +1,5 @@
-import { MATCH_POINTS, type GroupMatch, type Team, type TeamId, type TeamRecord } from "./types";
-import { fairPlayForMatch } from "./fairplay";
+import { fairPlayForMatch } from './fairplay';
+import { MATCH_POINTS, type GroupMatch, type Team, type TeamId, type TeamRecord } from './types';
 
 export function isPlayed(m: GroupMatch): boolean {
   return m.homeGoals !== null && m.awayGoals !== null;

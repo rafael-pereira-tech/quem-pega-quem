@@ -3,9 +3,7 @@
 // O motor é PURO: estes tipos não dependem de React, DOM ou localStorage.
 // ============================================================================
 
-export const GROUP_IDS = [
-  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
-] as const;
+export const GROUP_IDS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L'] as const;
 export type GroupId = (typeof GROUP_IDS)[number];
 
 export type TeamId = string; // ex.: "BRA", "ARG"
@@ -70,15 +68,15 @@ export interface GroupMatch {
 // Classificação
 // ---------------------------------------------------------------------------
 export type TiebreakCriterion =
-  | "points"
-  | "h2hPoints"
-  | "h2hGoalDiff"
-  | "h2hGoalsFor"
-  | "goalDiff"
-  | "goalsFor"
-  | "fairPlay"
-  | "fifaRanking"
-  | "teamId"; // fallback determinístico (não deveria ser alcançado)
+  | 'points'
+  | 'h2hPoints'
+  | 'h2hGoalDiff'
+  | 'h2hGoalsFor'
+  | 'goalDiff'
+  | 'goalsFor'
+  | 'fairPlay'
+  | 'fifaRanking'
+  | 'teamId'; // fallback determinístico (não deveria ser alcançado)
 
 export interface TeamRecord {
   team: TeamId;
@@ -140,14 +138,14 @@ export type AnnexCTable = Record<string, ThirdAssignment>;
 // ---------------------------------------------------------------------------
 // Estrutura do mata-mata (R32 → final)
 // ---------------------------------------------------------------------------
-export type KnockoutRound = "R32" | "R16" | "QF" | "SF" | "THIRD" | "FINAL";
+export type KnockoutRound = 'R32' | 'R16' | 'QF' | 'SF' | 'THIRD' | 'FINAL';
 
 export type Side =
-  | { from: "winner"; group: GroupId } // 1º do grupo
-  | { from: "runnerUp"; group: GroupId } // 2º do grupo
-  | { from: "third"; slot: GroupId } // terceiro que enfrenta o VENCEDOR de `slot`
-  | { from: "winnerOf"; match: string }
-  | { from: "loserOf"; match: string }; // disputa de 3º lugar
+  | { from: 'winner'; group: GroupId } // 1º do grupo
+  | { from: 'runnerUp'; group: GroupId } // 2º do grupo
+  | { from: 'third'; slot: GroupId } // terceiro que enfrenta o VENCEDOR de `slot`
+  | { from: 'winnerOf'; match: string }
+  | { from: 'loserOf'; match: string }; // disputa de 3º lugar
 
 export interface KnockoutGameDef {
   id: string;

@@ -1,4 +1,4 @@
-import { FAIR_PLAY_POINTS, type MatchCards } from "./types";
+import { FAIR_PLAY_POINTS, type MatchCards } from './types';
 
 /**
  * Pontuação fair play de uma seleção num único jogo (≤ 0; maior = melhor).

@@ -1,0 +1,34 @@
+---
+description: Always-on base rules for Quem Pega Quem. Read AGENTS.md and the relevant ADRs before touching code. Never violate Non-Negotiables.
+alwaysApply: true
+---
+
+You are working in the Quem Pega Quem repo. Read these files end-to-end
+before suggesting any change:
+
+- `AGENTS.md` (root) — Non-Negotiables and Where To Look First.
+- `docs/decisions/` — accepted Architecture Decision Records. Do not
+  suggest alternatives to an Accepted decision without surfacing the
+  ADR number and the reasoning. If you intentionally diverge, propose
+  a new ADR rather than silently changing the pattern.
+
+Non-Negotiables (from `AGENTS.md`):
+
+1. The engine is pure (`src/engine/`): no React, DOM, or IO. Every
+   classification and tiebreak rule lives there and is covered by tests.
+2. The 2026 tiebreak rules and Annex C (495 combos) are the source of
+   truth, validated against the OFFICIAL FIFA regulation via
+   `data/anexo-c.reference.json`. Never change them without re-running
+   `npm run validate`.
+3. Secrets never reach the client. The Supabase `service_role` key
+   stays out of the front end; the anon key is public by design.
+   Environment variables are read only in `src/lib/env.ts` (ESLint
+   forbids `import.meta.env` anywhere else).
+4. Respect RLS and the admin role. Writing an official result is
+   admin-only; reads are public; the user's guess is local/per-user.
+5. Keep PRs small and reviewable.
+6. Add tests for behaviour that matters: tiebreaks (incl. H2H
+   recursion), score merge (official > seed > guess), Annex C, RLS,
+   and accessibility.
+
+This repo is npm-only. Never run `yarn`, `pnpm`, or `bun`.

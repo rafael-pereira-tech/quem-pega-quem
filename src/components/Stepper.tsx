@@ -20,8 +20,7 @@ export function Stepper({ value, onChange, disabled }: StepperProps) {
         onClick={dec}
         disabled={minusDisabled}
         aria-label="-1"
-        className={`w-[22px] h-[22px] rounded-full grid place-items-center font-bold leading-none transition active:scale-95
-          ${minusDisabled ? "bg-surface-dim text-text-faint ring-1 ring-hairline cursor-not-allowed" : "bg-raised text-text-mid ring-1 ring-border"}`}
+        className={`grid h-[22px] w-[22px] place-items-center rounded-full leading-none font-bold transition active:scale-95 ${minusDisabled ? 'bg-surface-dim text-text-faint ring-hairline cursor-not-allowed ring-1' : 'bg-raised text-text-mid ring-border ring-1'}`}
       >
         −
       </button>
@@ -30,14 +29,12 @@ export function Stepper({ value, onChange, disabled }: StepperProps) {
         min={0}
         inputMode="numeric"
         disabled={disabled}
-        value={value ?? ""}
+        value={value ?? ''}
         onChange={(e) => {
           const v = e.target.value;
-          onChange(v === "" ? null : Math.max(0, Math.floor(Number(v))));
+          onChange(v === '' ? null : Math.max(0, Math.floor(Number(v))));
         }}
-        className="w-6 text-center font-display font-extrabold text-2xl leading-none tabular-nums bg-transparent
-          text-text-hi outline-none border-b-2 border-[#2c3442] focus:border-live disabled:border-transparent
-          disabled:text-text-hi"
+        className="font-display text-text-hi focus:border-live disabled:text-text-hi w-6 border-b-2 border-[#2c3442] bg-transparent text-center text-2xl leading-none font-extrabold tabular-nums outline-none disabled:border-transparent"
         placeholder="–"
       />
       <button
@@ -45,8 +42,7 @@ export function Stepper({ value, onChange, disabled }: StepperProps) {
         onClick={inc}
         disabled={disabled}
         aria-label="+1"
-        className="w-[22px] h-[22px] rounded-full bg-live text-white grid place-items-center font-bold leading-none
-          transition active:scale-95 focus:outline-none focus:ring-4 focus:ring-live/25 disabled:opacity-40"
+        className="bg-live focus:ring-live/25 grid h-[22px] w-[22px] place-items-center rounded-full leading-none font-bold text-white transition focus:ring-4 focus:outline-none active:scale-95 disabled:opacity-40"
       >
         +
       </button>

@@ -8,7 +8,7 @@ import type {
   Side,
   TeamId,
   ThirdAssignment,
-} from "./types";
+} from './types';
 
 /** Vencedor/perdedor derivados do placar (90+30; pênaltis no empate). */
 export function decideOutcome(
@@ -55,11 +55,11 @@ export function resolveBracket(
 
   function resolveSide(side: Side): ResolvedSide {
     switch (side.from) {
-      case "winner":
+      case 'winner':
         return { ref: side, team: teamAt(side.group, 0), label: `1${side.group}` };
-      case "runnerUp":
+      case 'runnerUp':
         return { ref: side, team: teamAt(side.group, 1), label: `2${side.group}` };
-      case "third": {
+      case 'third': {
         const thirdGroup = thirdAssignment?.[side.slot];
         return {
           ref: side,
@@ -67,11 +67,11 @@ export function resolveBracket(
           label: thirdGroup ? `3${thirdGroup}` : `3·(${side.slot})`,
         };
       }
-      case "winnerOf": {
+      case 'winnerOf': {
         const g = resolveGame(side.match);
         return { ref: side, team: g?.winner, label: `Venc. ${side.match}` };
       }
-      case "loserOf": {
+      case 'loserOf': {
         const g = resolveGame(side.match);
         return { ref: side, team: g?.loser, label: `Perd. ${side.match}` };
       }

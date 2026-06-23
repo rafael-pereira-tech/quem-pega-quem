@@ -1,5 +1,6 @@
-import type { GroupMatch, KnockoutScore, MatchCards, SimulationInput } from "../engine/types";
-import { staticData } from "../data/static";
+import { staticData } from '../data/static';
+
+import type { GroupMatch, KnockoutScore, MatchCards, SimulationInput } from '../engine/types';
 
 // ---------------------------------------------------------------------------
 // Camadas de dados:
@@ -10,7 +11,7 @@ import { staticData } from "../data/static";
 
 export interface OfficialResult {
   matchId: string;
-  phase: "group" | "knockout";
+  phase: 'group' | 'knockout';
   homeGoals: number | null;
   awayGoals: number | null;
   homePens?: number | null;

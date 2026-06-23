@@ -1,0 +1,12 @@
+---
+description: AccessLint — runtime DOM accessibility audit (WCAG 2.2). Complements eslint-plugin-jsx-a11y (static). Manual rule, invoke during PR review of interactive UI.
+---
+
+Apply guidance in `ai/skills/accesslint/README.md`.
+
+Two modes:
+- Report — sweeps the scope, no edits
+- Fix — mechanical fixes verbatim, TODOs for visual/contextual issues
+
+Run via `accesslint:audit` in Claude Code, or via the plugin's
+auto-launched headless Chrome.

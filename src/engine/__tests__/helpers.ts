@@ -1,4 +1,4 @@
-import type { GroupId, GroupMatch, MatchCards, Round, Team, TeamId } from "../types";
+import type { GroupId, GroupMatch, MatchCards, Round, Team, TeamId } from '../types';
 
 let fifaCounter = 100;
 
@@ -44,9 +44,7 @@ export function match(
  */
 export function roundRobin(
   group: GroupId,
-  results: Array<[TeamId, TeamId, number, number]>,
+  results: [TeamId, TeamId, number, number][],
 ): GroupMatch[] {
-  return results.map(([h, a, hg, ag], i) =>
-    match(group, ((i % 3) + 1) as Round, h, a, hg, ag),
-  );
+  return results.map(([h, a, hg, ag], i) => match(group, ((i % 3) + 1) as Round, h, a, hg, ag));
 }

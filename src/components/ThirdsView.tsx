@@ -1,9 +1,11 @@
-import { useSimulation } from "../hooks/useSimulation";
-import { staticData, teamsById } from "../data/static";
-import { groupColor, groupTextColor } from "../lib/groupColors";
-import { Flag } from "./Flag";
-import { Cards } from "./Cards";
-import type { GroupId } from "../engine/types";
+import { staticData, teamsById } from '../data/static';
+import { useSimulation } from '../hooks/useSimulation';
+import { groupColor, groupTextColor } from '../lib/groupColors';
+
+import { Cards } from './Cards';
+import { Flag } from './Flag';
+
+import type { GroupId } from '../engine/types';
 
 const nameOf = (id: string) => teamsById.get(id)?.name || id;
 const signed = (n: number) => (n > 0 ? `+${n}` : `${n}`);
@@ -13,7 +15,7 @@ const SLOT_TO_GAME: Partial<Record<GroupId, string>> = (() => {
   const map: Partial<Record<GroupId, string>> = {};
   for (const game of staticData.structure) {
     for (const side of [game.home, game.away]) {
-      if (side.from === "third") map[side.slot] = game.id;
+      if (side.from === 'third') map[side.slot] = game.id;
     }
   }
   return map;
@@ -35,16 +37,16 @@ export function ThirdsView() {
   return (
     <div className="space-y-3">
       <div className="flex items-baseline gap-3">
-        <h2 className="font-display font-extrabold text-[30px] leading-none uppercase">
+        <h2 className="font-display text-[30px] leading-none font-extrabold uppercase">
           Melhores 3º
         </h2>
-        <span className="ml-auto font-mono text-[10px] text-text-low">Pts › SG › GP › cartões</span>
+        <span className="text-text-low ml-auto font-mono text-[10px]">Pts › SG › GP › cartões</span>
       </div>
       <div className="flex items-center gap-2">
-        <span className="font-mono text-[10px] uppercase rounded-full px-2 py-0.5 bg-go/15 text-go">
+        <span className="bg-go/15 text-go rounded-full px-2 py-0.5 font-mono text-[10px] uppercase">
           8 entram
         </span>
-        <span className="font-mono text-[10px] uppercase rounded-full px-2 py-0.5 bg-surface text-text-mid ring-1 ring-border">
+        <span className="bg-surface text-text-mid ring-border rounded-full px-2 py-0.5 font-mono text-[10px] uppercase ring-1">
           4 saem
         </span>
       </div>
@@ -58,46 +60,48 @@ export function ThirdsView() {
           return (
             <div key={r.team}>
               {i === 8 && (
-                <div className="flex items-center gap-2 my-1.5">
-                  <span className="font-mono text-[10px] uppercase text-live">✂ Linha de corte</span>
-                  <span className="flex-1 border-t-2 border-dashed border-live/50" />
+                <div className="my-1.5 flex items-center gap-2">
+                  <span className="text-live font-mono text-[10px] uppercase">
+                    ✂ Linha de corte
+                  </span>
+                  <span className="border-live/50 flex-1 border-t-2 border-dashed" />
                 </div>
               )}
               <div
-                className="flex items-center gap-2.5 rounded-[10px] py-2 px-2.5"
+                className="flex items-center gap-2.5 rounded-[10px] px-2.5 py-2"
                 style={{
-                  borderLeft: `3px solid ${out ? "#FF2D5566" : groupColor(r.group)}`,
-                  background: out ? "#FF2D5508" : lastIn ? "#36c2750f" : "#141A24",
-                  boxShadow: lastIn ? "0 0 0 1px #36c27555" : undefined,
+                  borderLeft: `3px solid ${out ? '#FF2D5566' : groupColor(r.group)}`,
+                  background: out ? '#FF2D5508' : lastIn ? '#36c2750f' : '#141A24',
+                  boxShadow: lastIn ? '0 0 0 1px #36c27555' : undefined,
                 }}
               >
                 <span
-                  className="font-display font-extrabold text-lg w-5 text-center tabular-nums"
-                  style={{ color: out ? "#FF2D55" : lastIn ? "#36C275" : undefined }}
+                  className="font-display w-5 text-center text-lg font-extrabold tabular-nums"
+                  style={{ color: out ? '#FF2D55' : lastIn ? '#36C275' : undefined }}
                 >
                   {r.rank}
                 </span>
                 <span
-                  className="font-mono text-[10px] rounded px-1 py-0.5 shrink-0"
+                  className="shrink-0 rounded px-1 py-0.5 font-mono text-[10px]"
                   style={{ background: groupColor(r.group), color: groupTextColor(r.group) }}
                 >
                   3{r.group}
                 </span>
-                <Flag code={r.team} className="text-base shrink-0" />
-                <span className={`flex-1 font-semibold truncate ${out ? "text-text-mid" : ""}`}>
+                <Flag code={r.team} className="shrink-0 text-base" />
+                <span className={`flex-1 truncate font-semibold ${out ? 'text-text-mid' : ''}`}>
                   {nameOf(r.team)}
                 </span>
-                <span className="font-mono text-[11px] text-text-mid tabular-nums">
+                <span className="text-text-mid font-mono text-[11px] tabular-nums">
                   {r.points}·{signed(r.goalDiff)}·{r.goalsFor}
                 </span>
                 <Cards yellow={r.yellow} red={r.red} />
                 {r.qualified && slot ? (
-                  <span className="font-mono text-[10px] rounded px-1.5 py-0.5 bg-go/15 text-go whitespace-nowrap">
+                  <span className="bg-go/15 text-go rounded px-1.5 py-0.5 font-mono text-[10px] whitespace-nowrap">
                     → 1{slot}
-                    {gameId ? ` ·J${gameId}` : ""}
+                    {gameId ? ` ·J${gameId}` : ''}
                   </span>
                 ) : (
-                  <span className="font-mono text-[10px] text-live uppercase">Fora</span>
+                  <span className="text-live font-mono text-[10px] uppercase">Fora</span>
                 )}
               </div>
             </div>

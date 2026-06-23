@@ -1,18 +1,19 @@
-import { useState } from "react";
-import { useSimulation } from "./hooks/useSimulation";
-import { useIsDesktop } from "./hooks/useIsDesktop";
-import { useStore } from "./state/store";
-import { useSession } from "./supabase/session";
-import { useOfficialSync } from "./supabase/useOfficialSync";
-import { hasSupabase } from "./supabase/client";
-import { GroupsView } from "./components/GroupsView";
-import { ThirdsView } from "./components/ThirdsView";
-import { Bracket } from "./components/Bracket";
-import { DesktopScreen } from "./components/DesktopScreen";
-import { AdminPanel } from "./components/AdminPanel";
+import { useState } from 'react';
 
-type Tab = "grupos" | "chave" | "terceiros";
-const TABS: Tab[] = ["grupos", "chave", "terceiros"];
+import { AdminPanel } from './components/AdminPanel';
+import { Bracket } from './components/Bracket';
+import { DesktopScreen } from './components/DesktopScreen';
+import { GroupsView } from './components/GroupsView';
+import { ThirdsView } from './components/ThirdsView';
+import { useIsDesktop } from './hooks/useIsDesktop';
+import { useSimulation } from './hooks/useSimulation';
+import { useStore } from './state/store';
+import { hasSupabase } from './supabase/client';
+import { useSession } from './supabase/session';
+import { useOfficialSync } from './supabase/useOfficialSync';
+
+type Tab = 'grupos' | 'chave' | 'terceiros';
+const TABS: Tab[] = ['grupos', 'chave', 'terceiros'];
 
 export function App() {
   const result = useSimulation();
@@ -21,7 +22,7 @@ export function App() {
   const isDesktop = useIsDesktop();
   useOfficialSync();
 
-  const [tab, setTab] = useState<Tab>("grupos");
+  const [tab, setTab] = useState<Tab>('grupos');
   const [adminView, setAdminView] = useState(false);
   const showAdmin = adminView && session.isAdmin && session.userId;
 
@@ -29,19 +30,19 @@ export function App() {
   const thirds = result.thirds.qualifiedGroups.length;
 
   return (
-    <div className="h-screen flex flex-col bg-canvas text-text-hi overflow-hidden">
-      <header className="shrink-0 bg-canvas/95 backdrop-blur border-b border-hairline">
-        <div className="px-4 pt-3 pb-2 flex items-center justify-between gap-2">
+    <div className="bg-canvas text-text-hi flex h-screen flex-col overflow-hidden">
+      <header className="bg-canvas/95 border-hairline shrink-0 border-b backdrop-blur">
+        <div className="flex items-center justify-between gap-2 px-4 pt-3 pb-2">
           <div className="flex items-center gap-2">
-            <h1 className="font-display font-extrabold text-xl uppercase tracking-tight leading-none">
+            <h1 className="font-display text-xl leading-none font-extrabold tracking-tight uppercase">
               Quem<span className="text-live">-</span>Pega<span className="text-live">-</span>Quem
             </h1>
-            <span className="flex items-center gap-1 font-mono text-[9px] uppercase tracking-wider text-live">
-              <span className="live-dot w-1.5 h-1.5 rounded-full bg-live inline-block" />
-              {hasSupabase ? "ao vivo" : "local"}
+            <span className="text-live flex items-center gap-1 font-mono text-[9px] tracking-wider uppercase">
+              <span className="live-dot bg-live inline-block h-1.5 w-1.5 rounded-full" />
+              {hasSupabase ? 'ao vivo' : 'local'}
             </span>
             {isDesktop && (
-              <span className="ml-2 font-mono text-[10px] text-text-low">
+              <span className="text-text-low ml-2 font-mono text-[10px]">
                 {complete}/12 grupos · {thirds} terceiros
               </span>
             )}
@@ -50,28 +51,28 @@ export function App() {
           <div className="flex items-center gap-1.5">
             {session.userId && (
               <input
-                defaultValue={session.nickname ?? ""}
+                defaultValue={session.nickname ?? ''}
                 placeholder="apelido"
                 onBlur={(e) => {
                   const v = e.target.value.trim();
                   if (v && v !== session.nickname) void session.setNickname(v);
                 }}
-                className="w-20 text-sm bg-surface ring-1 ring-border rounded-md px-2 py-1 outline-none focus:ring-live"
+                className="bg-surface ring-border focus:ring-live w-20 rounded-md px-2 py-1 text-sm ring-1 outline-none"
               />
             )}
             {session.isAdmin && (
               <button
                 onClick={() => setAdminView((v) => !v)}
-                className={`font-mono text-[10px] uppercase px-2 py-1.5 rounded-md ring-1 ring-border ${
-                  adminView ? "bg-third text-black" : "text-third"
+                className={`ring-border rounded-md px-2 py-1.5 font-mono text-[10px] uppercase ring-1 ${
+                  adminView ? 'bg-third text-black' : 'text-third'
                 }`}
               >
-                {adminView ? "← app" : "admin"}
+                {adminView ? '← app' : 'admin'}
               </button>
             )}
             <button
-              onClick={() => confirm("Limpar seus palpites?") && reset()}
-              className="font-mono text-[10px] uppercase px-2 py-1.5 rounded-md ring-1 ring-border text-text-mid"
+              onClick={() => confirm('Limpar seus palpites?') && reset()}
+              className="ring-border text-text-mid rounded-md px-2 py-1.5 font-mono text-[10px] uppercase ring-1"
             >
               reset
             </button>
@@ -80,17 +81,17 @@ export function App() {
 
         {/* Abas só no mobile */}
         {!showAdmin && !isDesktop && (
-          <nav className="px-4 pb-2.5 flex rounded-none gap-1">
-            <div className="flex w-full rounded-[13px] bg-surface p-[5px] gap-1">
+          <nav className="flex gap-1 rounded-none px-4 pb-2.5">
+            <div className="bg-surface flex w-full gap-1 rounded-[13px] p-[5px]">
               {TABS.map((t) => (
                 <button
                   key={t}
                   onClick={() => setTab(t)}
-                  className={`flex-1 py-1.5 rounded-[9px] font-display font-bold uppercase text-sm tracking-wide ${
-                    tab === t ? "bg-live text-white" : "text-text-mid"
+                  className={`font-display flex-1 rounded-[9px] py-1.5 text-sm font-bold tracking-wide uppercase ${
+                    tab === t ? 'bg-live text-white' : 'text-text-mid'
                   }`}
                 >
-                  {t === "terceiros" ? "Melhores 3º" : t}
+                  {t === 'terceiros' ? 'Melhores 3º' : t}
                 </button>
               ))}
             </div>
@@ -106,10 +107,10 @@ export function App() {
         ) : isDesktop ? (
           <DesktopScreen />
         ) : (
-          <div className="h-full overflow-auto px-4 py-4 max-w-md mx-auto">
-            {tab === "grupos" ? (
+          <div className="mx-auto h-full max-w-md overflow-auto px-4 py-4">
+            {tab === 'grupos' ? (
               <GroupsView />
-            ) : tab === "terceiros" ? (
+            ) : tab === 'terceiros' ? (
               <ThirdsView />
             ) : (
               <Bracket games={result.bracket} />

@@ -1,5 +1,8 @@
 import { readFileSync } from "node:fs";
+
 import { describe, expect, it } from "vitest";
+
+import { validateAnnexCAllowed, validateBracket } from "../../engine/integrity";
 import {
   bracketFileSchema,
   loadStructure,
@@ -7,7 +10,7 @@ import {
   anexoCFileSchema,
   loadAnexoC,
 } from "../schema";
-import { validateAnnexCAllowed, validateBracket } from "../../engine/integrity";
+
 import type { GroupId } from "../../engine/types";
 
 const read = (name: string) =>

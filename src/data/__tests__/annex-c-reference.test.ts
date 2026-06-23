@@ -1,7 +1,10 @@
 import { readFileSync } from "node:fs";
+
 import { describe, expect, it } from "vitest";
-import { anexoCFileSchema, loadAnexoC } from "../schema";
+
 import { buildAnnexKey } from "../../engine/annexC";
+import { anexoCFileSchema, loadAnexoC } from "../schema";
+
 import type { GroupId } from "../../engine/types";
 
 // Snapshot OFICIAL do Anexo C, extraído do PDF de regulamentos da FIFA (pp. 79-83)

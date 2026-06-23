@@ -1,0 +1,19 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": [
+    "AGENTS.md",
+    "ai/conventions/commits.md",
+    "ai/conventions/prs.md",
+    "ai/conventions/branches.md",
+    "ai/agents/README.md",
+    "ai/skills/README.md",
+    "ai/skills/spec-driven/SKILL.md",
+    "ai/skills/playwright/SKILL.md",
+    "ai/skills/vercel-react/SKILL.md",
+    "ai/skills/vercel-composition/SKILL.md",
+    "ai/skills/vercel-web-design/SKILL.md",
+    "ai/skills/supabase/README.md",
+    "ai/skills/impeccable/README.md",
+    "ai/skills/accesslint/README.md"
+  ]
+}

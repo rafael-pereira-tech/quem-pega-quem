@@ -1,9 +1,12 @@
-import { useMemo } from "react";
-import { useStore } from "../state/store";
-import { useSimulation } from "../hooks/useSimulation";
-import { effectiveGroupMatches } from "../lib/buildInput";
-import { GroupBar } from "./GroupBar";
-import type { GroupId, GroupMatch } from "../engine/types";
+import { useMemo } from 'react';
+
+import { useSimulation } from '../hooks/useSimulation';
+import { effectiveGroupMatches } from '../lib/buildInput';
+import { useStore } from '../state/store';
+
+import { GroupBar } from './GroupBar';
+
+import type { GroupId, GroupMatch } from '../engine/types';
 
 export function GroupsView() {
   const result = useSimulation();
@@ -35,16 +38,16 @@ export function GroupsView() {
     <div className="space-y-3">
       {/* Progresso */}
       <div className="flex items-center gap-2">
-        <div className="h-1.5 flex-1 rounded-full bg-surface overflow-hidden">
+        <div className="bg-surface h-1.5 flex-1 overflow-hidden rounded-full">
           <div
             className="h-full rounded-full transition-all"
             style={{
               width: `${(complete / 12) * 100}%`,
-              background: "linear-gradient(90deg,#FFB400,#FF2D55)",
+              background: 'linear-gradient(90deg,#FFB400,#FF2D55)',
             }}
           />
         </div>
-        <span className="font-mono text-[11px] text-text-low tabular-nums">{complete}/12</span>
+        <span className="text-text-low font-mono text-[11px] tabular-nums">{complete}/12</span>
       </div>
 
       <div className="space-y-2.5">

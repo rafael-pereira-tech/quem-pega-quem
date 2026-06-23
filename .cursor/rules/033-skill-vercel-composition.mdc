@@ -1,0 +1,10 @@
+---
+description: Component composition patterns — compound components, slots, state management. Manual rule, invoke when designing or refactoring a component API.
+---
+
+Apply guidance in `ai/skills/vercel-composition/SKILL.md`.
+
+Trigger heuristics:
+- New component has ≥ 6 props
+- Refactoring component with ≥ 8 props
+- Sibling components need shared mutable state

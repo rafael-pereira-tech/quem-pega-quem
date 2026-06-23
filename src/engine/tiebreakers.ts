@@ -1,12 +1,6 @@
-import type {
-  GroupMatch,
-  RankedTeam,
-  Team,
-  TeamId,
-  TeamRecord,
-  TiebreakCriterion,
-} from "./types";
-import { computeRecords } from "./records";
+import { computeRecords } from './records';
+
+import type { GroupMatch, RankedTeam, Team, TeamId, TeamRecord, TiebreakCriterion } from './types';
 
 // ============================================================================
 // Desempate da fase de grupos — ordem oficial 2026:
@@ -27,16 +21,11 @@ import { computeRecords } from "./records";
 // subconjunto menor.
 // ============================================================================
 
-type H2HCrit = "h2hPoints" | "h2hGoalDiff" | "h2hGoalsFor";
-type OverallCrit = "goalDiff" | "goalsFor" | "fairPlay" | "fifaRanking";
+type H2HCrit = 'h2hPoints' | 'h2hGoalDiff' | 'h2hGoalsFor';
+type OverallCrit = 'goalDiff' | 'goalsFor' | 'fairPlay' | 'fifaRanking';
 
-const H2H_CRITS: readonly H2HCrit[] = ["h2hPoints", "h2hGoalDiff", "h2hGoalsFor"];
-const OVERALL_CRITS: readonly OverallCrit[] = [
-  "goalDiff",
-  "goalsFor",
-  "fairPlay",
-  "fifaRanking",
-];
+const H2H_CRITS: readonly H2HCrit[] = ['h2hPoints', 'h2hGoalDiff', 'h2hGoalsFor'];
+const OVERALL_CRITS: readonly OverallCrit[] = ['goalDiff', 'goalsFor', 'fairPlay', 'fifaRanking'];
 
 interface Entry {
   team: TeamId;
@@ -45,24 +34,24 @@ interface Entry {
 
 function h2hValue(rec: TeamRecord, c: H2HCrit): number {
   switch (c) {
-    case "h2hPoints":
+    case 'h2hPoints':
       return rec.points;
-    case "h2hGoalDiff":
+    case 'h2hGoalDiff':
       return rec.goalDiff;
-    case "h2hGoalsFor":
+    case 'h2hGoalsFor':
       return rec.goalsFor;
   }
 }
 
 function overallValue(rec: TeamRecord, team: Team, c: OverallCrit): number {
   switch (c) {
-    case "goalDiff":
+    case 'goalDiff':
       return rec.goalDiff;
-    case "goalsFor":
+    case 'goalsFor':
       return rec.goalsFor;
-    case "fairPlay":
+    case 'fairPlay':
       return rec.fairPlay;
-    case "fifaRanking":
+    case 'fifaRanking':
       return -team.fifaRanking; // menor ranking = melhor
   }
 }
@@ -119,15 +108,13 @@ export function orderGroup(teams: Team[], groupMatches: GroupMatch[]): RankedTea
   // --- subconjunto empatado em pontos resolvido pela escada (recursivo) ---
   function resolve(subset: TeamId[]): Entry[] {
     if (subset.length === 1) {
-      return [{ team: subset[0]!, decidedBy: "points" }];
+      return [{ team: subset[0]!, decidedBy: 'points' }];
     }
 
     // Fase A — confronto direto RECALCULADO só entre as do subconjunto.
     const subsetTeams = subset.map((id) => teamsById.get(id)!);
     const inSubset = new Set(subset);
-    const h2hMatches = groupMatches.filter(
-      (m) => inSubset.has(m.home) && inSubset.has(m.away),
-    );
+    const h2hMatches = groupMatches.filter((m) => inSubset.has(m.home) && inSubset.has(m.away));
     const h2hRec = computeRecords(subsetTeams, h2hMatches);
     const h2hValueOf = (id: TeamId, c: H2HCrit): number => h2hValue(h2hRec.get(id)!, c);
 
@@ -155,7 +142,7 @@ export function orderGroup(teams: Team[], groupMatches: GroupMatch[]): RankedTea
         const upper = out[idx - 1]!;
         const lower = out[idx]!;
         lower.decidedBy =
-          firstDiffCrit(H2H_CRITS, h2hValueOf, upper.team, lower.team) ?? "h2hPoints";
+          firstDiffCrit(H2H_CRITS, h2hValueOf, upper.team, lower.team) ?? 'h2hPoints';
       }
     }
     return out;
@@ -166,12 +153,11 @@ export function orderGroup(teams: Team[], groupMatches: GroupMatch[]): RankedTea
     const buckets = partitionByCrits(subset, OVERALL_CRITS, overallValueOf);
     const out: Entry[] = [];
     for (const bucket of buckets) {
-      for (const id of bucket) out.push({ team: id, decidedBy: "fifaRanking" });
+      for (const id of bucket) out.push({ team: id, decidedBy: 'fifaRanking' });
     }
     for (let i = 1; i < out.length; i++) {
       out[i]!.decidedBy =
-        firstDiffCrit(OVERALL_CRITS, overallValueOf, out[i - 1]!.team, out[i]!.team) ??
-        "teamId";
+        firstDiffCrit(OVERALL_CRITS, overallValueOf, out[i - 1]!.team, out[i]!.team) ?? 'teamId';
     }
     return out;
   }
@@ -180,7 +166,7 @@ export function orderGroup(teams: Team[], groupMatches: GroupMatch[]): RankedTea
   const allIds = teams.map((t) => t.id);
   const pointsBlocks = partitionByCrits(
     allIds,
-    ["points"] as const,
+    ['points'] as const,
     (id) => overall.get(id)!.points,
   );
 
@@ -191,7 +177,7 @@ export function orderGroup(teams: Team[], groupMatches: GroupMatch[]): RankedTea
     entries.push(...resolve(block));
   }
   // o primeiro de cada bloco de pontos é separado do bloco acima por PONTOS
-  for (const start of blockStarts) entries[start]!.decidedBy = "points";
+  for (const start of blockStarts) entries[start]!.decidedBy = 'points';
 
   return entries.map((e, i) => ({
     ...overall.get(e.team)!,
