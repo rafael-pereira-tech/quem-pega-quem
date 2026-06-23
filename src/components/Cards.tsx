@@ -2,7 +2,7 @@
 export function Cards({
   yellow,
   red,
-  className = "",
+  className = '',
 }: {
   yellow: number;
   red: number;
@@ -10,16 +10,18 @@ export function Cards({
 }) {
   if (!yellow && !red) return null;
   return (
-    <span className={`inline-flex items-center gap-1.5 font-mono text-[10px] text-text-mid ${className}`}>
+    <span
+      className={`text-text-mid inline-flex items-center gap-1.5 font-mono text-[10px] ${className}`}
+    >
       {yellow > 0 && (
         <span className="inline-flex items-center gap-0.5">
-          <span className="w-[7px] h-[10px] rounded-[1px] bg-card-yellow inline-block" />
+          <span className="bg-card-yellow inline-block h-[10px] w-[7px] rounded-[1px]" />
           {yellow}
         </span>
       )}
       {red > 0 && (
         <span className="inline-flex items-center gap-0.5">
-          <span className="w-[7px] h-[10px] rounded-[1px] bg-card-red inline-block" />
+          <span className="bg-card-red inline-block h-[10px] w-[7px] rounded-[1px]" />
           {red}
         </span>
       )}

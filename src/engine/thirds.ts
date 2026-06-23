@@ -6,30 +6,24 @@ import type {
   TeamId,
   ThirdPlaceRanking,
   TiebreakCriterion,
-} from "./types";
+} from './types';
 
 // Ranking dos 12 terceiros — SEM confronto direto (são de grupos diferentes):
 //   1. Pontos  2. Saldo geral  3. Gols geral  4. Fair play  5. Ranking FIFA
-const THIRD_CRITS = [
-  "points",
-  "goalDiff",
-  "goalsFor",
-  "fairPlay",
-  "fifaRanking",
-] as const;
+const THIRD_CRITS = ['points', 'goalDiff', 'goalsFor', 'fairPlay', 'fifaRanking'] as const;
 type ThirdCrit = (typeof THIRD_CRITS)[number];
 
 function valueOf(t: RankedThird, fifa: number, c: ThirdCrit): number {
   switch (c) {
-    case "points":
+    case 'points':
       return t.points;
-    case "goalDiff":
+    case 'goalDiff':
       return t.goalDiff;
-    case "goalsFor":
+    case 'goalsFor':
       return t.goalsFor;
-    case "fairPlay":
+    case 'fairPlay':
       return t.fairPlay;
-    case "fifaRanking":
+    case 'fifaRanking':
       return -fifa; // menor ranking = melhor
   }
 }
@@ -48,7 +42,7 @@ export function rankThirds(
   for (const s of standings) {
     const third = s.table[2];
     if (!third) continue;
-    thirds.push({ ...third, rank: 0, qualified: false, decidedBy: "points" });
+    thirds.push({ ...third, rank: 0, qualified: false, decidedBy: 'points' });
   }
 
   const fifaOf = (t: RankedThird): number => teamsById.get(t.team)?.fifaRanking ?? Infinity;
@@ -66,7 +60,7 @@ export function rankThirds(
     t.qualified = i < THIRD_QUALIFIERS;
     if (i > 0) {
       const prev = thirds[i - 1]!;
-      let by: TiebreakCriterion = "fifaRanking";
+      let by: TiebreakCriterion = 'fifaRanking';
       for (const c of THIRD_CRITS) {
         if (valueOf(prev, fifaOf(prev), c) !== valueOf(t, fifaOf(t), c)) {
           by = c;

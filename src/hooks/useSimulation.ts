@@ -1,7 +1,8 @@
-import { useMemo } from "react";
-import { useStore } from "../state/store";
-import { buildSimulationInput } from "../lib/buildInput";
-import { simulate } from "../engine";
+import { useMemo } from 'react';
+
+import { simulate } from '../engine';
+import { buildSimulationInput } from '../lib/buildInput';
+import { useStore } from '../state/store';
 
 /** Recalcula tudo (classificação + terceiros + chave) a cada mudança de placar. */
 export function useSimulation() {

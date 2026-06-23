@@ -1,7 +1,9 @@
-import { useEffect } from "react";
-import { supabase } from "./client";
-import { useStore } from "../state/store";
-import { fetchOfficial } from "./official";
+import { useEffect } from 'react';
+
+import { useStore } from '../state/store';
+
+import { supabase } from './client';
+import { fetchOfficial } from './official';
 
 /**
  * Carrega os resultados oficiais e assina o Realtime: quando o admin grava,
@@ -23,8 +25,8 @@ export function useOfficialSync() {
     refresh();
 
     const channel = sb
-      .channel("official_results")
-      .on("postgres_changes", { event: "*", schema: "public", table: "official_results" }, refresh)
+      .channel('official_results')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'official_results' }, refresh)
       .subscribe();
 
     return () => {

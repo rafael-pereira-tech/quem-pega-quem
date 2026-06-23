@@ -1,15 +1,14 @@
-import type { AnnexCTable, GroupId, ThirdAssignment } from "./types";
-import { GROUP_IDS } from "./types";
+import { GROUP_IDS } from './types';
+
+import type { AnnexCTable, GroupId, ThirdAssignment } from './types';
 
 // Os 8 grupos cujos VENCEDORES enfrentam um terceiro nos 16-avos.
 // (Os vencedores de C, F, H, J enfrentam vices.)
-export const THIRD_FACING_WINNERS: readonly GroupId[] = [
-  "A", "B", "D", "E", "G", "I", "K", "L",
-];
+export const THIRD_FACING_WINNERS: readonly GroupId[] = ['A', 'B', 'D', 'E', 'G', 'I', 'K', 'L'];
 
 /** Chave canônica do Anexo C: as 8 letras de grupo ordenadas, ex.: "ABDEGHIJ". */
 export function buildAnnexKey(groups: GroupId[]): string {
-  return [...groups].sort().join("");
+  return [...groups].sort().join('');
 }
 
 /**
@@ -51,13 +50,13 @@ export function validateAnnexCTable(table: AnnexCTable): string[] {
   }
   // Completude: o conjunto de chaves tem de ser EXATAMENTE as C(12,8) combinações.
   const expected = allCanonicalKeys();
-  const present = new Set(keys.map((k) => buildAnnexKey(k.split("") as GroupId[])));
+  const present = new Set(keys.map((k) => buildAnnexKey(k.split('') as GroupId[])));
   for (const k of expected) if (!present.has(k)) problems.push(`Combinação ausente: "${k}".`);
   const validGroup = new Set<string>(GROUP_IDS);
   const facing = new Set<string>(THIRD_FACING_WINNERS);
 
   for (const key of keys) {
-    const groups = key.split("");
+    const groups = key.split('');
     if (key.length !== 8) {
       problems.push(`Chave "${key}" não tem 8 grupos.`);
       continue;

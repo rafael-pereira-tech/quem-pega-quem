@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
-import { supabase } from "./client";
+import { useEffect, useState } from 'react';
+
+import { supabase } from './client';
 
 export interface SessionState {
   userId: string | null;
@@ -27,12 +28,12 @@ export function useSession() {
 
     async function loadProfile(userId: string) {
       const { data } = await supabase!
-        .from("profiles")
-        .select("role, nickname")
-        .eq("user_id", userId)
+        .from('profiles')
+        .select('role, nickname')
+        .eq('user_id', userId)
         .maybeSingle();
       return {
-        isAdmin: (data as { role?: string } | null)?.role === "admin",
+        isAdmin: (data as { role?: string } | null)?.role === 'admin',
         nickname: (data as { nickname?: string | null } | null)?.nickname ?? null,
       };
     }
@@ -43,7 +44,7 @@ export function useSession() {
       if (!session) {
         const { data, error } = await supabase!.auth.signInAnonymously();
         if (error) {
-          console.error("signInAnonymously", error.message);
+          console.error('signInAnonymously', error.message);
           if (active) setState((s) => ({ ...s, ready: true }));
           return;
         }
@@ -70,9 +71,9 @@ export function useSession() {
   async function setNickname(nickname: string) {
     if (!supabase || !state.userId) return;
     const { error } = await supabase
-      .from("profiles")
+      .from('profiles')
       .update({ nickname })
-      .eq("user_id", state.userId);
+      .eq('user_id', state.userId);
     if (!error) setState((s) => ({ ...s, nickname }));
   }
 

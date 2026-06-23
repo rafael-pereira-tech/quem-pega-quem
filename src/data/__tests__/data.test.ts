@@ -1,5 +1,9 @@
 import { readFileSync } from "node:fs";
+
 import { describe, expect, it } from "vitest";
+
+import { simulate } from "../../engine";
+import { validateAnnexCTable } from "../../engine/annexC";
 import {
   anexoCFileSchema,
   bracketFileSchema,
@@ -9,8 +13,6 @@ import {
   loadStructure,
   roundOf32FileSchema,
 } from "../schema";
-import { simulate } from "../../engine";
-import { validateAnnexCTable } from "../../engine/annexC";
 
 const read = (name: string) =>
   JSON.parse(readFileSync(new URL(`../../../data/${name}`, import.meta.url), "utf8"));
@@ -43,13 +45,14 @@ describe("arquivos reais em /data conformam ao contrato", () => {
 
   it("toda referência winnerOf/loserOf aponta pra um jogo existente", () => {
     const ids = new Set(structure.map((g) => g.id));
-    for (const g of structure) {
-      for (const side of [g.home, g.away]) {
-        if (side.from === "winnerOf" || side.from === "loserOf") {
-          expect(ids.has(side.match)).toBe(true);
-        }
-      }
-    }
+    const refs = structure
+      .flatMap((g) => [g.home, g.away])
+      .filter((s): s is Extract<typeof s, { match: string }> =>
+        s.from === "winnerOf" || s.from === "loserOf",
+      )
+      .map((s) => s.match);
+    expect(refs.length).toBeGreaterThan(0);
+    expect(refs.every((m) => ids.has(m))).toBe(true);
   });
 });
 

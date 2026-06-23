@@ -1,10 +1,11 @@
-import { supabase } from "./client";
-import type { OfficialResult } from "../lib/buildInput";
-import type { MatchCards } from "../engine/types";
+import { supabase } from './client';
+
+import type { MatchCards } from '../engine/types';
+import type { OfficialResult } from '../lib/buildInput';
 
 interface OfficialRow {
   match_id: string;
-  phase: "group" | "knockout";
+  phase: 'group' | 'knockout';
   home_goals: number | null;
   away_goals: number | null;
   home_pens: number | null;
@@ -29,9 +30,9 @@ function rowToOfficial(r: OfficialRow): OfficialResult {
 /** Lê todos os resultados oficiais. */
 export async function fetchOfficial(): Promise<Record<string, OfficialResult>> {
   if (!supabase) return {};
-  const { data, error } = await supabase.from("official_results").select("*");
+  const { data, error } = await supabase.from('official_results').select('*');
   if (error) {
-    console.error("fetchOfficial", error.message);
+    console.error('fetchOfficial', error.message);
     return {};
   }
   const map: Record<string, OfficialResult> = {};
@@ -41,7 +42,7 @@ export async function fetchOfficial(): Promise<Record<string, OfficialResult>> {
 
 export interface UpsertOfficialInput {
   matchId: string;
-  phase: "group" | "knockout";
+  phase: 'group' | 'knockout';
   homeGoals: number | null;
   awayGoals: number | null;
   homePens?: number | null;
@@ -52,9 +53,11 @@ export interface UpsertOfficialInput {
 }
 
 /** Grava/atualiza um resultado oficial (só admin passa pela RLS). */
-export async function upsertOfficial(input: UpsertOfficialInput): Promise<{ error: string | null }> {
-  if (!supabase) return { error: "Supabase não configurado" };
-  const { error } = await supabase.from("official_results").upsert({
+export async function upsertOfficial(
+  input: UpsertOfficialInput,
+): Promise<{ error: string | null }> {
+  if (!supabase) return { error: 'Supabase não configurado' };
+  const { error } = await supabase.from('official_results').upsert({
     match_id: input.matchId,
     phase: input.phase,
     home_goals: input.homeGoals,
@@ -71,7 +74,7 @@ export async function upsertOfficial(input: UpsertOfficialInput): Promise<{ erro
 
 /** Remove um resultado oficial (admin desfaz um lançamento). */
 export async function deleteOfficial(matchId: string): Promise<{ error: string | null }> {
-  if (!supabase) return { error: "Supabase não configurado" };
-  const { error } = await supabase.from("official_results").delete().eq("match_id", matchId);
+  if (!supabase) return { error: 'Supabase não configurado' };
+  const { error } = await supabase.from('official_results').delete().eq('match_id', matchId);
   return { error: error?.message ?? null };
 }

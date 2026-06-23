@@ -13,3 +13,6 @@ coverage
 # Supabase CLI local state
 supabase/.temp
 supabase/.branches
+
+# Claude Code local permissions (por-máquina)
+.claude/settings.local.json

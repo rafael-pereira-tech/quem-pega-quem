@@ -11,9 +11,10 @@
 //     (`allowedGroups` de cada slot no round-of-32.json).
 // ============================================================================
 
-import type { AnnexCTable, GroupId, KnockoutGameDef } from "./types";
-import { GROUP_IDS } from "./types";
-import { THIRD_FACING_WINNERS } from "./annexC";
+import { THIRD_FACING_WINNERS } from './annexC';
+import { GROUP_IDS } from './types';
+
+import type { AnnexCTable, GroupId, KnockoutGameDef } from './types';
 
 const ROUND_COUNTS: Record<string, number> = {
   R32: 16,
@@ -53,7 +54,7 @@ export function validateBracket(structure: KnockoutGameDef[]): string[] {
   }
 
   const ids = new Set(structure.map((g) => g.id));
-  if (ids.size !== structure.length) problems.push("Há ids de jogos duplicados.");
+  if (ids.size !== structure.length) problems.push('Há ids de jogos duplicados.');
   const byId = new Map(structure.map((g) => [g.id, g]));
 
   // Consumo de vencedores/perdedores pelas fases seguintes.
@@ -61,11 +62,13 @@ export function validateBracket(structure: KnockoutGameDef[]): string[] {
   const loserUsed = new Map<string, number>();
   for (const g of structure) {
     for (const s of [g.home, g.away]) {
-      if (s.from === "winnerOf") {
-        if (!ids.has(s.match)) problems.push(`J${g.id}: winnerOf aponta p/ J${s.match} inexistente.`);
+      if (s.from === 'winnerOf') {
+        if (!ids.has(s.match))
+          problems.push(`J${g.id}: winnerOf aponta p/ J${s.match} inexistente.`);
         winnerUsed.set(s.match, (winnerUsed.get(s.match) ?? 0) + 1);
-      } else if (s.from === "loserOf") {
-        if (!ids.has(s.match)) problems.push(`J${g.id}: loserOf aponta p/ J${s.match} inexistente.`);
+      } else if (s.from === 'loserOf') {
+        if (!ids.has(s.match))
+          problems.push(`J${g.id}: loserOf aponta p/ J${s.match} inexistente.`);
         loserUsed.set(s.match, (loserUsed.get(s.match) ?? 0) + 1);
       }
     }
@@ -74,37 +77,43 @@ export function validateBracket(structure: KnockoutGameDef[]): string[] {
   // Cada jogo (exceto final e 3º lugar) tem o vencedor consumido EXATAMENTE 1×.
   for (const g of structure) {
     const used = winnerUsed.get(g.id) ?? 0;
-    if (g.round === "FINAL" || g.round === "THIRD") {
-      if (used !== 0) problems.push(`Vencedor de J${g.id} (${g.round}) não deveria alimentar outro jogo (alimenta ${used}).`);
+    if (g.round === 'FINAL' || g.round === 'THIRD') {
+      if (used !== 0)
+        problems.push(
+          `Vencedor de J${g.id} (${g.round}) não deveria alimentar outro jogo (alimenta ${used}).`,
+        );
     } else if (used !== 1) {
-      problems.push(`Vencedor de J${g.id} (${g.round}) deveria alimentar exatamente 1 jogo (alimenta ${used}).`);
+      problems.push(
+        `Vencedor de J${g.id} (${g.round}) deveria alimentar exatamente 1 jogo (alimenta ${used}).`,
+      );
     }
   }
 
   // Perdedores: só os 2 da semifinal, e só pra disputa de 3º.
   for (const [mid, n] of loserUsed) {
     const src = byId.get(mid);
-    if (!src || src.round !== "SF") problems.push(`loserOf usa J${mid}, que não é semifinal.`);
+    if (!src || src.round !== 'SF') problems.push(`loserOf usa J${mid}, que não é semifinal.`);
     if (n > 1) problems.push(`Perdedor de J${mid} consumido ${n}×.`);
   }
-  if (loserUsed.size !== 2) problems.push(`Disputa de 3º deveria usar 2 perdedores de SF, usa ${loserUsed.size}.`);
+  if (loserUsed.size !== 2)
+    problems.push(`Disputa de 3º deveria usar 2 perdedores de SF, usa ${loserUsed.size}.`);
 
   // Cobertura das folhas de R32.
   const winners: GroupId[] = [];
   const runners: GroupId[] = [];
   const thirds: GroupId[] = [];
   for (const g of structure) {
-    if (g.round !== "R32") continue;
+    if (g.round !== 'R32') continue;
     for (const s of [g.home, g.away]) {
-      if (s.from === "winner") winners.push(s.group);
-      else if (s.from === "runnerUp") runners.push(s.group);
-      else if (s.from === "third") thirds.push(s.slot);
+      if (s.from === 'winner') winners.push(s.group);
+      else if (s.from === 'runnerUp') runners.push(s.group);
+      else if (s.from === 'third') thirds.push(s.slot);
       else problems.push(`J${g.id}: folha de R32 com origem inválida "${s.from}".`);
     }
   }
-  checkCoverage(problems, "Vencedores (1º)", winners, GROUP_IDS);
-  checkCoverage(problems, "Vices (2º)", runners, GROUP_IDS);
-  checkCoverage(problems, "Slots de terceiro", thirds, THIRD_FACING_WINNERS);
+  checkCoverage(problems, 'Vencedores (1º)', winners, GROUP_IDS);
+  checkCoverage(problems, 'Vices (2º)', runners, GROUP_IDS);
+  checkCoverage(problems, 'Slots de terceiro', thirds, THIRD_FACING_WINNERS);
 
   return problems;
 }
@@ -170,7 +179,7 @@ export function validateAnnexCAllowed(
   }
 
   for (const [key, assignment] of Object.entries(table)) {
-    const available = new Set(key.split("") as GroupId[]);
+    const available = new Set(key.split('') as GroupId[]);
     for (const slot of THIRD_FACING_WINNERS) {
       const third = assignment[slot];
       if (third && !(allowed[slot] ?? []).includes(third))

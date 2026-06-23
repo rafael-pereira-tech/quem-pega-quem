@@ -1,6 +1,8 @@
-import { describe, expect, it } from "vitest";
-import { rankThirds } from "../thirds";
-import type { GroupId, GroupStanding, RankedTeam, Team, TeamId } from "../types";
+import { describe, expect, it } from 'vitest';
+
+import { rankThirds } from '../thirds';
+
+import type { GroupId, GroupStanding, RankedTeam, Team, TeamId } from '../types';
 
 interface ThirdSpec {
   points: number;
@@ -27,7 +29,7 @@ function third(group: GroupId, s: ThirdSpec): { standing: GroupStanding; team: T
     yellow: 0,
     red: 0,
     position: 3,
-    decidedBy: "points",
+    decidedBy: 'points',
   };
   const dummy = (n: number): RankedTeam => ({ ...row, team: `${group}${n}`, position: n });
   return {
@@ -36,7 +38,7 @@ function third(group: GroupId, s: ThirdSpec): { standing: GroupStanding; team: T
   };
 }
 
-describe("ranking dos 12 terceiros + corte dos 4 piores", () => {
+describe('ranking dos 12 terceiros + corte dos 4 piores', () => {
   const specs: Record<GroupId, ThirdSpec> = {
     A: { points: 4, gd: 3, gf: 4, fifa: 1 },
     B: { points: 4, gd: 2, gf: 6, fifa: 2 },
@@ -59,30 +61,44 @@ describe("ranking dos 12 terceiros + corte dos 4 piores", () => {
 
   const result = rankThirds(standings, teamsById);
 
-  it("rankeia na ordem correta (pontos→saldo→gols→fairplay→FIFA)", () => {
+  it('rankeia na ordem correta (pontos→saldo→gols→fairplay→FIFA)', () => {
     expect(result.rows.map((r) => r.group)).toEqual([
-      "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+      'A',
+      'B',
+      'C',
+      'D',
+      'E',
+      'F',
+      'G',
+      'H',
+      'I',
+      'J',
+      'K',
+      'L',
     ]);
   });
 
-  it("classifica os 8 melhores e corta os 4 piores", () => {
+  it('classifica os 8 melhores e corta os 4 piores', () => {
     const qualified = result.rows.filter((r) => r.qualified).map((r) => r.group);
     expect(qualified).toHaveLength(8);
-    expect(result.qualifiedGroups).toEqual(["A", "B", "C", "D", "E", "F", "G", "H"]);
+    expect(result.qualifiedGroups).toEqual(['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']);
     expect(result.rows.filter((r) => !r.qualified).map((r) => r.group)).toEqual([
-      "I", "J", "K", "L",
+      'I',
+      'J',
+      'K',
+      'L',
     ]);
   });
 
-  it("registra o critério de cada desempate", () => {
+  it('registra o critério de cada desempate', () => {
     const by = (g: GroupId) => result.rows.find((r) => r.group === g)!.decidedBy;
-    expect(by("B")).toBe("goalDiff"); // B abaixo de A por saldo
-    expect(by("C")).toBe("goalsFor"); // C abaixo de B por gols
-    expect(by("G")).toBe("fairPlay"); // G abaixo de F por fair play
-    expect(by("J")).toBe("fifaRanking"); // J abaixo de I por ranking FIFA
+    expect(by('B')).toBe('goalDiff'); // B abaixo de A por saldo
+    expect(by('C')).toBe('goalsFor'); // C abaixo de B por gols
+    expect(by('G')).toBe('fairPlay'); // G abaixo de F por fair play
+    expect(by('J')).toBe('fifaRanking'); // J abaixo de I por ranking FIFA
   });
 
-  it("qualifiedGroups vem ORDENADO (é a chave do Anexo C)", () => {
+  it('qualifiedGroups vem ORDENADO (é a chave do Anexo C)', () => {
     expect(result.qualifiedGroups).toEqual([...result.qualifiedGroups].sort());
   });
 });

@@ -1,7 +1,8 @@
-import gruposRaw from "../../data/grupos.json";
 import anexoRaw from "../../data/anexo-c.json";
-import r32Raw from "../../data/round-of-32.json";
 import bracketRaw from "../../data/bracket.json";
+import gruposRaw from "../../data/grupos.json";
+import r32Raw from "../../data/round-of-32.json";
+
 import {
   anexoCFileSchema,
   bracketFileSchema,
@@ -11,6 +12,7 @@ import {
   loadStructure,
   roundOf32FileSchema,
 } from "./schema";
+
 import type { AnnexCTable, GroupMatch, KnockoutGameDef, Team } from "../engine/types";
 
 // Referência estática do torneio (não muda durante os jogos). Validada na carga.

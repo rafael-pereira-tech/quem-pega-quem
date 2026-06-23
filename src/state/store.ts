@@ -1,7 +1,9 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
-import { emptyScenario, type OfficialResult, type ScenarioData } from "../lib/buildInput";
-import type { KnockoutScore } from "../engine/types";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+import { emptyScenario, type OfficialResult, type ScenarioData } from '../lib/buildInput';
+
+import type { KnockoutScore } from '../engine/types';
 
 interface AppState {
   scenario: ScenarioData;
@@ -47,7 +49,7 @@ export const useStore = create<AppState>()(
       reset: () => set({ scenario: emptyScenario() }),
     }),
     {
-      name: "qpq-scenario",
+      name: 'qpq-scenario',
       // só o cenário do usuário persiste; o oficial sempre vem fresco.
       partialize: (s) => ({ scenario: s.scenario }),
     },

@@ -1,32 +1,35 @@
-import { useState } from "react";
-import type { GroupMatch, GroupStanding, Round } from "../engine/types";
-import { groupColor, groupColorAlpha, groupTextColor } from "../lib/groupColors";
-import { teamsById } from "../data/static";
-import { Flag } from "./Flag";
-import { MatchCard } from "./MatchCard";
+import { useState } from 'react';
+
+import { teamsById } from '../data/static';
+import { groupColor, groupColorAlpha, groupTextColor } from '../lib/groupColors';
+
+import { Flag } from './Flag';
+import { MatchCard } from './MatchCard';
+
+import type { GroupMatch, GroupStanding, Round } from '../engine/types';
 
 const nameOf = (id: string) => teamsById.get(id)?.name || id;
-const ROUND_LABEL: Record<Round, string> = { 1: "1ª Rodada", 2: "2ª Rodada", 3: "3ª Rodada" };
+const ROUND_LABEL: Record<Round, string> = { 1: '1ª Rodada', 2: '2ª Rodada', 3: '3ª Rodada' };
 
 function tintFor(position: number, thirdQualified: boolean) {
-  if (position <= 2) return { fg: "#36C275", bg: "#36c2751a", bd: "#36c27540" };
+  if (position <= 2) return { fg: '#36C275', bg: '#36c2751a', bd: '#36c27540' };
   if (position === 3)
     return thirdQualified
-      ? { fg: "#36C275", bg: "#36c2751a", bd: "#36c27540" }
-      : { fg: "#FFB400", bg: "#FFB4001a", bd: "#FFB40040" };
-  return { fg: "#687087", bg: "#141A24", bd: "#28303F" };
+      ? { fg: '#36C275', bg: '#36c2751a', bd: '#36c27540' }
+      : { fg: '#FFB400', bg: '#FFB4001a', bd: '#FFB40040' };
+  return { fg: '#687087', bg: '#141A24', bd: '#28303F' };
 }
 
 /** Pílula compacta: posição do 3º colocado no ranking dos 12 melhores terceiros. */
 function ThirdRankPill({ rank, qualified }: { rank: number; qualified: boolean }) {
   if (!rank) return null;
   const c = qualified
-    ? { fg: "#36C275", bg: "#36c2751a", bd: "#36c27540" }
-    : { fg: "#FFB400", bg: "#FFB4001a", bd: "#FFB40040" };
+    ? { fg: '#36C275', bg: '#36c2751a', bd: '#36c27540' }
+    : { fg: '#FFB400', bg: '#FFB4001a', bd: '#FFB40040' };
   return (
     <span
-      title={`${rank}º melhor terceiro${qualified ? " — dentro do corte (top 8)" : " — fora do corte"}`}
-      className="font-mono text-[9px] rounded px-1 py-px whitespace-nowrap shrink-0"
+      title={`${rank}º melhor terceiro${qualified ? ' — dentro do corte (top 8)' : ' — fora do corte'}`}
+      className="shrink-0 rounded px-1 py-px font-mono text-[9px] whitespace-nowrap"
       style={{ background: c.bg, color: c.fg, border: `1px solid ${c.bd}` }}
     >
       {rank}º melhor 3º
@@ -57,27 +60,29 @@ export function GroupBar({
     <div className="space-y-2.5">
       {/* Barra do grupo (colapsada) */}
       <div
-        className="rounded-[13px] bg-surface"
-        style={{ boxShadow: `inset 0 0 0 1px ${groupColorAlpha(g, "33")}` }}
+        className="bg-surface rounded-[13px]"
+        style={{ boxShadow: `inset 0 0 0 1px ${groupColorAlpha(g, '33')}` }}
       >
         <button
           onClick={() => setExpanded((v) => !v)}
-          className="w-full flex items-center gap-2.5 px-3 py-2.5 text-left"
+          className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left"
         >
           <span
-            className="grid place-items-center font-display font-extrabold text-[15px] rounded-md shrink-0"
+            className="font-display grid shrink-0 place-items-center rounded-md text-[15px] font-extrabold"
             style={{ width: 26, height: 26, background: color, color: groupTextColor(g) }}
           >
             {g}
           </span>
-          <span className="font-display font-bold uppercase tracking-wide text-[15px]">Grupo {g}</span>
+          <span className="font-display text-[15px] font-bold tracking-wide uppercase">
+            Grupo {g}
+          </span>
           <span className="ml-auto flex items-center gap-1">
             {standing.table.slice(0, 3).map((r) => {
               const t = tintFor(r.position, thirdQualified);
               return (
                 <span
                   key={r.team}
-                  className="font-mono text-[10px] rounded-md px-1.5 py-0.5 flex items-center gap-1"
+                  className="flex items-center gap-1 rounded-md px-1.5 py-0.5 font-mono text-[10px]"
                   style={{ background: t.bg, border: `1px solid ${t.bd}` }}
                 >
                   <span style={{ color: t.fg }}>{r.position}</span>
@@ -95,14 +100,14 @@ export function GroupBar({
               );
             })}
           </span>
-          <span className={`text-text-low transition ${expanded ? "rotate-180" : ""}`}>▾</span>
+          <span className={`text-text-low transition ${expanded ? 'rotate-180' : ''}`}>▾</span>
         </button>
 
         {expanded && (
-          <div className="border-t border-hairline">
+          <div className="border-hairline border-t">
             <table className="w-full text-sm">
               <thead>
-                <tr className="font-mono text-[9px] uppercase text-text-low">
+                <tr className="text-text-low font-mono text-[9px] uppercase">
                   <th className="w-7" />
                   <th className="w-6" />
                   <th />
@@ -117,10 +122,10 @@ export function GroupBar({
                 {standing.table.map((r) => {
                   const t = tintFor(r.position, thirdQualified);
                   return (
-                    <tr key={r.team} className="border-t border-hairline">
+                    <tr key={r.team} className="border-hairline border-t">
                       <td className="py-1.5 pl-3">
                         <span
-                          className="font-display font-extrabold text-[12px] grid place-items-center rounded w-5 h-5"
+                          className="font-display grid h-5 w-5 place-items-center rounded text-[12px] font-extrabold"
                           style={{ background: t.bg, color: t.fg }}
                         >
                           {r.position}
@@ -130,29 +135,29 @@ export function GroupBar({
                         <Flag code={r.team} className="text-base" />
                       </td>
                       <td className="py-1.5">
-                        <div className="flex items-center gap-1.5 min-w-0">
-                          <span className="font-semibold truncate">{nameOf(r.team)}</span>
+                        <div className="flex min-w-0 items-center gap-1.5">
+                          <span className="truncate font-semibold">{nameOf(r.team)}</span>
                           {r.position === 3 && (
                             <ThirdRankPill rank={thirdRank} qualified={thirdQualified} />
                           )}
                         </div>
                       </td>
-                      <td className="py-1.5 text-center font-display font-extrabold text-[15px] tabular-nums">
+                      <td className="font-display py-1.5 text-center text-[15px] font-extrabold tabular-nums">
                         {r.points}
                       </td>
-                      <td className="py-1.5 text-center font-mono text-[11px] text-text-mid tabular-nums">
+                      <td className="text-text-mid py-1.5 text-center font-mono text-[11px] tabular-nums">
                         {r.goalDiff > 0 ? `+${r.goalDiff}` : r.goalDiff}
                       </td>
-                      <td className="py-1.5 text-center font-mono text-[11px] text-text-low tabular-nums">
+                      <td className="text-text-low py-1.5 text-center font-mono text-[11px] tabular-nums">
                         {r.goalsFor}
                       </td>
                       <td
-                        className={`py-1.5 text-center font-mono text-[11px] tabular-nums ${r.yellow ? "text-card-yellow" : "text-text-faint"}`}
+                        className={`py-1.5 text-center font-mono text-[11px] tabular-nums ${r.yellow ? 'text-card-yellow' : 'text-text-faint'}`}
                       >
                         {r.yellow}
                       </td>
                       <td
-                        className={`py-1.5 pr-3 text-center font-mono text-[11px] tabular-nums ${r.red ? "text-card-red" : "text-text-faint"}`}
+                        className={`py-1.5 pr-3 text-center font-mono text-[11px] tabular-nums ${r.red ? 'text-card-red' : 'text-text-faint'}`}
                       >
                         {r.red}
                       </td>
@@ -161,7 +166,7 @@ export function GroupBar({
                 })}
               </tbody>
             </table>
-            <div className="px-3 py-1.5 border-t border-hairline font-mono text-[9px] text-text-low">
+            <div className="border-hairline text-text-low border-t px-3 py-1.5 font-mono text-[9px]">
               Pts pontos · SG saldo de gols · GP gols pró · CA amarelos · CV vermelhos
               <br />
               <span className="text-text-faint">
@@ -173,27 +178,27 @@ export function GroupBar({
       </div>
 
       {/* Card de jogos (aberto) */}
-      <div className="rounded-[14px] bg-surface ring-1 ring-hairline overflow-hidden">
-        <div className="flex items-center justify-between px-3 py-2 border-b border-hairline">
+      <div className="bg-surface ring-hairline overflow-hidden rounded-[14px] ring-1">
+        <div className="border-hairline flex items-center justify-between border-b px-3 py-2">
           <button
             onClick={() => setRound((r) => Math.max(1, r - 1) as Round)}
             disabled={round === 1}
-            className="w-7 h-7 rounded-full bg-bg ring-1 ring-border grid place-items-center disabled:text-text-faint enabled:text-lime shrink-0"
+            className="bg-bg ring-border disabled:text-text-faint enabled:text-lime grid h-7 w-7 shrink-0 place-items-center rounded-full ring-1"
           >
             ‹
           </button>
-          <span className="font-display font-extrabold uppercase text-[15px] tracking-wide">
+          <span className="font-display text-[15px] font-extrabold tracking-wide uppercase">
             {ROUND_LABEL[round]} · Jogos
           </span>
           <button
             onClick={() => setRound((r) => Math.min(3, r + 1) as Round)}
             disabled={round === 3}
-            className="w-7 h-7 rounded-full bg-bg ring-1 ring-border grid place-items-center disabled:text-text-faint enabled:text-lime shrink-0"
+            className="bg-bg ring-border disabled:text-text-faint enabled:text-lime grid h-7 w-7 shrink-0 place-items-center rounded-full ring-1"
           >
             ›
           </button>
         </div>
-        <div className="px-3 divide-y divide-hairline">
+        <div className="divide-hairline divide-y px-3">
           {roundMatches.map((m) => (
             <MatchCard key={m.id} match={m} onScore={(h, a) => onScore(m.id, h, a)} />
           ))}

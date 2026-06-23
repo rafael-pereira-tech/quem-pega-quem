@@ -1,17 +1,23 @@
-import type { SimulationInput, TeamId, Team, TournamentResult } from "./types";
-import { computeGroupStandings } from "./standings";
-import { rankThirds, THIRD_QUALIFIERS } from "./thirds";
-import { lookupThirdAssignment } from "./annexC";
-import { resolveBracket } from "./bracket";
+import { lookupThirdAssignment } from './annexC';
+import { resolveBracket } from './bracket';
+import { computeGroupStandings } from './standings';
+import { rankThirds, THIRD_QUALIFIERS } from './thirds';
 
-export * from "./types";
-export { computeGroupStandings } from "./standings";
-export { orderGroup } from "./tiebreakers";
-export { rankThirds, THIRD_QUALIFIERS } from "./thirds";
-export { buildAnnexKey, lookupThirdAssignment, validateAnnexCTable, THIRD_FACING_WINNERS } from "./annexC";
-export { resolveBracket, decideOutcome } from "./bracket";
-export { computeRecords, isPlayed } from "./records";
-export { fairPlayForMatch } from "./fairplay";
+import type { SimulationInput, TeamId, Team, TournamentResult } from './types';
+
+export * from './types';
+export { computeGroupStandings } from './standings';
+export { orderGroup } from './tiebreakers';
+export { rankThirds, THIRD_QUALIFIERS } from './thirds';
+export {
+  buildAnnexKey,
+  lookupThirdAssignment,
+  validateAnnexCTable,
+  THIRD_FACING_WINNERS,
+} from './annexC';
+export { resolveBracket, decideOutcome } from './bracket';
+export { computeRecords, isPlayed } from './records';
+export { fairPlayForMatch } from './fairplay';
 
 /**
  * Função de topo: recebe o estado atual (placares incluídos) e devolve
