@@ -1,0 +1,7 @@
+---
+description: Vercel React/Next best practices — RSC vs client splits, bundle size, image/font/script optimisation, edge runtime considerations.
+globs: ["src/app/**", "src/features/**", "next.config.mjs"]
+---
+
+Apply guidance in `ai/skills/vercel-react/SKILL.md`. Browse upstream
+for the full 40+ rule list when relevant.

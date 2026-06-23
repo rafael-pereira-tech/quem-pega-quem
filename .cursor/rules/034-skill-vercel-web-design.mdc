@@ -1,0 +1,6 @@
+---
+description: Web UI design defaults — focus states, forms, animation, motion preferences, i18n. Manual rule, invoke when writing or reviewing interactive UI.
+---
+
+Apply guidance in `ai/skills/vercel-web-design/SKILL.md`. Pairs with
+the `impeccable` skill (035) for visual design system enforcement.

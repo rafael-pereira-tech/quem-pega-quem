@@ -1,0 +1,8 @@
+---
+description: Playwright skill — use when writing, debugging, or refactoring E2E tests. Fixtures over Page Objects, semantic locators, MSW only for unit tests.
+globs: ["e2e/**", "playwright.config.ts"]
+---
+
+Apply guidance in `ai/skills/playwright/SKILL.md`. For deep references
+(locators, fixtures, CI, network mocking, visual regression) browse
+the upstream `testdino-hq/playwright-skill` repo.

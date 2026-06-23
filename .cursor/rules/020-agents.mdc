@@ -1,0 +1,30 @@
+---
+description: Role-scoped agents for Quem Pega Quem. Manual rule — invoke explicitly with @rule-name when adopting a role.
+---
+
+Role-scoped agent definitions live under `ai/agents/`. When the user
+asks you to act in one of these roles, load the corresponding file in
+full and apply its decision rules.
+
+| Role                  | File                                |
+| --------------------- | ----------------------------------- |
+| dev-fe                | `ai/agents/dev-fe.md`                |
+| supabase-be           | `ai/agents/supabase-be.md`           |
+| reviewer              | `ai/agents/reviewer.md`              |
+| validator-qa          | `ai/agents/validator-qa.md`          |
+| rls-auditor           | `ai/agents/rls-auditor.md`           |
+| design-implementer    | `ai/agents/design-implementer.md`    |
+| adr-proposer          | `ai/agents/adr-proposer.md`          |
+| migration-runner      | `ai/agents/migration-runner.md`      |
+
+Routing hints:
+
+- RLS, policies, ownership boundary, admin-only writes →
+  `rls-auditor` preempts any other agent.
+- Screens from a `design/` handoff (e.g. `design/v3/`) →
+  `design-implementer` for the visual translation, then `dev-fe` for
+  data wiring.
+- "We decided X" without a corresponding ADR → `adr-proposer` drafts
+  the ADR before the code lands.
+
+See `ai/agents/README.md` for the full matrix and universal rules.

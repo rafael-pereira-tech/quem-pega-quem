@@ -1,0 +1,13 @@
+---
+description: Spec-Driven Development — 4-phase gated workflow for new features or ambiguous requirements. Manual rule; invoke when starting a feature.
+---
+
+Apply the spec-driven workflow documented at
+`ai/skills/spec-driven/SKILL.md`. Load that file in full when this
+rule is activated.
+
+Phases: SPECIFY → PLAN → TASKS → IMPLEMENT. Human review at each
+transition. Do not skip ahead.
+
+When NOT to apply: typo fixes, unambiguous one-liners, bug fixes
+whose root cause is already understood.

@@ -1,0 +1,12 @@
+---
+description: impeccable.style — design system fidelity + AI-slop detection. Audits against PRODUCT.md and DESIGN.md. Manual rule, invoke during UI review.
+---
+
+Apply guidance in `ai/skills/impeccable/README.md`.
+
+Key inputs that travel with the project:
+- `PRODUCT.md` at repo root — audience, voice, anti-references
+- `DESIGN.md` at repo root — tokens, components, visual rules
+
+Run `/impeccable audit <path>` or `npx impeccable detect` to validate
+new UI code against these.

@@ -1,0 +1,27 @@
+---
+description: Commit, PR, and branch conventions for Quem Pega Quem. Always apply. The full conventions live under ai/conventions/.
+alwaysApply: true
+---
+
+Follow the conventions documented in:
+
+- `ai/conventions/commits.md` — Conventional Commits with the project
+  scope table.
+- `ai/conventions/prs.md` — PR title shape, body template, Risk
+  Checklist usage, and the stacked-PR pattern.
+- `ai/conventions/branches.md` — branch naming.
+
+Quick reference:
+
+- Commit / PR title shape: `<type>(<scope>): <subject>`.
+- Subject is imperative mood, lower-case, no trailing period, ≤ 72
+  chars.
+- Branches: `<type>/<short-kebab-description>`. No personal prefixes,
+  no ticket numbers, no `wip/`.
+- Stacked PRs encode the dependency through the base branch, not
+  through name suffixes like `[1/N]`.
+- Risk Checklist tickboxes need evidence in the Summary or Notes.
+- Co-authoring with AI: include `Co-Authored-By:` naming the tool.
+
+Read the full convention files when in doubt — they are short and
+they hold the *why*.
