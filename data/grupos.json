@@ -833,28 +833,33 @@
       {
         "matchday": 2,
         "home": "NOR",
-        "away": "FRA",
-        "homeGoals": null,
-        "awayGoals": null
+        "away": "SEN",
+        "homeGoals": 3,
+        "awayGoals": 2
       },
       {
         "matchday": 2,
-        "home": "SEN",
-        "away": "IRQ",
-        "homeGoals": null,
-        "awayGoals": null
+        "home": "IRQ",
+        "away": "FRA",
+        "homeGoals": 0,
+        "awayGoals": 3,
+        "cards": {
+          "IRQ": {
+            "yellow": 1
+          }
+        }
       },
       {
         "matchday": 3,
         "home": "NOR",
-        "away": "SEN",
+        "away": "FRA",
         "homeGoals": null,
         "awayGoals": null
       },
       {
         "matchday": 3,
-        "home": "IRQ",
-        "away": "FRA",
+        "home": "SEN",
+        "away": "IRQ",
         "homeGoals": null,
         "awayGoals": null
       }
@@ -911,15 +916,31 @@
         "matchday": 2,
         "home": "ARG",
         "away": "AUT",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "cards": {
+          "ARG": {
+            "yellow": 2
+          },
+          "AUT": {
+            "yellow": 2
+          }
+        }
       },
       {
         "matchday": 2,
         "home": "JOR",
         "away": "ALG",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 1,
+        "awayGoals": 2,
+        "cards": {
+          "JOR": {
+            "yellow": 1
+          },
+          "ALG": {
+            "yellow": 1
+          }
+        }
       },
       {
         "matchday": 3,
@@ -999,8 +1020,16 @@
         "matchday": 2,
         "home": "POR",
         "away": "UZB",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 5,
+        "awayGoals": 0,
+        "cards": {
+          "POR": {
+            "yellow": 1
+          },
+          "UZB": {
+            "yellow": 1
+          }
+        }
       },
       {
         "matchday": 2,
@@ -1079,8 +1108,13 @@
         "matchday": 2,
         "home": "ENG",
         "away": "GHA",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "cards": {
+          "ENG": {
+            "yellow": 1
+          }
+        }
       },
       {
         "matchday": 2,
