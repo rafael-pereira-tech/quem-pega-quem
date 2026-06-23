@@ -1,0 +1,162 @@
+[
+  {
+    "match": 89,
+    "round": "R16",
+    "home": {
+      "winnerOf": 74
+    },
+    "away": {
+      "winnerOf": 77
+    }
+  },
+  {
+    "match": 90,
+    "round": "R16",
+    "home": {
+      "winnerOf": 73
+    },
+    "away": {
+      "winnerOf": 75
+    }
+  },
+  {
+    "match": 91,
+    "round": "R16",
+    "home": {
+      "winnerOf": 76
+    },
+    "away": {
+      "winnerOf": 78
+    }
+  },
+  {
+    "match": 92,
+    "round": "R16",
+    "home": {
+      "winnerOf": 79
+    },
+    "away": {
+      "winnerOf": 80
+    }
+  },
+  {
+    "match": 93,
+    "round": "R16",
+    "home": {
+      "winnerOf": 83
+    },
+    "away": {
+      "winnerOf": 84
+    }
+  },
+  {
+    "match": 94,
+    "round": "R16",
+    "home": {
+      "winnerOf": 81
+    },
+    "away": {
+      "winnerOf": 82
+    }
+  },
+  {
+    "match": 95,
+    "round": "R16",
+    "home": {
+      "winnerOf": 86
+    },
+    "away": {
+      "winnerOf": 88
+    }
+  },
+  {
+    "match": 96,
+    "round": "R16",
+    "home": {
+      "winnerOf": 85
+    },
+    "away": {
+      "winnerOf": 87
+    }
+  },
+  {
+    "match": 97,
+    "round": "QF",
+    "home": {
+      "winnerOf": 89
+    },
+    "away": {
+      "winnerOf": 90
+    }
+  },
+  {
+    "match": 98,
+    "round": "QF",
+    "home": {
+      "winnerOf": 93
+    },
+    "away": {
+      "winnerOf": 94
+    }
+  },
+  {
+    "match": 99,
+    "round": "QF",
+    "home": {
+      "winnerOf": 91
+    },
+    "away": {
+      "winnerOf": 92
+    }
+  },
+  {
+    "match": 100,
+    "round": "QF",
+    "home": {
+      "winnerOf": 95
+    },
+    "away": {
+      "winnerOf": 96
+    }
+  },
+  {
+    "match": 101,
+    "round": "SF",
+    "home": {
+      "winnerOf": 97
+    },
+    "away": {
+      "winnerOf": 98
+    }
+  },
+  {
+    "match": 102,
+    "round": "SF",
+    "home": {
+      "winnerOf": 99
+    },
+    "away": {
+      "winnerOf": 100
+    }
+  },
+  {
+    "match": 103,
+    "round": "third_place",
+    "home": {
+      "loserOf": 101
+    },
+    "away": {
+      "loserOf": 102
+    }
+  },
+  {
+    "match": 104,
+    "round": "final",
+    "home": {
+      "winnerOf": 101
+    },
+    "away": {
+      "winnerOf": 102
+    }
+  }
+]

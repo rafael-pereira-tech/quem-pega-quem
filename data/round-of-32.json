@@ -1,0 +1,250 @@
+[
+  {
+    "match": 73,
+    "type": "runnerup_v_runnerup",
+    "home": {
+      "rank": 2,
+      "group": "A"
+    },
+    "away": {
+      "rank": 2,
+      "group": "B"
+    }
+  },
+  {
+    "match": 74,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "E"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "E",
+      "allowedGroups": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "F"
+      ]
+    }
+  },
+  {
+    "match": 75,
+    "type": "winner_v_runnerup",
+    "home": {
+      "rank": 1,
+      "group": "F"
+    },
+    "away": {
+      "rank": 2,
+      "group": "C"
+    }
+  },
+  {
+    "match": 76,
+    "type": "winner_v_runnerup",
+    "home": {
+      "rank": 1,
+      "group": "C"
+    },
+    "away": {
+      "rank": 2,
+      "group": "F"
+    }
+  },
+  {
+    "match": 77,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "I"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "I",
+      "allowedGroups": [
+        "C",
+        "D",
+        "F",
+        "G",
+        "H"
+      ]
+    }
+  },
+  {
+    "match": 78,
+    "type": "runnerup_v_runnerup",
+    "home": {
+      "rank": 2,
+      "group": "E"
+    },
+    "away": {
+      "rank": 2,
+      "group": "I"
+    }
+  },
+  {
+    "match": 79,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "A"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "A",
+      "allowedGroups": [
+        "C",
+        "E",
+        "F",
+        "H",
+        "I"
+      ]
+    }
+  },
+  {
+    "match": 80,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "L"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "L",
+      "allowedGroups": [
+        "E",
+        "H",
+        "I",
+        "J",
+        "K"
+      ]
+    }
+  },
+  {
+    "match": 81,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "D"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "D",
+      "allowedGroups": [
+        "B",
+        "E",
+        "F",
+        "I",
+        "J"
+      ]
+    }
+  },
+  {
+    "match": 82,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "G"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "G",
+      "allowedGroups": [
+        "A",
+        "E",
+        "H",
+        "I",
+        "J"
+      ]
+    }
+  },
+  {
+    "match": 83,
+    "type": "runnerup_v_runnerup",
+    "home": {
+      "rank": 2,
+      "group": "K"
+    },
+    "away": {
+      "rank": 2,
+      "group": "L"
+    }
+  },
+  {
+    "match": 84,
+    "type": "winner_v_runnerup",
+    "home": {
+      "rank": 1,
+      "group": "H"
+    },
+    "away": {
+      "rank": 2,
+      "group": "J"
+    }
+  },
+  {
+    "match": 85,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "B"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "B",
+      "allowedGroups": [
+        "E",
+        "F",
+        "G",
+        "I",
+        "J"
+      ]
+    }
+  },
+  {
+    "match": 86,
+    "type": "winner_v_runnerup",
+    "home": {
+      "rank": 1,
+      "group": "J"
+    },
+    "away": {
+      "rank": 2,
+      "group": "H"
+    }
+  },
+  {
+    "match": 87,
+    "type": "winner_v_third",
+    "home": {
+      "rank": 1,
+      "group": "K"
+    },
+    "away": {
+      "rank": 3,
+      "lookupWinner": "K",
+      "allowedGroups": [
+        "D",
+        "E",
+        "I",
+        "J",
+        "L"
+      ]
+    }
+  },
+  {
+    "match": 88,
+    "type": "runnerup_v_runnerup",
+    "home": {
+      "rank": 2,
+      "group": "D"
+    },
+    "away": {
+      "rank": 2,
+      "group": "G"
+    }
+  }
+]

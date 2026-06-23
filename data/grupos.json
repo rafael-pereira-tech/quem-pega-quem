@@ -1,0 +1,1108 @@
+{
+  "A": {
+    "teams": [
+      {
+        "id": "MEX",
+        "name": "México",
+        "fifaRanking": 14,
+        "fairPlay": 0
+      },
+      {
+        "id": "RSA",
+        "name": "África do Sul",
+        "fifaRanking": 60,
+        "fairPlay": 0
+      },
+      {
+        "id": "KOR",
+        "name": "Coreia do Sul",
+        "fifaRanking": 25,
+        "fairPlay": 0
+      },
+      {
+        "id": "CZE",
+        "name": "Tchéquia",
+        "fifaRanking": 40,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "MEX",
+        "away": "RSA",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "cards": {
+          "MEX": {
+            "yellow": 1,
+            "directRed": 1
+          },
+          "RSA": {
+            "yellow": 2,
+            "directRed": 2
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "KOR",
+        "away": "CZE",
+        "homeGoals": 2,
+        "awayGoals": 1,
+        "cards": {
+          "KOR": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "CZE",
+        "away": "RSA",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "CZE": {
+            "yellow": 1
+          },
+          "RSA": {
+            "yellow": 2
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "MEX",
+        "away": "KOR",
+        "homeGoals": 1,
+        "awayGoals": 0,
+        "cards": {
+          "KOR": {
+            "yellow": 2
+          }
+        }
+      },
+      {
+        "matchday": 3,
+        "home": "CZE",
+        "away": "MEX",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "RSA",
+        "away": "KOR",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "B": {
+    "teams": [
+      {
+        "id": "CAN",
+        "name": "Canadá",
+        "fifaRanking": 30,
+        "fairPlay": 0
+      },
+      {
+        "id": "BIH",
+        "name": "Bósnia e Herzegovina",
+        "fifaRanking": 64,
+        "fairPlay": 0
+      },
+      {
+        "id": "QAT",
+        "name": "Catar",
+        "fifaRanking": 56,
+        "fairPlay": 0
+      },
+      {
+        "id": "SUI",
+        "name": "Suíça",
+        "fifaRanking": 19,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "CAN",
+        "away": "BIH",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "CAN": {
+            "yellow": 2
+          },
+          "BIH": {
+            "yellow": 3
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "QAT",
+        "away": "SUI",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "QAT": {
+            "yellow": 2
+          },
+          "SUI": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "SUI",
+        "away": "BIH",
+        "homeGoals": 4,
+        "awayGoals": 1,
+        "cards": {
+          "SUI": {
+            "yellow": 1
+          },
+          "BIH": {
+            "yellow": 2,
+            "directRed": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "CAN",
+        "away": "QAT",
+        "homeGoals": 6,
+        "awayGoals": 0,
+        "cards": {
+          "CAN": {
+            "yellow": 1
+          },
+          "QAT": {
+            "yellow": 1,
+            "directRed": 2
+          }
+        }
+      },
+      {
+        "matchday": 3,
+        "home": "SUI",
+        "away": "CAN",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "BIH",
+        "away": "QAT",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "C": {
+    "teams": [
+      {
+        "id": "BRA",
+        "name": "Brasil",
+        "fifaRanking": 6,
+        "fairPlay": 0
+      },
+      {
+        "id": "MAR",
+        "name": "Marrocos",
+        "fifaRanking": 7,
+        "fairPlay": 0
+      },
+      {
+        "id": "SCO",
+        "name": "Escócia",
+        "fifaRanking": 42,
+        "fairPlay": 0
+      },
+      {
+        "id": "HAI",
+        "name": "Haiti",
+        "fifaRanking": 83,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "BRA",
+        "away": "MAR",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "BRA": {
+            "yellow": 2
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "HAI",
+        "away": "SCO",
+        "homeGoals": 0,
+        "awayGoals": 1,
+        "cards": {
+          "HAI": {
+            "yellow": 1
+          },
+          "SCO": {
+            "yellow": 3
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "SCO",
+        "away": "MAR",
+        "homeGoals": 0,
+        "awayGoals": 1,
+        "cards": {
+          "SCO": {
+            "yellow": 1
+          },
+          "MAR": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "BRA",
+        "away": "HAI",
+        "homeGoals": 3,
+        "awayGoals": 0,
+        "cards": {
+          "BRA": {
+            "yellow": 1
+          },
+          "HAI": {
+            "yellow": 3
+          }
+        }
+      },
+      {
+        "matchday": 3,
+        "home": "SCO",
+        "away": "BRA",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "MAR",
+        "away": "HAI",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "D": {
+    "teams": [
+      {
+        "id": "USA",
+        "name": "Estados Unidos",
+        "fifaRanking": 17,
+        "fairPlay": 0
+      },
+      {
+        "id": "PAR",
+        "name": "Paraguai",
+        "fifaRanking": 41,
+        "fairPlay": 0
+      },
+      {
+        "id": "AUS",
+        "name": "Austrália",
+        "fifaRanking": 27,
+        "fairPlay": 0
+      },
+      {
+        "id": "TUR",
+        "name": "Turquia",
+        "fifaRanking": 22,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "USA",
+        "away": "PAR",
+        "homeGoals": 4,
+        "awayGoals": 1,
+        "cards": {
+          "USA": {
+            "yellow": 1
+          },
+          "PAR": {
+            "yellow": 5
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "AUS",
+        "away": "TUR",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "cards": {
+          "TUR": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "USA",
+        "away": "AUS",
+        "homeGoals": 2,
+        "awayGoals": 0,
+        "cards": {
+          "USA": {
+            "yellow": 3
+          },
+          "AUS": {
+            "yellow": 4
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "TUR",
+        "away": "PAR",
+        "homeGoals": 0,
+        "awayGoals": 1,
+        "cards": {
+          "TUR": {
+            "yellow": 2
+          },
+          "PAR": {
+            "yellow": 2,
+            "directRed": 1
+          }
+        }
+      },
+      {
+        "matchday": 3,
+        "home": "TUR",
+        "away": "USA",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "PAR",
+        "away": "AUS",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "E": {
+    "teams": [
+      {
+        "id": "GER",
+        "name": "Alemanha",
+        "fifaRanking": 10,
+        "fairPlay": 0
+      },
+      {
+        "id": "CUW",
+        "name": "Curaçao",
+        "fifaRanking": 82,
+        "fairPlay": 0
+      },
+      {
+        "id": "CIV",
+        "name": "Costa do Marfim",
+        "fifaRanking": 33,
+        "fairPlay": 0
+      },
+      {
+        "id": "ECU",
+        "name": "Equador",
+        "fifaRanking": 23,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "GER",
+        "away": "CUW",
+        "homeGoals": 7,
+        "awayGoals": 1
+      },
+      {
+        "matchday": 1,
+        "home": "CIV",
+        "away": "ECU",
+        "homeGoals": 1,
+        "awayGoals": 0,
+        "cards": {
+          "CIV": {
+            "yellow": 3
+          },
+          "ECU": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "GER",
+        "away": "CIV",
+        "homeGoals": 2,
+        "awayGoals": 1
+      },
+      {
+        "matchday": 2,
+        "home": "ECU",
+        "away": "CUW",
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "cards": {
+          "ECU": {
+            "yellow": 1
+          },
+          "CUW": {
+            "yellow": 5
+          }
+        }
+      },
+      {
+        "matchday": 3,
+        "home": "ECU",
+        "away": "GER",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "CUW",
+        "away": "CIV",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "F": {
+    "teams": [
+      {
+        "id": "NED",
+        "name": "Países Baixos",
+        "fifaRanking": 8,
+        "fairPlay": 0
+      },
+      {
+        "id": "JPN",
+        "name": "Japão",
+        "fifaRanking": 18,
+        "fairPlay": 0
+      },
+      {
+        "id": "SWE",
+        "name": "Suécia",
+        "fifaRanking": 38,
+        "fairPlay": 0
+      },
+      {
+        "id": "TUN",
+        "name": "Tunísia",
+        "fifaRanking": 45,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "NED",
+        "away": "JPN",
+        "homeGoals": 2,
+        "awayGoals": 2,
+        "cards": {
+          "NED": {
+            "yellow": 3
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "SWE",
+        "away": "TUN",
+        "homeGoals": 5,
+        "awayGoals": 1,
+        "cards": {
+          "TUN": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "NED",
+        "away": "SWE",
+        "homeGoals": 5,
+        "awayGoals": 1,
+        "cards": {
+          "SWE": {
+            "yellow": 3
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "TUN",
+        "away": "JPN",
+        "homeGoals": 0,
+        "awayGoals": 4
+      },
+      {
+        "matchday": 3,
+        "home": "JPN",
+        "away": "SWE",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "TUN",
+        "away": "NED",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "G": {
+    "teams": [
+      {
+        "id": "BEL",
+        "name": "Bélgica",
+        "fifaRanking": 9,
+        "fairPlay": 0
+      },
+      {
+        "id": "EGY",
+        "name": "Egito",
+        "fifaRanking": 29,
+        "fairPlay": 0
+      },
+      {
+        "id": "IRN",
+        "name": "Irã",
+        "fifaRanking": 20,
+        "fairPlay": 0
+      },
+      {
+        "id": "NZL",
+        "name": "Nova Zelândia",
+        "fifaRanking": 85,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "BEL",
+        "away": "EGY",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "BEL": {
+            "yellow": 2
+          },
+          "EGY": {
+            "yellow": 2
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "IRN",
+        "away": "NZL",
+        "homeGoals": 2,
+        "awayGoals": 2,
+        "cards": {
+          "IRN": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "BEL",
+        "away": "IRN",
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "cards": {
+          "BEL": {
+            "yellow": 1,
+            "directRed": 1
+          },
+          "IRN": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "NZL",
+        "away": "EGY",
+        "homeGoals": 1,
+        "awayGoals": 3,
+        "cards": {
+          "NZL": {
+            "yellow": 2
+          },
+          "EGY": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 3,
+        "home": "EGY",
+        "away": "IRN",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "NZL",
+        "away": "BEL",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "H": {
+    "teams": [
+      {
+        "id": "ESP",
+        "name": "Espanha",
+        "fifaRanking": 2,
+        "fairPlay": 0
+      },
+      {
+        "id": "CPV",
+        "name": "Cabo Verde",
+        "fifaRanking": 67,
+        "fairPlay": 0
+      },
+      {
+        "id": "KSA",
+        "name": "Arábia Saudita",
+        "fifaRanking": 61,
+        "fairPlay": 0
+      },
+      {
+        "id": "URU",
+        "name": "Uruguai",
+        "fifaRanking": 16,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "ESP",
+        "away": "CPV",
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "cards": {
+          "ESP": {
+            "yellow": 1
+          },
+          "CPV": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "KSA",
+        "away": "URU",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "KSA": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "ESP",
+        "away": "KSA",
+        "homeGoals": 4,
+        "awayGoals": 0,
+        "cards": {
+          "KSA": {
+            "yellow": 2
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "URU",
+        "away": "CPV",
+        "homeGoals": 2,
+        "awayGoals": 2,
+        "cards": {
+          "URU": {
+            "yellow": 2
+          },
+          "CPV": {
+            "yellow": 2
+          }
+        }
+      },
+      {
+        "matchday": 3,
+        "home": "CPV",
+        "away": "KSA",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "URU",
+        "away": "ESP",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "I": {
+    "teams": [
+      {
+        "id": "FRA",
+        "name": "França",
+        "fifaRanking": 3,
+        "fairPlay": 0
+      },
+      {
+        "id": "SEN",
+        "name": "Senegal",
+        "fifaRanking": 15,
+        "fairPlay": 0
+      },
+      {
+        "id": "IRQ",
+        "name": "Iraque",
+        "fifaRanking": 57,
+        "fairPlay": 0
+      },
+      {
+        "id": "NOR",
+        "name": "Noruega",
+        "fifaRanking": 31,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "FRA",
+        "away": "SEN",
+        "homeGoals": 3,
+        "awayGoals": 1
+      },
+      {
+        "matchday": 1,
+        "home": "IRQ",
+        "away": "NOR",
+        "homeGoals": 1,
+        "awayGoals": 4,
+        "cards": {
+          "IRQ": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "NOR",
+        "away": "FRA",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 2,
+        "home": "SEN",
+        "away": "IRQ",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "NOR",
+        "away": "SEN",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "IRQ",
+        "away": "FRA",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "J": {
+    "teams": [
+      {
+        "id": "ARG",
+        "name": "Argentina",
+        "fifaRanking": 1,
+        "fairPlay": 0
+      },
+      {
+        "id": "ALG",
+        "name": "Argélia",
+        "fifaRanking": 28,
+        "fairPlay": 0
+      },
+      {
+        "id": "AUT",
+        "name": "Áustria",
+        "fifaRanking": 24,
+        "fairPlay": 0
+      },
+      {
+        "id": "JOR",
+        "name": "Jordânia",
+        "fifaRanking": 63,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "ARG",
+        "away": "ALG",
+        "homeGoals": 3,
+        "awayGoals": 0
+      },
+      {
+        "matchday": 1,
+        "home": "AUT",
+        "away": "JOR",
+        "homeGoals": 3,
+        "awayGoals": 1,
+        "cards": {
+          "AUT": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "ARG",
+        "away": "AUT",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 2,
+        "home": "JOR",
+        "away": "ALG",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "ALG",
+        "away": "AUT",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "JOR",
+        "away": "ARG",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "K": {
+    "teams": [
+      {
+        "id": "POR",
+        "name": "Portugal",
+        "fifaRanking": 5,
+        "fairPlay": 0
+      },
+      {
+        "id": "COD",
+        "name": "RD Congo",
+        "fifaRanking": 46,
+        "fairPlay": 0
+      },
+      {
+        "id": "UZB",
+        "name": "Uzbequistão",
+        "fifaRanking": 50,
+        "fairPlay": 0
+      },
+      {
+        "id": "COL",
+        "name": "Colômbia",
+        "fifaRanking": 13,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "POR",
+        "away": "COD",
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "POR": {
+            "yellow": 3
+          },
+          "COD": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 1,
+        "home": "UZB",
+        "away": "COL",
+        "homeGoals": 1,
+        "awayGoals": 3,
+        "cards": {
+          "UZB": {
+            "yellow": 1
+          },
+          "COL": {
+            "yellow": 1
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "POR",
+        "away": "UZB",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 2,
+        "home": "COL",
+        "away": "COD",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "COL",
+        "away": "POR",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "COD",
+        "away": "UZB",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  },
+  "L": {
+    "teams": [
+      {
+        "id": "ENG",
+        "name": "Inglaterra",
+        "fifaRanking": 4,
+        "fairPlay": 0
+      },
+      {
+        "id": "CRO",
+        "name": "Croácia",
+        "fifaRanking": 11,
+        "fairPlay": 0
+      },
+      {
+        "id": "GHA",
+        "name": "Gana",
+        "fifaRanking": 73,
+        "fairPlay": 0
+      },
+      {
+        "id": "PAN",
+        "name": "Panamá",
+        "fifaRanking": 34,
+        "fairPlay": 0
+      }
+    ],
+    "matches": [
+      {
+        "matchday": 1,
+        "home": "ENG",
+        "away": "CRO",
+        "homeGoals": 4,
+        "awayGoals": 2
+      },
+      {
+        "matchday": 1,
+        "home": "GHA",
+        "away": "PAN",
+        "homeGoals": 1,
+        "awayGoals": 0,
+        "cards": {
+          "GHA": {
+            "yellow": 1
+          },
+          "PAN": {
+            "yellow": 2
+          }
+        }
+      },
+      {
+        "matchday": 2,
+        "home": "ENG",
+        "away": "GHA",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 2,
+        "home": "PAN",
+        "away": "CRO",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "PAN",
+        "away": "ENG",
+        "homeGoals": null,
+        "awayGoals": null
+      },
+      {
+        "matchday": 3,
+        "home": "CRO",
+        "away": "GHA",
+        "homeGoals": null,
+        "awayGoals": null
+      }
+    ]
+  }
+}

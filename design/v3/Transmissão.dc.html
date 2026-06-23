@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  ::-webkit-scrollbar{height:12px;width:12px;}
+  ::-webkit-scrollbar-thumb{background:#262d3b;border-radius:99px;border:3px solid #05070B;}
+  ::-webkit-scrollbar-track{background:#05070B;}
+</style>
+</helmet>
+<div style="width:max-content;min-width:100%;min-height:100vh;box-sizing:border-box;padding:56px;background:#05070B;font-family:'Barlow',sans-serif;">
+
+  <!-- HEADER -->
+  <div style="max-width:1180px;margin-bottom:64px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#687087;margin-bottom:14px;">Design System v1 · Direção Transmissão</div>
+    <h1 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:72px;line-height:.9;letter-spacing:.005em;margin:0;color:#EBF1FB;text-transform:uppercase;">Quem&#8209;Pega&#8209;Quem</h1>
+    <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:22px;color:#FF2D55;text-transform:uppercase;letter-spacing:.06em;margin-top:6px;">// Transmissão</div>
+    <p style="font-size:18px;line-height:1.55;max-width:640px;color:#98A2B4;margin:18px 0 0;text-wrap:pretty;">O sistema visual do app de bracket ao vivo: tokens, componentes e estados, mais as telas mobile e desktop alinhadas. Pegada de transmissão esportiva &mdash; fundo escuro, placar de estádio, tensão de tempo real.</p>
+  </div>
+
+  <!-- ===== FOUNDATIONS · CORES ===== -->
+  <div style="margin-bottom:56px;border-top:1px solid #1B212D;padding-top:28px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#687087;margin-bottom:6px;">01 · Foundations</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;text-transform:uppercase;letter-spacing:.01em;margin:0 0 24px;color:#EBF1FB;">Cores</h2>
+
+    <!-- Superfícies -->
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#687087;margin-bottom:12px;">Superfícies &amp; texto</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;">
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#05070B;border:1px solid #28303F;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Canvas</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#05070B · canvas</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#0B0E14;border:1px solid #28303F;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Tela</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#0B0E14 · bg</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#141A24;border:1px solid #28303F;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Superfície</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#141A24 · surface</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#1B2230;border:1px solid #28303F;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Elevado</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#1B2230 · raised</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#0B0E14;border:1px solid #28303F;display:flex;align-items:center;justify-content:center;"><span style="width:60%;height:2px;background:#28303F;"></span></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Borda</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#28303F · border</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#141A24;border:1px solid #28303F;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;"><span style="font-weight:800;font-size:15px;color:#EBF1FB;">Aa</span><span style="font-weight:600;font-size:11px;color:#98A2B4;">Aa</span><span style="font-weight:600;font-size:10px;color:#687087;">Aa</span></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Texto hi/mid/low</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#EBF1FB · #98A2B4 · #687087</div></div>
+    </div>
+
+    <!-- Funcionais -->
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#687087;margin-bottom:12px;">Funcionais</div>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;">
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#FF2D55;box-shadow:0 0 0 4px rgba(255,45,85,.18);"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Ao vivo / ação</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#FF2D55 · live</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#C6F24E;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Destaque / final</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#C6F24E · lime</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#36C275;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Classifica</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#36C275 · go</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#FFB400;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">3º / provisório</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#FFB400 · third</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#FFC400;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Cartão amarelo</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#FFC400 · yellow</div></div>
+      <div style="width:130px;"><div style="height:62px;border-radius:10px;background:#F4324C;"></div><div style="margin-top:8px;font-weight:700;font-size:13px;color:#EBF1FB;">Cartão vermelho</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">#F4324C · red</div></div>
+    </div>
+
+    <!-- Grupos -->
+    <div style="font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#687087;margin-bottom:12px;">Paleta dos 12 grupos · multicor festivo</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#FF3B6B;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#fff;">A</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">FF3B6B</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#FF7A00;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#fff;">B</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">FF7A00</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#FFB400;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#16140f;">C</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">FFB400</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#36C275;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#06210f;">D</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">36C275</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#00B3A6;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#04201e;">E</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">00B3A6</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#2E9BFF;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#04162b;">F</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">2E9BFF</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#6C5CE7;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#fff;">G</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">6C5CE7</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#C44CFF;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#fff;">H</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">C44CFF</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#FF4FA3;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#fff;">I</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">FF4FA3</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#18C0C4;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#04201f;">J</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">18C0C4</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#8BC34A;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#0f2104;">K</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">8BC34A</div></div>
+      <div style="width:78px;"><div style="height:54px;border-radius:9px;background:#FF5C5C;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#fff;">L</div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:5px;text-align:center;">FF5C5C</div></div>
+    </div>
+
+    <span data-sentinel="foundations"></span>
+  </div>
+
+  <!-- ===== FOUNDATIONS · TIPOGRAFIA ===== -->
+  <div style="margin-bottom:56px;border-top:1px solid #1B212D;padding-top:28px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#687087;margin-bottom:6px;">01 · Foundations</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;text-transform:uppercase;letter-spacing:.01em;margin:0 0 24px;color:#EBF1FB;">Tipografia</h2>
+
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-bottom:32px;">
+      <div style="flex:1;min-width:300px;background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:22px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;margin-bottom:8px;">DISPLAY · números</div>
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:60px;line-height:.9;color:#EBF1FB;text-transform:uppercase;">Barlow<br>Condensed</div>
+        <div style="font-size:14px;color:#98A2B4;margin-top:14px;line-height:1.5;">Placares, títulos de tela, letras de grupo, números de seed. Pesos 700/800, caixa alta, tracking levemente aberto.</div>
+      </div>
+      <div style="flex:1;min-width:300px;background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:22px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;margin-bottom:8px;">UI · corpo</div>
+        <div style="font-family:'Barlow',sans-serif;font-weight:700;font-size:46px;line-height:1;color:#EBF1FB;">Barlow</div>
+        <div style="font-size:14px;color:#98A2B4;margin-top:14px;line-height:1.5;">Nomes de seleção, rótulos, textos de interface. Pesos 400&ndash;700. Legível em telas pequenas durante o jogo.</div>
+      </div>
+      <div style="flex:1;min-width:300px;background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:22px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;margin-bottom:8px;">MONO · dados &amp; rótulos</div>
+        <div style="font-family:'Space Mono',monospace;font-weight:700;font-size:38px;line-height:1;color:#EBF1FB;">Space<br>Mono</div>
+        <div style="font-size:14px;color:#98A2B4;margin-top:14px;line-height:1.5;">Seeds (1A · 3º), minutos (78&prime;), rótulos uppercase, pts/saldo. Dá ar técnico de transmissão.</div>
+      </div>
+    </div>
+
+    <!-- escala -->
+    <div style="background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:8px 24px;">
+      <div style="display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid #1B212D;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:#EBF1FB;text-transform:uppercase;">Melhores 3º</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:#687087;">display-xl · Condensed 800 · 30/1.0</span></div>
+      <div style="display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid #1B212D;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:#EBF1FB;text-transform:uppercase;letter-spacing:.03em;">Grupo A · Chave</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:#687087;">h-section · Condensed 800 · 20</span></div>
+      <div style="display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid #1B212D;"><span style="font-family:'Barlow',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;">Brasil &middot; Argentina</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:#687087;">body · Barlow 700 · 15/1.35</span></div>
+      <div style="display:flex;align-items:baseline;gap:16px;padding:14px 0;border-bottom:1px solid #1B212D;"><span style="font-family:'Barlow',sans-serif;font-weight:600;font-size:13px;color:#98A2B4;">rótulo / botão</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:#687087;">label · Barlow 600 · 13</span></div>
+      <div style="display:flex;align-items:baseline;gap:16px;padding:14px 0;"><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">1A · 78&prime; · 7 PTS</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:#687087;">meta-mono · Mono · 10&ndash;11</span></div>
+    </div>
+  </div>
+
+  <!-- ===== FOUNDATIONS · ESPAÇO / RAIO / ELEVAÇÃO ===== -->
+  <div style="margin-bottom:56px;border-top:1px solid #1B212D;padding-top:28px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#687087;margin-bottom:6px;">01 · Foundations</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;text-transform:uppercase;letter-spacing:.01em;margin:0 0 24px;color:#EBF1FB;">Espaço · Raio · Elevação</h2>
+
+    <div style="display:flex;gap:20px;flex-wrap:wrap;">
+      <!-- spacing -->
+      <div style="flex:1;min-width:300px;background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:22px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;margin-bottom:16px;">ESPAÇAMENTO · base 4</div>
+        <div style="display:flex;align-items:flex-end;gap:12px;">
+          <div style="text-align:center;"><div style="width:4px;height:4px;background:#FF2D55;border-radius:2px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">4</div></div>
+          <div style="text-align:center;"><div style="width:8px;height:8px;background:#FF2D55;border-radius:2px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">8</div></div>
+          <div style="text-align:center;"><div style="width:12px;height:12px;background:#FF2D55;border-radius:2px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">12</div></div>
+          <div style="text-align:center;"><div style="width:16px;height:16px;background:#FF2D55;border-radius:2px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">16</div></div>
+          <div style="text-align:center;"><div style="width:20px;height:20px;background:#FF2D55;border-radius:2px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">20</div></div>
+          <div style="text-align:center;"><div style="width:24px;height:24px;background:#FF2D55;border-radius:2px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">24</div></div>
+        </div>
+      </div>
+      <!-- radius -->
+      <div style="flex:1;min-width:300px;background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:22px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;margin-bottom:16px;">RAIO</div>
+        <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+          <div style="text-align:center;"><div style="width:48px;height:48px;background:#1B2230;border:1px solid #28303F;border-radius:7px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">7 chip</div></div>
+          <div style="text-align:center;"><div style="width:48px;height:48px;background:#1B2230;border:1px solid #28303F;border-radius:10px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">10 ctrl</div></div>
+          <div style="text-align:center;"><div style="width:48px;height:48px;background:#1B2230;border:1px solid #28303F;border-radius:14px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">14 card</div></div>
+          <div style="text-align:center;"><div style="width:48px;height:48px;background:#1B2230;border:1px solid #28303F;border-radius:20px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">20 sheet</div></div>
+          <div style="text-align:center;"><div style="width:48px;height:48px;background:#1B2230;border:1px solid #28303F;border-radius:99px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">99 pill</div></div>
+        </div>
+      </div>
+      <!-- elevation -->
+      <div style="flex:1;min-width:300px;background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:22px 24px;">
+        <div style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;margin-bottom:16px;">ELEVAÇÃO &amp; FOCO</div>
+        <div style="display:flex;gap:16px;align-items:center;">
+          <div style="text-align:center;"><div style="width:64px;height:48px;background:#141A24;border:1px solid #28303F;border-radius:12px;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">flat · borda</div></div>
+          <div style="text-align:center;"><div style="width:64px;height:48px;background:#1B2230;border-radius:12px;box-shadow:0 16px 40px rgba(0,0,0,.5);"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">overlay</div></div>
+          <div style="text-align:center;"><div style="width:64px;height:48px;background:#141A24;border-radius:12px;box-shadow:0 0 0 2px #FF2D55;"></div><div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">foco/ativo</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== COMPONENTS · PRIMITIVOS ===== -->
+  <div style="margin-bottom:40px;border-top:1px solid #1B212D;padding-top:28px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#687087;margin-bottom:6px;">02 · Componentes</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;text-transform:uppercase;letter-spacing:.01em;margin:0 0 24px;color:#EBF1FB;">Primitivos</h2>
+
+    <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;">
+
+      <!-- Tabs -->
+      <div style="background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:18px 20px;width:340px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:12px;letter-spacing:.08em;">TABS · navegação principal</div>
+        <div style="display:flex;gap:6px;background:#141A24;padding:5px;border-radius:13px;">
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;background:#FF2D55;color:#fff;font-weight:700;font-size:13px;">Grupos</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;">Chave</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;">Terceiros</div>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:10px;">ativo: live · inativo: text-mid</div>
+      </div>
+
+      <!-- Live + status -->
+      <div style="background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:18px 20px;width:340px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:12px;letter-spacing:.08em;">STATUS DO JOGO</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#fff;background:#FF2D55;padding:5px 10px;border-radius:7px;display:flex;align-items:center;gap:5px;"><span style="width:6px;height:6px;border-radius:99px;background:#fff;"></span>AO VIVO · 78&prime;</span>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#C6F24E;border:1px solid #C6F24E55;padding:5px 10px;border-radius:7px;">A JOGAR</span>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#687087;border:1px solid #28303F;padding:5px 10px;border-radius:7px;">ENCERRADO</span>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:12px;">indicador ao vivo pulsa · minuto em mono</div>
+      </div>
+
+      <!-- Seeds & badges -->
+      <div style="background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:18px 20px;width:340px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:12px;letter-spacing:.08em;">BADGES · seed &amp; grupo</div>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#fff;background:#36C275;padding:3px 7px;border-radius:6px;font-weight:700;">1A</span>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#fff;background:#2E9BFF;padding:3px 7px;border-radius:6px;font-weight:700;">2F</span>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#16140f;background:#FFB400;padding:3px 7px;border-radius:6px;font-weight:700;">3º</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;width:26px;height:26px;border-radius:7px;background:#C44CFF;color:#fff;display:flex;align-items:center;justify-content:center;">H</span>
+          <span style="width:22px;height:15px;border-radius:3px;background:linear-gradient(180deg,#74ACDF 33%,#fff 33% 66%,#74ACDF 66%);box-shadow:inset 0 0 0 1px #0003;"></span>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:12px;">seed: mono em pílula · grupo: letra condensed · bandeira: swatch</div>
+      </div>
+
+      <!-- Score stepper -->
+      <div style="background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:18px 20px;width:340px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:14px;letter-spacing:.08em;">STEPPER DE PLACAR · estados</div>
+        <div style="display:flex;gap:26px;align-items:flex-start;">
+          <div style="text-align:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;"><span style="width:26px;height:26px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">+</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:#EBF1FB;line-height:1;">2</span><span style="width:26px;height:26px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">&minus;</span></div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">default</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;"><span style="width:26px;height:26px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;box-shadow:0 0 0 4px rgba(255,45,85,.25);">+</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:#fff;line-height:1;">3</span><span style="width:26px;height:26px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">&minus;</span></div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FF2D55;margin-top:8px;">press +</div>
+          </div>
+          <div style="text-align:center;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:5px;"><span style="width:26px;height:26px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">+</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:32px;color:#EBF1FB;line-height:1;">0</span><span style="width:26px;height:26px;border-radius:99px;background:#0F141C;border:1px solid #1B212D;color:#3a4150;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;">&minus;</span></div>
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:8px;">&minus; disabled (0)</div>
+          </div>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:14px;">toque no número → teclado · segurar repete</div>
+      </div>
+
+      <!-- Round navigator -->
+      <div style="background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:18px 20px;width:340px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:12px;letter-spacing:.08em;">NAVEGADOR DE RODADA</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;">
+          <span style="width:30px;height:30px;border-radius:99px;background:#141A24;border:1px solid #28303F;color:#C6F24E;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;">‹</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#EBF1FB;letter-spacing:.04em;text-transform:uppercase;">3ª Rodada</span>
+          <span style="width:30px;height:30px;border-radius:99px;background:#141A24;border:1px solid #28303F;color:#3a4150;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;">›</span>
+        </div>
+        <div style="display:flex;gap:5px;justify-content:center;margin-top:12px;"><span style="width:7px;height:7px;border-radius:99px;background:#28303F;"></span><span style="width:7px;height:7px;border-radius:99px;background:#28303F;"></span><span style="width:18px;height:7px;border-radius:99px;background:#FF2D55;"></span></div>
+      </div>
+
+      <!-- Group collapsed bar -->
+      <div style="background:#0B0E14;border:1px solid #1B212D;border-radius:14px;padding:18px 20px;width:516px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:12px;letter-spacing:.08em;">GRUPO · classificação collapsed (toque expande)</div>
+        <div style="display:flex;align-items:center;gap:8px;width:100%;background:#141A24;border:1px solid #FF3B6B33;border-radius:13px;padding:10px 12px;">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;width:22px;height:22px;border-radius:6px;background:#FF3B6B;color:#fff;display:flex;align-items:center;justify-content:center;flex:none;">A</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;color:#EBF1FB;text-transform:uppercase;white-space:nowrap;">Grupo A</span>
+          <span style="flex:1;"></span>
+          <span style="display:flex;gap:4px;">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#36c2751a;color:#36C275;white-space:nowrap;">1 BRA</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#36c2751a;color:#36C275;white-space:nowrap;">2 SUI</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#FFB4001a;color:#FFB400;white-space:nowrap;">3 SRB</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#141A24;border:1px solid #28303F;color:#687087;white-space:nowrap;">4 CMR</span>
+          </span>
+          <span style="color:#687087;font-size:11px;margin-left:2px;">▾</span>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:12px;">chips: 1&ndash;2 go · 3º amber · 4º low · borda na cor do grupo</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== COMPONENTS · CARTÃO DE JOGO (GE) ===== -->
+  <div style="margin-bottom:40px;">
+    <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 18px;color:#EBF1FB;">Cartão de jogo &middot; estilo GE</h3>
+    <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-start;">
+
+      <!-- AO VIVO -->
+      <div style="width:330px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:10px;letter-spacing:.08em;">ESTADO · AO VIVO (editável)</div>
+        <div style="background:#141A24;border:1px solid #28303F;border-radius:16px;padding:12px 15px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+            <span style="font-size:12px;color:#98A2B4;">Dallas &middot; <strong style="color:#EBF1FB;">Hoje · 14:00</strong></span>
+            <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#fff;background:#FF2D55;padding:3px 9px;border-radius:7px;display:flex;align-items:center;gap:5px;flex:none;"><span style="width:6px;height:6px;border-radius:99px;background:#fff;"></span>AO VIVO · 78&prime;</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;width:28px;text-align:right;">ARG</span>
+            <span style="width:22px;height:15px;border-radius:3px;background:linear-gradient(180deg,#74ACDF 33%,#fff 33% 66%,#74ACDF 66%);flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:22px;height:22px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;color:#EBF1FB;line-height:1;min-width:18px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">0</span><span style="width:22px;height:22px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+            <span style="font-size:14px;color:#4a5163;">×</span>
+            <span style="display:flex;align-items:center;gap:5px;"><span style="width:22px;height:22px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;color:#EBF1FB;line-height:1;min-width:18px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">0</span><span style="width:22px;height:22px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+            <span style="width:22px;height:15px;border-radius:3px;background:linear-gradient(180deg,#ED2939 33%,#fff 33% 66%,#ED2939 66%);flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;width:28px;">AUT</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- A JOGAR -->
+      <div style="width:330px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:10px;letter-spacing:.08em;">ESTADO · A JOGAR</div>
+        <div style="background:#141A24;border:1px solid #28303F;border-radius:16px;padding:15px 16px;">
+          <div style="text-align:center;font-size:12px;color:#98A2B4;margin-bottom:12px;">Santa Clara &middot; <strong style="color:#EBF1FB;">23/06 · 21:00</strong></div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#EBF1FB;width:36px;text-align:right;">JOR</span>
+            <span style="width:24px;height:16px;border-radius:3px;background:#007A3D;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;color:#3a4150;">&minus;</span>
+            <span style="font-size:16px;color:#4a5163;">×</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:26px;color:#3a4150;">&minus;</span>
+            <span style="width:24px;height:16px;border-radius:3px;background:#006233;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#EBF1FB;width:36px;">AGL</span>
+          </div>
+          <div style="display:flex;justify-content:center;margin-top:12px;"><span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#C6F24E;border:1px solid #C6F24E55;padding:4px 10px;border-radius:7px;">A JOGAR</span></div>
+        </div>
+      </div>
+
+      <!-- ENCERRADO -->
+      <div style="width:330px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:10px;letter-spacing:.08em;">ESTADO · ENCERRADO (travado)</div>
+        <div style="background:#0F141C;border:1px solid #1B212D;border-radius:16px;padding:15px 16px;">
+          <div style="text-align:center;font-size:12px;color:#687087;margin-bottom:12px;">Miami &middot; <strong style="color:#98A2B4;">Ontem</strong></div>
+          <div style="display:flex;align-items:center;justify-content:center;gap:12px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#C6F24E;width:36px;text-align:right;">ESP</span>
+            <span style="width:24px;height:16px;border-radius:3px;background:#C60B1E;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:#EBF1FB;line-height:1;">3</span>
+            <span style="font-size:16px;color:#4a5163;">×</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;color:#687087;line-height:1;">1</span>
+            <span style="width:24px;height:16px;border-radius:3px;background:#171796;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:16px;color:#687087;width:36px;">CRO</span>
+          </div>
+          <div style="display:flex;justify-content:center;margin-top:12px;"><span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#687087;border:1px solid #28303F;padding:4px 10px;border-radius:7px;">ENCERRADO</span></div>
+        </div>
+      </div>
+
+      <!-- EDITOR INLINE -->
+      <div style="width:330px;">
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#C6F24E;margin-bottom:10px;letter-spacing:.08em;">ESTADO · EDITOR DE CARTÕES (inline)</div>
+        <div style="background:#141A24;border:1px solid #C6F24E55;border-radius:16px;padding:15px 16px;">
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;">ARG</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;color:#EBF1FB;">0 × 0</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;">AUT</span><span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;color:#687087;">fechar ✕</span></div>
+          <div style="display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#EBF1FB;width:34px;">ARG</span>
+              <span style="display:flex;align-items:center;gap:6px;background:#1B2230;border-radius:9px;padding:5px 7px;"><span style="width:12px;height:16px;border-radius:2px;background:#FFC400;"></span><span style="width:22px;height:22px;border-radius:99px;background:#0F141C;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;">&minus;</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#EBF1FB;min-width:12px;text-align:center;">2</span><span style="width:22px;height:22px;border-radius:99px;background:#FFC400;color:#16140f;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">+</span></span>
+              <span style="display:flex;align-items:center;gap:6px;background:#1B2230;border-radius:9px;padding:5px 7px;"><span style="width:12px;height:16px;border-radius:2px;background:#F4324C;"></span><span style="width:22px;height:22px;border-radius:99px;background:#0F141C;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;">&minus;</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#EBF1FB;min-width:12px;text-align:center;">0</span><span style="width:22px;height:22px;border-radius:99px;background:#F4324C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">+</span></span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#EBF1FB;width:34px;">AUT</span>
+              <span style="display:flex;align-items:center;gap:6px;background:#1B2230;border-radius:9px;padding:5px 7px;"><span style="width:12px;height:16px;border-radius:2px;background:#FFC400;"></span><span style="width:22px;height:22px;border-radius:99px;background:#0F141C;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;">&minus;</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#EBF1FB;min-width:12px;text-align:center;">1</span><span style="width:22px;height:22px;border-radius:99px;background:#FFC400;color:#16140f;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">+</span></span>
+              <span style="display:flex;align-items:center;gap:6px;background:#1B2230;border-radius:9px;padding:5px 7px;"><span style="width:12px;height:16px;border-radius:2px;background:#F4324C;"></span><span style="width:22px;height:22px;border-radius:99px;background:#0F141C;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;">&minus;</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#EBF1FB;min-width:12px;text-align:center;">1</span><span style="width:22px;height:22px;border-radius:99px;background:#F4324C;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;">+</span></span>
+            </div>
+          </div>
+          <div style="margin-top:11px;font-family:'Space Mono',monospace;font-size:10px;color:#687087;line-height:1.4;">⚖ fair play &mdash; desempate final entre 3º empatados</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== COMPONENTS · BRACKET SLOT + THIRDS ROW ===== -->
+  <div style="margin-bottom:56px;">
+    <div style="display:flex;gap:40px;flex-wrap:wrap;">
+
+      <!-- Bracket slot -->
+      <div>
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 18px;color:#EBF1FB;">Slot do bracket</h3>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;">
+          <div style="width:170px;">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;margin-bottom:9px;letter-spacing:.06em;">DEFINIDO</div>
+            <div style="background:#141A24;border:1px solid #36c27540;border-radius:12px;padding:9px 11px;"><div style="font-family:'Space Mono',monospace;font-size:9px;color:#36C275;margin-bottom:7px;display:flex;justify-content:space-between;">M2<span>✓</span></div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#36C275;width:16px;">1C</span><span style="width:11px;height:11px;border-radius:3px;background:#C60B1E;"></span><span style="font-size:12px;color:#EBF1FB;font-weight:700;">Espanha</span></div><div style="display:flex;align-items:center;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#36C275;width:16px;">2F</span><span style="width:11px;height:11px;border-radius:3px;background:#171796;"></span><span style="font-size:12px;color:#EBF1FB;font-weight:700;">Croácia</span></div></div>
+          </div>
+          <div style="width:170px;">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFB400;margin-bottom:9px;letter-spacing:.06em;">PROVISÓRIO</div>
+            <div style="background:#141A24;border:1px dashed #FFB40066;border-radius:12px;padding:9px 11px;"><div style="font-family:'Space Mono',monospace;font-size:9px;color:#FFB400;margin-bottom:7px;display:flex;justify-content:space-between;">M3<span>~</span></div><div style="display:flex;align-items:center;gap:6px;margin-bottom:5px;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#36C275;width:16px;">1B</span><span style="width:11px;height:11px;border-radius:3px;background:#75AADB;"></span><span style="font-size:12px;color:#EBF1FB;font-weight:700;">Argentina</span></div><div style="display:flex;align-items:center;gap:6px;"><span style="font-family:'Space Mono',monospace;font-size:9px;color:#FFB400;width:16px;">3º</span><span style="width:11px;height:11px;border-radius:3px;background:#1B2230;border:1px dashed #FFB40088;"></span><span style="font-size:11px;color:#FFB400;font-style:italic;font-weight:600;">3º (C/E/F)</span></div></div>
+          </div>
+          <div style="width:170px;">
+            <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-bottom:9px;letter-spacing:.06em;">AGUARDANDO</div>
+            <div style="background:#0F141C;border:1px dashed #28303F;border-radius:12px;padding:9px 11px;"><div style="font-family:'Space Mono',monospace;font-size:9px;color:#687087;margin-bottom:7px;">oitavas</div><div style="display:flex;align-items:center;gap:6px;color:#4a5163;"><span style="font-family:'Space Mono',monospace;font-size:9px;width:16px;">V M1</span><span style="font-size:12px;font-weight:700;">vs</span><span style="font-family:'Space Mono',monospace;font-size:9px;">V M2</span></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Thirds row -->
+      <div style="flex:1;min-width:380px;">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.02em;margin:0 0 18px;color:#EBF1FB;">Linha dos terceiros</h3>
+        <div style="display:flex;flex-direction:column;gap:6px;max-width:440px;">
+          <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #2E9BFF;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">3</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#C44CFF;padding:2px 5px;border-radius:5px;">3H</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">Uruguai</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">4·+1</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M4</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-left:2px;">IN</span></div>
+          <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#36c2750f;border-radius:10px;border-left:3px solid #36C275;box-shadow:0 0 0 1px #36c27555;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#36C275;width:16px;">8</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#FF5C5C;padding:2px 5px;border-radius:5px;">3F</span><span style="font-weight:700;font-size:14px;color:#fff;flex:1;display:flex;align-items:center;gap:6px;">Polônia <span style="font-size:11px;color:#36C275;">▲2</span></span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">3·0</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c27522;padding:3px 6px;border-radius:6px;">→M1</span></div>
+          <div style="display:flex;align-items:center;gap:8px;padding:4px 2px;"><span style="font-family:'Space Mono',monospace;font-size:10px;color:#FF2D55;letter-spacing:.1em;">✂ LINHA DE CORTE</span><div style="flex:1;height:0;border-top:2px dashed #FF2D5577;"></div></div>
+          <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#FF2D5508;border-radius:10px;border-left:3px solid #FF2D5566;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#FF2D55;width:16px;">9</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#c3cad8;background:#28303F;padding:2px 5px;border-radius:5px;">3A</span><span style="font-weight:700;font-size:14px;color:#c3cad8;flex:1;display:flex;align-items:center;gap:6px;">Sérvia <span style="font-size:11px;color:#FF2D55;">▼1</span></span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;">3·-1</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#FF2D55;">FORA</span></div>
+        </div>
+        <div style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-top:12px;">estados: IN · last-in (glow) · linha de corte · OUT &mdash; setas ▲▼ = movimento ao vivo</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== TELAS · MOBILE ===== -->
+  <div style="margin-bottom:56px;border-top:1px solid #1B212D;padding-top:28px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#687087;margin-bottom:6px;">03 · Telas</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;text-transform:uppercase;letter-spacing:.01em;margin:0 0 4px;color:#EBF1FB;">Mobile &mdash; segunda tela</h2>
+    <p style="font-size:15px;color:#98A2B4;margin:0 0 28px;max-width:620px;">As três visões, montadas com os tokens e componentes acima. Troca por tabs; tudo recalcula ao vivo a cada placar.</p>
+    <div style="display:flex;gap:32px;align-items:flex-start;"><div style="flex:none;width:358px;">
+  <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#687087;margin-bottom:12px;">Grupos · input estilo GE</div>
+  <div style="background:#161B24;border-radius:44px;padding:9px;box-shadow:0 26px 64px rgba(0,0,0,.5);">
+    <div style="background:#0B0E14;border-radius:36px;overflow:hidden;height:768px;position:relative;display:flex;flex-direction:column;">
+
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 24px 6px;color:#EBF1FB;font-size:13px;font-weight:600;font-family:'Barlow',sans-serif;">
+        <span>21:30</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:11px;color:#FF2D55;"><span style="width:7px;height:7px;border-radius:99px;background:#FF2D55;box-shadow:0 0 0 3px rgba(255,45,85,.25);"></span>AO VIVO</span>
+      </div>
+
+      <div style="padding:6px 18px 12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;letter-spacing:.02em;color:#EBF1FB;text-transform:uppercase;">Quem&#8209;Pega&#8209;Quem</div>
+        <div style="display:flex;gap:6px;margin-top:12px;background:#141A24;padding:5px;border-radius:13px;">
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;background:#FF2D55;color:#fff;font-weight:700;font-size:13px;font-family:'Barlow',sans-serif;">Grupos</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;font-family:'Barlow',sans-serif;">Chave</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;font-family:'Barlow',sans-serif;">Terceiros</div>
+        </div>
+      </div>
+
+      <div style="padding:0 18px 12px;display:flex;align-items:center;gap:10px;">
+        <div style="flex:1;height:6px;background:#141A24;border-radius:99px;overflow:hidden;"><div style="width:90%;height:100%;background:linear-gradient(90deg,#FFB400,#FF2D55);"></div></div>
+        <span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">11/12</span>
+      </div>
+
+      <div style="flex:1;overflow:hidden;padding:0 18px;display:flex;flex-direction:column;gap:13px;">
+
+        <!-- collapsed Grupo J -->
+        <button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;background:#141A24;border:1px solid #18C0C433;border-radius:13px;padding:10px 12px;">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;width:22px;height:22px;border-radius:6px;background:#18C0C4;color:#04201f;display:flex;align-items:center;justify-content:center;flex:none;">J</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;color:#EBF1FB;text-transform:uppercase;white-space:nowrap;">Grupo J</span>
+          <span style="flex:1;"></span>
+          <span style="display:flex;gap:4px;">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#36c2751a;color:#36C275;white-space:nowrap;">1 ARG</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#36c2751a;color:#36C275;white-space:nowrap;">2 AUT</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#FFB4001a;color:#FFB400;white-space:nowrap;">3 JOR</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#141A24;border:1px solid #28303F;color:#687087;white-space:nowrap;">4 AGL</span>
+          </span>
+          <span style="color:#687087;font-size:11px;margin-left:2px;">▾</span>
+        </button>
+
+        <!-- JOGOS card -->
+        <div style="background:#141A24;border:1px solid #1B212D;border-radius:16px;overflow:hidden;">
+          <div style="padding:13px 16px 6px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;text-transform:uppercase;letter-spacing:.02em;">Jogos</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:4px 16px 10px;border-bottom:1px solid #1B212D;">
+            <span style="width:30px;height:30px;border-radius:99px;background:#0B0E14;border:1px solid #28303F;color:#C6F24E;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;">‹</span>
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">3ª Rodada</span>
+            <span style="width:30px;height:30px;border-radius:99px;background:#0B0E14;border:1px solid #1B212D;color:#3a4150;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:800;">›</span>
+          </div>
+
+          <!-- match 1 ao vivo -->
+          <div style="padding:12px 14px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+              <span style="font-size:12px;color:#98A2B4;font-family:'Barlow',sans-serif;">Dallas &middot; <strong style="color:#EBF1FB;">Hoje · 21:00</strong></span>
+              <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#fff;background:#FF2D55;padding:3px 9px;border-radius:7px;display:flex;align-items:center;gap:5px;flex:none;"><span style="width:6px;height:6px;border-radius:99px;background:#fff;"></span>AO VIVO · 78&prime;</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;width:30px;text-align:right;">ARG</span>
+              <span style="width:22px;height:15px;border-radius:3px;background:linear-gradient(180deg,#74ACDF 33%,#fff 33% 66%,#74ACDF 66%);flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+              <span style="display:flex;align-items:center;gap:5px;"><span style="width:23px;height:23px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:27px;color:#EBF1FB;line-height:1;min-width:18px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">1</span><span style="width:23px;height:23px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+              <span style="font-size:15px;color:#4a5163;">×</span>
+              <span style="display:flex;align-items:center;gap:5px;"><span style="width:23px;height:23px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:27px;color:#EBF1FB;line-height:1;min-width:18px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">0</span><span style="width:23px;height:23px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+              <span style="width:22px;height:15px;border-radius:3px;background:#006233;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;width:30px;">AGL</span>
+            </div>
+          </div>
+
+          <div style="height:1px;background:#1B212D;margin:0 14px;"></div>
+
+          <!-- match 2 ao vivo -->
+          <div style="padding:12px 14px 15px;">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;">
+              <span style="font-size:12px;color:#98A2B4;font-family:'Barlow',sans-serif;">Kansas City &middot; <strong style="color:#EBF1FB;">Hoje · 21:00</strong></span>
+              <span style="font-family:'Space Mono',monospace;font-size:11px;font-weight:700;color:#fff;background:#FF2D55;padding:3px 9px;border-radius:7px;display:flex;align-items:center;gap:5px;flex:none;"><span style="width:6px;height:6px;border-radius:99px;background:#fff;"></span>AO VIVO · 78&prime;</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:center;gap:5px;">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;width:30px;text-align:right;">JOR</span>
+              <span style="width:22px;height:15px;border-radius:3px;background:#007A3D;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+              <span style="display:flex;align-items:center;gap:5px;"><span style="width:23px;height:23px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:27px;color:#EBF1FB;line-height:1;min-width:18px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">0</span><span style="width:23px;height:23px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+              <span style="font-size:15px;color:#4a5163;">×</span>
+              <span style="display:flex;align-items:center;gap:5px;"><span style="width:23px;height:23px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:27px;color:#EBF1FB;line-height:1;min-width:18px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">2</span><span style="width:23px;height:23px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+              <span style="width:22px;height:15px;border-radius:3px;background:linear-gradient(180deg,#ED2939 33%,#fff 33% 66%,#ED2939 66%);flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;color:#EBF1FB;width:30px;">AUT</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- collapsed Grupo K peek -->
+        <button style="all:unset;box-sizing:border-box;cursor:pointer;display:flex;align-items:center;gap:8px;width:100%;background:#141A24;border:1px solid #1B212D;border-radius:13px;padding:10px 12px;">
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;width:22px;height:22px;border-radius:6px;background:#8BC34A;color:#0f2104;display:flex;align-items:center;justify-content:center;flex:none;">K</span>
+          <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;color:#EBF1FB;text-transform:uppercase;white-space:nowrap;">Grupo K</span>
+          <span style="flex:1;"></span>
+          <span style="display:flex;gap:4px;">
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#36c2751a;color:#36C275;white-space:nowrap;">1 USA</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;padding:3px 6px;border-radius:6px;background:#FFB4001a;color:#FFB400;white-space:nowrap;">3 EGY</span>
+          </span>
+          <span style="color:#687087;font-size:11px;margin-left:2px;">▾</span>
+        </button>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg,transparent,#0B0E14 75%);pointer-events:none;"></div>
+    </div>
+  </div>
+</div>
+<div style="flex:none;width:358px;">
+  <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#687087;margin-bottom:12px;">Chave · 16-avos ao vivo</div>
+  <div style="background:#161B24;border-radius:44px;padding:9px;box-shadow:0 26px 64px rgba(0,0,0,.5);">
+    <div style="background:#0B0E14;border-radius:36px;overflow:hidden;height:768px;position:relative;display:flex;flex-direction:column;font-family:'Barlow',sans-serif;">
+
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 24px 6px;color:#EBF1FB;font-size:13px;font-weight:600;">
+        <span>21:30</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:11px;color:#FF2D55;"><span style="width:7px;height:7px;border-radius:99px;background:#FF2D55;box-shadow:0 0 0 3px rgba(255,45,85,.25);"></span>AO VIVO</span>
+      </div>
+
+      <div style="padding:6px 18px 12px;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:20px;letter-spacing:.02em;color:#EBF1FB;text-transform:uppercase;">Quem&#8209;Pega&#8209;Quem</div>
+        <div style="display:flex;gap:6px;margin-top:12px;background:#141A24;padding:5px;border-radius:13px;">
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;">Grupos</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;background:#FF2D55;color:#fff;font-weight:700;font-size:13px;">Chave</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;">Terceiros</div>
+        </div>
+      </div>
+
+      <div style="margin:0 18px 12px;background:linear-gradient(90deg,#FF2D5522,#FF2D5508);border:1px solid #FF2D5555;border-radius:12px;padding:10px 13px;display:flex;align-items:flex-start;gap:9px;">
+        <span style="font-size:15px;line-height:1.1;">⚡</span>
+        <div style="font-size:12.5px;color:#ffd2db;line-height:1.35;"><strong style="color:#fff;">Gol da Polônia (89&prime;)</strong> &mdash; Sérvia caiu pra fora. <strong style="color:#fff;">Polônia</strong> assume o último 3º e muda o confronto do <strong style="color:#fff;">Brasil</strong>.</div>
+      </div>
+
+      <div style="padding:0 18px 12px;display:flex;align-items:center;gap:10px;">
+        <div style="flex:1;display:flex;background:#141A24;border-radius:10px;padding:4px;">
+          <div style="flex:1;text-align:center;font-size:12px;font-weight:700;color:#0B0E14;background:#C6F24E;border-radius:7px;padding:6px 0;">◧ Lado esq.</div>
+          <div style="flex:1;text-align:center;font-size:12px;font-weight:600;color:#98A2B4;padding:6px 0;">Lado dir. ◨</div>
+        </div>
+        <span style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;">arrasta &harr;</span>
+      </div>
+
+      <div style="flex:1;overflow:hidden;padding:0 18px;display:flex;flex-direction:column;gap:13px;position:relative;">
+
+        <div style="background:#141A24;border:1px solid #FF2D5566;border-radius:14px;padding:11px 13px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FF2D55;margin-bottom:8px;display:flex;justify-content:space-between;">M1 · 16-avos<span>mudou agora</span></div>
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;"><span style="font-family:'Space Mono',monospace;font-size:10px;width:30px;color:#36C275;">1A</span><span style="width:16px;height:16px;border-radius:4px;background:#FFDF00;"></span><span style="font-weight:700;font-size:15px;color:#EBF1FB;">Brasil</span></div>
+          <div style="display:flex;align-items:center;gap:9px;"><span style="font-family:'Space Mono',monospace;font-size:10px;width:30px;color:#FFB400;">3º</span><span style="width:16px;height:16px;border-radius:4px;background:#DC143C;"></span><div style="display:flex;flex-direction:column;"><span style="font-weight:700;font-size:15px;color:#EBF1FB;display:flex;align-items:center;gap:7px;">Polônia <span style="font-size:12px;color:#36C275;">▲ entra</span></span><span style="font-size:11px;color:#98A2B4;text-decoration:line-through;">antes: Sérvia</span></div></div>
+        </div>
+
+        <div style="background:#141A24;border:1px solid #36c27540;border-radius:14px;padding:11px 13px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;margin-bottom:8px;display:flex;justify-content:space-between;">M2 · 16-avos<span>✓ definido</span></div>
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;"><span style="font-family:'Space Mono',monospace;font-size:10px;width:30px;color:#36C275;">1C</span><span style="width:16px;height:16px;border-radius:4px;background:#C60B1E;"></span><span style="font-weight:700;font-size:15px;color:#EBF1FB;">Espanha</span></div>
+          <div style="display:flex;align-items:center;gap:9px;"><span style="font-family:'Space Mono',monospace;font-size:10px;width:30px;color:#36C275;">2F</span><span style="width:16px;height:16px;border-radius:4px;background:#171796;"></span><span style="font-weight:700;font-size:15px;color:#EBF1FB;">Croácia</span></div>
+        </div>
+
+        <div style="background:#141A24;border:1px dashed #FFB40066;border-radius:14px;padding:11px 13px;">
+          <div style="font-family:'Space Mono',monospace;font-size:10px;color:#FFB400;margin-bottom:8px;display:flex;justify-content:space-between;">M3 · 16-avos<span>provisório</span></div>
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:7px;"><span style="font-family:'Space Mono',monospace;font-size:10px;width:30px;color:#36C275;">1B</span><span style="width:16px;height:16px;border-radius:4px;background:#75AADB;"></span><span style="font-weight:700;font-size:15px;color:#EBF1FB;">Argentina</span></div>
+          <div style="display:flex;align-items:center;gap:9px;"><span style="font-family:'Space Mono',monospace;font-size:10px;width:30px;color:#FFB400;">3º</span><span style="width:16px;height:16px;border-radius:4px;background:#1B2230;border:1px dashed #FFB40088;"></span><span style="font-weight:600;font-size:14px;color:#FFB400;font-style:italic;">melhor 3º (C/E/F)</span></div>
+        </div>
+
+        <div style="flex:none;margin-top:4px;display:flex;flex-direction:column;align-items:center;">
+          <div style="display:flex;width:62%;height:30px;"><div style="flex:1;border-right:1.5px solid #28303F;border-bottom:1.5px solid #28303F;border-bottom-right-radius:12px;"></div><div style="flex:1;border-left:1.5px solid #28303F;border-bottom:1.5px solid #28303F;border-bottom-left-radius:12px;"></div></div>
+          <div style="width:1.5px;height:13px;background:#28303F;"></div>
+          <span style="display:flex;align-items:center;gap:7px;font-family:'Space Mono',monospace;font-size:10px;color:#687087;letter-spacing:.08em;"><span style="width:8px;height:8px;border-radius:99px;background:#0F141C;border:1.5px solid #28303F;"></span>vencedores &rarr; oitavas</span>
+        </div>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;height:90px;background:linear-gradient(180deg,transparent,#0B0E14 75%);pointer-events:none;"></div>
+    </div>
+  </div>
+</div>
+<div style="flex:none;width:358px;">
+  <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#687087;margin-bottom:12px;">Terceiros · <span style="color:#EBF1FB;">a feature herói</span></div>
+  <div style="background:#161B24;border-radius:44px;padding:9px;box-shadow:0 26px 64px rgba(0,0,0,.5);">
+    <div style="background:#0B0E14;border-radius:36px;overflow:hidden;height:768px;position:relative;display:flex;flex-direction:column;font-family:'Barlow',sans-serif;">
+
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 24px 6px;color:#EBF1FB;font-size:13px;font-weight:600;">
+        <span>21:30</span>
+        <span style="display:flex;align-items:center;gap:5px;font-family:'Space Mono',monospace;font-size:11px;color:#FF2D55;"><span style="width:7px;height:7px;border-radius:99px;background:#FF2D55;box-shadow:0 0 0 3px rgba(255,45,85,.25);"></span>AO VIVO</span>
+      </div>
+
+      <div style="padding:6px 18px 10px;">
+        <div style="display:flex;gap:6px;background:#141A24;padding:5px;border-radius:13px;">
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;">Grupos</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;color:#98A2B4;font-weight:600;font-size:13px;">Chave</div>
+          <div style="flex:1;text-align:center;padding:9px 0;border-radius:9px;background:#FF2D55;color:#fff;font-weight:700;font-size:13px;">Terceiros</div>
+        </div>
+      </div>
+
+      <div style="padding:2px 18px 10px;">
+        <h3 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:30px;line-height:1;color:#EBF1FB;text-transform:uppercase;margin:0;">Melhores 3º</h3>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:7px;">
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#36C275;background:#36c2751a;border:1px solid #36c27540;padding:3px 8px;border-radius:99px;">8 ENTRAM</span>
+          <span style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;background:#141A24;border:1px solid #28303F;padding:3px 8px;border-radius:99px;">4 SAEM</span>
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#687087;margin-left:auto;">Pts › SG › GP › cartões</span>
+        </div>
+      </div>
+
+      <div style="flex:1;overflow:hidden;padding:0 14px;display:flex;flex-direction:column;gap:5px;">
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #2E9BFF;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">1</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#2E9BFF;padding:2px 5px;border-radius:5px;">3C</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">Holanda</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">4·+3</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M5</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #36C275;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">2</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#36C275;padding:2px 5px;border-radius:5px;">3D</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">Portugal</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">4·+2</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M7</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #C44CFF;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">3</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#C44CFF;padding:2px 5px;border-radius:5px;">3H</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">Uruguai</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">4·+1</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M4</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #00B3A6;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">4</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#00B3A6;padding:2px 5px;border-radius:5px;">3E</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">México</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">3·+2</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M3</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #FF4FA3;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">5</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#FF4FA3;padding:2px 5px;border-radius:5px;">3I</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">Japão</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">3·+1</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M6</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #FF7A00;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">6</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#FF7A00;padding:2px 5px;border-radius:5px;">3B</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">Coreia</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">3·+1</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M8</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#141A24;border-radius:10px;border-left:3px solid #8BC34A;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#EBF1FB;width:16px;">7</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#0f2104;background:#8BC34A;padding:2px 5px;border-radius:5px;">3G</span><span style="font-weight:700;font-size:14px;color:#EBF1FB;flex:1;">Senegal</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">3·0</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c2751a;padding:3px 6px;border-radius:6px;">→M2</span></div>
+
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#36c2750f;border-radius:10px;border-left:3px solid #36C275;box-shadow:0 0 0 1px #36c27555;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#36C275;width:16px;">8</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#fff;background:#FF5C5C;padding:2px 5px;border-radius:5px;">3F</span><span style="font-weight:700;font-size:14px;color:#fff;flex:1;display:flex;align-items:center;gap:6px;">Polônia <span style="font-size:11px;color:#36C275;">▲2</span></span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#98A2B4;">3·0</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#36C275;background:#36c27522;padding:3px 6px;border-radius:6px;">→M1</span></div>
+
+        <div style="display:flex;align-items:center;gap:8px;padding:4px 2px;">
+          <span style="font-family:'Space Mono',monospace;font-size:10px;color:#FF2D55;letter-spacing:.1em;">✂ LINHA DE CORTE</span>
+          <div style="flex:1;height:0;border-top:2px dashed #FF2D5577;"></div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#FF2D5508;border-radius:10px;border-left:3px solid #FF2D5566;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#FF2D55;width:16px;">9</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#c3cad8;background:#28303F;padding:2px 5px;border-radius:5px;">3A</span><span style="font-weight:700;font-size:14px;color:#c3cad8;flex:1;display:flex;align-items:center;gap:6px;">Sérvia <span style="font-size:11px;color:#FF2D55;">▼1</span></span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;">3·-1</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#FF2D55;">FORA</span></div>
+        <div style="display:flex;align-items:center;gap:9px;padding:8px 10px;background:#0F141C;border-radius:10px;opacity:.6;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#687087;width:16px;">10</span><span style="font-family:'Space Mono',monospace;font-size:10px;color:#98A2B4;background:#28303F;padding:2px 5px;border-radius:5px;">3L</span><span style="font-weight:700;font-size:14px;color:#98A2B4;flex:1;">Gana</span><span style="font-family:'Space Mono',monospace;font-size:11px;color:#687087;">2·-1</span></div>
+      </div>
+
+      <div style="position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(180deg,transparent,#0B0E14 75%);pointer-events:none;"></div>
+    </div>
+  </div>
+</div></div>
+  </div>
+
+  <!-- ===== TELA · DESKTOP ===== -->
+  <div style="margin-bottom:40px;border-top:1px solid #1B212D;padding-top:28px;">
+    <div style="font-family:'Space Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#687087;margin-bottom:6px;">03 · Telas</div>
+    <h2 style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:34px;text-transform:uppercase;letter-spacing:.01em;margin:0 0 4px;color:#EBF1FB;">Desktop &mdash; 1/3 input · 2/3 bracket</h2>
+    <p style="font-size:15px;color:#98A2B4;margin:0 0 28px;max-width:620px;">Mesmos componentes do mobile, redistribuídos: input dos grupos no terço esquerdo, mata-mata espelhado ocupando os dois terços.</p>
+
+    <div style="width:1340px;background:#161B24;border-radius:16px;overflow:hidden;box-shadow:0 26px 64px rgba(0,0,0,.5);border:1px solid #28303F;">
+      <div style="display:flex;align-items:center;gap:8px;padding:13px 18px;background:#11141b;border-bottom:1px solid #1B212D;">
+        <span style="width:12px;height:12px;border-radius:99px;background:#ff5f57;"></span><span style="width:12px;height:12px;border-radius:99px;background:#febc2e;"></span><span style="width:12px;height:12px;border-radius:99px;background:#28c840;"></span>
+        <span style="margin-left:14px;font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;letter-spacing:.03em;color:#EBF1FB;text-transform:uppercase;">Quem&#8209;Pega&#8209;Quem</span>
+        <span style="margin-left:14px;font-family:'Space Mono',monospace;font-size:11px;color:#FF2D55;display:flex;align-items:center;gap:5px;"><span style="width:7px;height:7px;border-radius:99px;background:#FF2D55;box-shadow:0 0 0 3px rgba(255,45,85,.25);"></span>RODADA 3 · AO VIVO · 78&prime;</span>
+        <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:#687087;">11/12 grupos · 8 terceiros definidos</span>
+      </div>
+
+      <div style="display:flex;height:760px;background:#0B0E14;font-family:'Barlow',sans-serif;">
+
+        <!-- LEFT 1/3 -->
+        <div style="width:392px;flex:none;border-right:1px solid #1B212D;display:flex;flex-direction:column;">
+          <div style="padding:16px 18px 10px;display:flex;align-items:center;justify-content:space-between;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#EBF1FB;text-transform:uppercase;letter-spacing:.02em;white-space:nowrap;">Última rodada</span>
+            <span style="font-family:'Space Mono',monospace;font-size:10px;color:#98A2B4;background:#141A24;border:1px solid #28303F;padding:4px 8px;border-radius:99px;">12 grupos</span>
+          </div>
+          <div style="flex:1;overflow:hidden;padding:0 14px;display:flex;flex-direction:column;gap:11px;position:relative;">
+
+            <!-- collapsed Grupo J -->
+            <div style="display:flex;align-items:center;gap:8px;width:100%;background:#141A24;border:1px solid #18C0C433;border-radius:12px;padding:9px 11px;">
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;width:20px;height:20px;border-radius:6px;background:#18C0C4;color:#04201f;display:flex;align-items:center;justify-content:center;flex:none;">J</span>
+              <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:#EBF1FB;text-transform:uppercase;white-space:nowrap;">Grupo J</span>
+              <span style="flex:1;"></span>
+              <span style="display:flex;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9px;padding:2px 5px;border-radius:5px;background:#36c2751a;color:#36C275;">1 ARG</span><span style="font-family:'Space Mono',monospace;font-size:9px;padding:2px 5px;border-radius:5px;background:#36c2751a;color:#36C275;">2 AUT</span><span style="font-family:'Space Mono',monospace;font-size:9px;padding:2px 5px;border-radius:5px;background:#FFB4001a;color:#FFB400;">3 JOR</span></span>
+              <span style="color:#687087;font-size:10px;">▾</span>
+            </div>
+
+            <!-- JOGOS card -->
+            <div style="background:#141A24;border:1px solid #1B212D;border-radius:14px;overflow:hidden;">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-bottom:1px solid #1B212D;">
+                <span style="width:26px;height:26px;border-radius:99px;background:#0B0E14;border:1px solid #28303F;color:#C6F24E;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">‹</span>
+                <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#EBF1FB;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;">3ª Rodada · Jogos</span>
+                <span style="width:26px;height:26px;border-radius:99px;background:#0B0E14;border:1px solid #1B212D;color:#3a4150;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;">›</span>
+              </div>
+              <!-- GE match compact -->
+              <div style="padding:10px 12px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:11px;color:#98A2B4;">Dallas &middot; <strong style="color:#EBF1FB;">Hoje · 21:00</strong></span>
+                  <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:#fff;background:#FF2D55;padding:3px 8px;border-radius:6px;display:flex;align-items:center;gap:4px;flex:none;"><span style="width:5px;height:5px;border-radius:99px;background:#fff;"></span>AO VIVO · 78&prime;</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center;gap:6px;">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#EBF1FB;width:30px;text-align:right;">ARG</span>
+                  <span style="width:20px;height:14px;border-radius:3px;background:linear-gradient(180deg,#74ACDF 33%,#fff 33% 66%,#74ACDF 66%);flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+                  <span style="display:flex;align-items:center;gap:5px;"><span style="width:22px;height:22px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;color:#EBF1FB;line-height:1;min-width:16px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">1</span><span style="width:22px;height:22px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+                  <span style="font-size:13px;color:#4a5163;">×</span>
+                  <span style="display:flex;align-items:center;gap:5px;"><span style="width:22px;height:22px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;color:#EBF1FB;line-height:1;min-width:16px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">0</span><span style="width:22px;height:22px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+                  <span style="width:20px;height:14px;border-radius:3px;background:#006233;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#EBF1FB;width:30px;">AGL</span>
+                </div>
+              </div>
+              <div style="height:1px;background:#1B212D;margin:0 12px;"></div>
+              <!-- GE match 2 compact -->
+              <div style="padding:10px 12px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
+                  <span style="font-size:11px;color:#98A2B4;">Kansas City &middot; <strong style="color:#EBF1FB;">Hoje · 21:00</strong></span>
+                  <span style="font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:#fff;background:#FF2D55;padding:3px 8px;border-radius:6px;display:flex;align-items:center;gap:4px;flex:none;"><span style="width:5px;height:5px;border-radius:99px;background:#fff;"></span>AO VIVO · 78&prime;</span>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center;gap:6px;">
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#EBF1FB;width:30px;text-align:right;">JOR</span>
+                  <span style="width:20px;height:14px;border-radius:3px;background:#007A3D;flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+                  <span style="display:flex;align-items:center;gap:5px;"><span style="width:22px;height:22px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;color:#EBF1FB;line-height:1;min-width:16px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">0</span><span style="width:22px;height:22px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+                  <span style="font-size:13px;color:#4a5163;">×</span>
+                  <span style="display:flex;align-items:center;gap:5px;"><span style="width:22px;height:22px;border-radius:99px;background:#1B2230;border:1px solid #28303F;color:#98A2B4;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">&minus;</span><span contenteditable="true" inputmode="numeric" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:24px;color:#EBF1FB;line-height:1;min-width:16px;text-align:center;outline:none;cursor:text;border-bottom:2px solid #2c3442;padding:0 1px;">2</span><span style="width:22px;height:22px;border-radius:99px;background:#FF2D55;color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;cursor:pointer;flex:none;">+</span></span>
+                  <span style="width:20px;height:14px;border-radius:3px;background:linear-gradient(180deg,#ED2939 33%,#fff 33% 66%,#ED2939 66%);flex:none;box-shadow:inset 0 0 0 1px #0006;"></span>
+                  <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#EBF1FB;width:30px;">AUT</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- collapsed K, L -->
+            <div style="display:flex;align-items:center;gap:8px;width:100%;background:#141A24;border:1px solid #1B212D;border-radius:12px;padding:9px 11px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;width:20px;height:20px;border-radius:6px;background:#8BC34A;color:#0f2104;display:flex;align-items:center;justify-content:center;flex:none;">K</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:#EBF1FB;text-transform:uppercase;white-space:nowrap;">Grupo K</span><span style="flex:1;"></span><span style="display:flex;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9px;padding:2px 5px;border-radius:5px;background:#36c2751a;color:#36C275;">1 USA</span><span style="font-family:'Space Mono',monospace;font-size:9px;padding:2px 5px;border-radius:5px;background:#FFB4001a;color:#FFB400;">3 EGY</span></span><span style="color:#687087;font-size:10px;">▾</span></div>
+            <div style="display:flex;align-items:center;gap:8px;width:100%;background:#141A24;border:1px solid #1B212D;border-radius:12px;padding:9px 11px;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;width:20px;height:20px;border-radius:6px;background:#FF5C5C;color:#fff;display:flex;align-items:center;justify-content:center;flex:none;">L</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:#EBF1FB;text-transform:uppercase;white-space:nowrap;">Grupo L</span><span style="flex:1;"></span><span style="display:flex;gap:4px;"><span style="font-family:'Space Mono',monospace;font-size:9px;padding:2px 5px;border-radius:5px;background:#36c2751a;color:#36C275;">1 GER</span><span style="font-family:'Space Mono',monospace;font-size:9px;padding:2px 5px;border-radius:5px;background:#FFB4001a;color:#FFB400;">3 GHA</span></span><span style="color:#687087;font-size:10px;">▾</span></div>
+
+            <div style="position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(180deg,transparent,#0B0E14 80%);pointer-events:none;"></div>
+          </div>
+        </div>
+
+        <!-- RIGHT 2/3 -->
+        <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;"><div style="padding:16px 22px 8px;display:flex;align-items:center;gap:14px;">
+            <span style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#EBF1FB;text-transform:uppercase;letter-spacing:.02em;">Mata-mata</span>
+            <span style="display:flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10px;color:#36C275;"><span style="width:8px;height:8px;border-radius:2px;background:#36C275;"></span>definido</span>
+            <span style="display:flex;align-items:center;gap:6px;font-family:'Space Mono',monospace;font-size:10px;color:#FFB400;"><span style="width:8px;height:8px;border-radius:2px;background:#FFB400;"></span>provisório (melhor 3º)</span>
+            <span style="margin-left:auto;font-family:'Space Mono',monospace;font-size:10px;color:#687087;">16-avos &rarr; final</span>
+          </div>
+
+          <div style="flex:1;display:flex;align-items:stretch;padding:8px 22px 18px;gap:6px;">
+
+            <!-- 16-avos left -->
+            <div style="display:flex;flex-direction:column;justify-content:space-around;gap:6px;flex:none;width:150px;">
+              <div style="font-family:'Space Mono',monospace;font-size:9px;color:#687087;text-align:center;letter-spacing:.1em;">16-AVOS</div>
+              <div style="background:#141A24;border:1px solid #36c27540;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1A</span><span style="width:10px;height:10px;border-radius:3px;background:#FFDF00;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">BRA</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#FFB400;width:14px;">3º</span><span style="width:10px;height:10px;border-radius:3px;background:#DC143C;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">POL</span></div></div>
+              <div style="background:#141A24;border:1px solid #FFB40055;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1E</span><span style="width:10px;height:10px;border-radius:3px;background:#0055A4;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">FRA</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#FFB400;width:14px;">3º</span><span style="width:10px;height:10px;border-radius:3px;background:#1B2230;border:1px dashed #FFB40088;"></span><span style="font-size:11px;color:#FFB400;font-style:italic;font-weight:600;">3?</span></div></div>
+              <div style="background:#141A24;border:1px solid #36c27540;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1G</span><span style="width:10px;height:10px;border-radius:3px;background:#012169;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">ENG</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">2H</span><span style="width:10px;height:10px;border-radius:3px;background:#FDDA24;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">BEL</span></div></div>
+              <div style="background:#141A24;border:1px solid #36c27540;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1C</span><span style="width:10px;height:10px;border-radius:3px;background:#C60B1E;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">ESP</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">2F</span><span style="width:10px;height:10px;border-radius:3px;background:#171796;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">CRO</span></div></div>
+            </div>
+            <div style="flex:none;width:138px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;">
+              <div style="display:flex;align-items:stretch;height:170px;">
+                <div style="flex:none;width:13px;padding:8px 0;display:flex;"><div style="flex:1;border-right:1.5px solid #28303F;border-top:1.5px solid #28303F;border-bottom:1.5px solid #28303F;border-radius:0 9px 9px 0;"></div></div>
+                <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:7px;">
+                  <div style="font-family:'Space Mono',monospace;font-size:8px;color:#687087;text-align:center;letter-spacing:.12em;">OITAVAS · QF</div>
+                  <div style="display:flex;align-items:center;">
+                    <div style="flex:1;height:1.5px;background:#28303F;"></div>
+                    <span style="width:8px;height:8px;border-radius:99px;background:#0F141C;border:1.5px solid #28303F;flex:none;"></span>
+                    <div style="flex:1;height:1.5px;background:#28303F;"></div>
+                    <span style="width:8px;height:8px;border-radius:99px;background:#0F141C;border:1.5px solid #28303F;flex:none;"></span>
+                    <div style="flex:none;width:10px;height:1.5px;background:#28303F;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- center final -->
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:120px;">
+              <div style="font-size:30px;">🏆</div>
+              <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:18px;color:#C6F24E;text-transform:uppercase;letter-spacing:.08em;">Final</div>
+              <div style="width:108px;background:linear-gradient(180deg,#1B2230,#141A24);border:1px solid #C6F24E44;border-radius:10px;padding:14px 8px;text-align:center;box-shadow:0 0 24px rgba(198,242,78,.12);"><div style="font-family:'Space Mono',monospace;font-size:9px;color:#687087;">campeão</div><div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:22px;color:#3a4150;margin-top:4px;">?</div></div>
+            </div>
+
+            <!-- right mirror -->
+            <div style="flex:none;width:138px;align-self:stretch;display:flex;flex-direction:column;justify-content:center;">
+              <div style="display:flex;align-items:stretch;height:170px;">
+                <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:7px;">
+                  <div style="font-family:'Space Mono',monospace;font-size:8px;color:#687087;text-align:center;letter-spacing:.12em;">QF · OITAVAS</div>
+                  <div style="display:flex;align-items:center;">
+                    <div style="flex:none;width:10px;height:1.5px;background:#28303F;"></div>
+                    <span style="width:8px;height:8px;border-radius:99px;background:#0F141C;border:1.5px solid #28303F;flex:none;"></span>
+                    <div style="flex:1;height:1.5px;background:#28303F;"></div>
+                    <span style="width:8px;height:8px;border-radius:99px;background:#0F141C;border:1.5px solid #28303F;flex:none;"></span>
+                    <div style="flex:1;height:1.5px;background:#28303F;"></div>
+                  </div>
+                </div>
+                <div style="flex:none;width:13px;padding:8px 0;display:flex;"><div style="flex:1;border-left:1.5px solid #28303F;border-top:1.5px solid #28303F;border-bottom:1.5px solid #28303F;border-radius:9px 0 0 9px;"></div></div>
+              </div>
+            </div>
+            <div style="display:flex;flex-direction:column;justify-content:space-around;flex:none;width:18px;padding:18px 0 0;"><div style="flex:1;border-left:1px solid #28303F;border-top:1px solid #28303F;border-bottom:1px solid #28303F;border-radius:6px 0 0 6px;margin:14px 0;"></div><div style="flex:1;border-left:1px solid #28303F;border-top:1px solid #28303F;border-bottom:1px solid #28303F;border-radius:6px 0 0 6px;margin:14px 0;"></div></div>
+            <div style="display:flex;flex-direction:column;justify-content:space-around;gap:6px;flex:none;width:150px;">
+              <div style="font-family:'Space Mono',monospace;font-size:9px;color:#687087;text-align:center;letter-spacing:.1em;">16-AVOS</div>
+              <div style="background:#141A24;border:1px solid #36c27540;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1B</span><span style="width:10px;height:10px;border-radius:3px;background:#75AADB;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">ARG</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#FFB400;width:14px;">3º</span><span style="width:10px;height:10px;border-radius:3px;background:#006847;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">MEX</span></div></div>
+              <div style="background:#141A24;border:1px solid #36c27540;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1D</span><span style="width:10px;height:10px;border-radius:3px;background:#046A38;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">POR</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">2A</span><span style="width:10px;height:10px;border-radius:3px;background:#C6362F;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">SUI</span></div></div>
+              <div style="background:#141A24;border:1px solid #36c27540;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1H</span><span style="width:10px;height:10px;border-radius:3px;background:#75AADB;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">URU</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#FFB400;width:14px;">3º</span><span style="width:10px;height:10px;border-radius:3px;background:#CE1126;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">KOR</span></div></div>
+              <div style="background:#141A24;border:1px solid #36c27540;border-radius:8px;padding:5px 7px;"><div style="display:flex;align-items:center;gap:5px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">1F</span><span style="width:10px;height:10px;border-radius:3px;background:#AE1C28;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">NED</span></div><div style="display:flex;align-items:center;gap:5px;margin-top:3px;"><span style="font-family:'Space Mono',monospace;font-size:8px;color:#36C275;width:14px;">2I</span><span style="width:10px;height:10px;border-radius:3px;background:#BC002D;"></span><span style="font-size:11px;color:#EBF1FB;font-weight:600;">JPN</span></div></div>
+            </div>
+
+          </div></div>
+      </div>
+    </div>
+  </div>
+
+  <span data-sentinel="end"></span>
+</div>
+</x-dc>
+</body>
+</html>

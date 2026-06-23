@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+/* Direção "Transmissão" — design tokens (tema escuro). */
+@theme {
+  --color-canvas: #05070b;
+  --color-bg: #0b0e14;
+  --color-surface: #141a24;
+  --color-raised: #1b2230;
+  --color-surface-dim: #0f141c;
+  --color-border: #28303f;
+  --color-hairline: #1b212d;
+  --color-text-hi: #ebf1fb;
+  --color-text-mid: #98a2b4;
+  --color-text-low: #687087;
+  --color-text-faint: #3a4150;
+
+  --color-live: #ff2d55;
+  --color-lime: #c6f24e;
+  --color-go: #36c275;
+  --color-third: #ffb400;
+  --color-card-yellow: #ffc400;
+  --color-card-red: #f4324c;
+
+  --font-display: "Barlow Condensed", sans-serif;
+  --font-body: "Barlow", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-text-hi);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Esconde as setinhas dos inputs number */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+@keyframes qpq-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.live-dot {
+  animation: qpq-pulse 1.4s ease-in-out infinite;
+}
