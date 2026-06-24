@@ -1,3 +1,5 @@
+import { scoreFieldProps } from '../lib/scoreFocus';
+
 interface ScoreBoxProps {
   value: number | null;
   onChange: (v: number | null) => void;
@@ -9,6 +11,7 @@ interface ScoreBoxProps {
 export function ScoreBox({ value, onChange, disabled, label }: ScoreBoxProps) {
   return (
     <input
+      {...scoreFieldProps}
       type="number"
       min={0}
       inputMode="numeric"

@@ -46,7 +46,11 @@ export function MatchCard({
             {hg ?? '–'}
           </span>
         ) : (
-          <Stepper value={hg} onChange={(v) => onScore(v, ag)} />
+          <Stepper
+            value={hg}
+            onChange={(v) => onScore(v, ag)}
+            label={`Gols de ${match.home} — mandante`}
+          />
         )}
 
         <span className="font-display text-text-faint px-0.5">×</span>
@@ -58,7 +62,11 @@ export function MatchCard({
             {ag ?? '–'}
           </span>
         ) : (
-          <Stepper value={ag} onChange={(v) => onScore(hg, v)} />
+          <Stepper
+            value={ag}
+            onChange={(v) => onScore(hg, v)}
+            label={`Gols de ${match.away} — visitante`}
+          />
         )}
         <Flag code={match.away} className="text-lg" />
         <span className="font-display text-text-mid w-9 text-[15px] font-bold uppercase">
