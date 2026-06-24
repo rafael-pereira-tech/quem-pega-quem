@@ -1,0 +1,3 @@
+# SPA fallback (Cloudflare Pages): rotas sem arquivo servem o app.
+# Necessário para a rota secreta de login do admin (/admin) — ver ADR 0006.
+/*  /index.html  200

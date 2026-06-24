@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { AdminAuth } from './components/AdminAuth';
+import { AdminLogin } from './components/AdminLogin';
 import { AdminPanel } from './components/AdminPanel';
 import { Bracket } from './components/Bracket';
 import { DesktopScreen } from './components/DesktopScreen';
@@ -18,6 +18,11 @@ import { useOfficialSync } from './supabase/useOfficialSync';
 type Tab = 'grupos' | 'chave' | 'terceiros';
 const TABS: Tab[] = ['grupos', 'chave', 'terceiros'];
 
+/** Rota secreta do login do admin: sem botão no app, só quem conhece chega. */
+function isLoginRoute(): boolean {
+  return typeof window !== 'undefined' && window.location.pathname.replace(/\/+$/, '') === '/admin';
+}
+
 export function App() {
   const result = useSimulation();
   const reset = useStore((s) => s.reset);
@@ -28,6 +33,8 @@ export function App() {
   const [tab, setTab] = useState<Tab>('grupos');
   const [adminView, setAdminView] = useState(false);
   const showAdmin = adminView && session.isAdmin && session.userId;
+  // Login do admin só na rota secreta /admin e enquanto não logado por e-mail.
+  const needsLogin = hasSupabase && session.ready && !session.email && isLoginRoute();
 
   // Telemetria: liga a sessão à analytics e registra a abertura uma vez.
   const openedRef = useRef(false);
@@ -97,12 +104,14 @@ export function App() {
                 {adminView ? '← app' : 'admin'}
               </button>
             )}
-            {hasSupabase && session.ready && (
-              <AdminAuth
-                email={session.email}
-                signInWithOtp={session.signInWithOtp}
-                signOut={session.signOut}
-              />
+            {session.email && (
+              <button
+                onClick={() => void session.signOut()}
+                title={session.email}
+                className="ring-border text-text-mid rounded-md px-2 py-1.5 font-mono text-[10px] uppercase ring-1"
+              >
+                sair
+              </button>
             )}
             <button
               onClick={() => {
@@ -119,7 +128,7 @@ export function App() {
         </div>
 
         {/* Abas só no mobile */}
-        {!showAdmin && !isDesktop && (
+        {!showAdmin && !needsLogin && !isDesktop && (
           <nav aria-label="Seções" className="flex gap-1 rounded-none px-4 pb-2.5">
             <div className="bg-surface flex w-full gap-1 rounded-[13px] p-[5px]">
               {TABS.map((t) => (
@@ -140,7 +149,12 @@ export function App() {
       </header>
 
       <main id="conteudo" tabIndex={-1} className="flex-1 overflow-hidden">
-        {showAdmin ? (
+        {needsLogin ? (
+          <>
+            <h2 className="sr-only">Login do admin</h2>
+            <AdminLogin signInWithOtp={session.signInWithOtp} />
+          </>
+        ) : showAdmin ? (
           <div className="h-full overflow-auto p-4">
             <h2 className="sr-only">Administração — resultados oficiais</h2>
             <AdminPanel userId={session.userId!} />
