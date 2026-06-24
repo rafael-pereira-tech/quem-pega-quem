@@ -1,3 +1,5 @@
+import { prefersReducedMotion } from './motion';
+
 import type { FocusEvent, KeyboardEvent } from 'react';
 
 /**
@@ -14,14 +16,6 @@ import type { FocusEvent, KeyboardEvent } from 'react';
  */
 
 const SELECTOR = 'input[data-score-field]';
-
-function prefersReducedMotion(): boolean {
-  return (
-    typeof window !== 'undefined' &&
-    typeof window.matchMedia === 'function' &&
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
-}
 
 /**
  * Rola o campo para dentro do contêiner rolável mais próximo, e só se ele

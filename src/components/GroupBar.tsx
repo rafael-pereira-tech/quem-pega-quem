@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { teamsById } from '../data/static';
+import { useFlip } from '../hooks/useFlip';
 import { groupColor, groupColorAlpha, groupTextColor } from '../lib/groupColors';
 
 import { Flag } from './Flag';
@@ -56,6 +57,12 @@ export function GroupBar({
   const [round, setRound] = useState<Round>(3);
   const roundMatches = matches.filter((m) => m.round === round);
 
+  // Anima a reordenação dos times após um update: a fila das pills e as linhas
+  // da tabela deslizam para a nova posição. A chave muda quando a ordem muda.
+  const order = standing.table.map((r) => r.team).join(',');
+  const pillsRef = useFlip<HTMLSpanElement>(order);
+  const tableRef = useFlip<HTMLTableSectionElement>(expanded ? `open:${order}` : 'closed');
+
   return (
     <div className="space-y-2.5">
       {/* Barra do grupo (colapsada) */}
@@ -77,12 +84,13 @@ export function GroupBar({
           <span className="font-display text-[15px] font-bold tracking-wide uppercase">
             Grupo {g}
           </span>
-          <span className="ml-auto flex items-center gap-1">
+          <span ref={pillsRef} className="ml-auto flex items-center gap-1">
             {standing.table.slice(0, 3).map((r) => {
               const t = tintFor(r.position, thirdQualified);
               return (
                 <span
                   key={r.team}
+                  data-flip-key={r.team}
                   className="flex items-center gap-1 rounded-md px-1.5 py-0.5 font-mono text-[10px]"
                   style={{ background: t.bg, border: `1px solid ${t.bd}` }}
                 >
@@ -124,11 +132,11 @@ export function GroupBar({
                   <th className="w-8 pr-3 text-center font-medium">CV</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody ref={tableRef}>
                 {standing.table.map((r) => {
                   const t = tintFor(r.position, thirdQualified);
                   return (
-                    <tr key={r.team} className="border-hairline border-t">
+                    <tr key={r.team} data-flip-key={r.team} className="border-hairline border-t">
                       <td className="py-1.5 pl-3">
                         <span
                           className="font-display grid h-5 w-5 place-items-center rounded text-[12px] font-extrabold"
