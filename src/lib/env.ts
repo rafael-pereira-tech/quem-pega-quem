@@ -11,6 +11,9 @@ import { z } from 'zod';
 const schema = z.object({
   VITE_SUPABASE_URL: z.string().url().optional(),
   VITE_SUPABASE_ANON_KEY: z.string().min(1).optional(),
+  // Token PÚBLICO do beacon do Cloudflare Web Analytics (opcional). Sem ele, o
+  // beacon não monta — ver src/lib/webAnalytics.ts e ADR 0005.
+  VITE_CF_BEACON_TOKEN: z.string().min(1).optional(),
 });
 
 const parsed = schema.safeParse(import.meta.env);
