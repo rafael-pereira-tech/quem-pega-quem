@@ -85,6 +85,25 @@ create trigger on_auth_user_created
 alter publication supabase_realtime add table public.official_results;
 
 -- ---------------------------------------------------------------------------
+-- Telemetria de uso (ver ADR 0005). Append-only; insert do próprio, read admin.
+-- ---------------------------------------------------------------------------
+create table if not exists public.events (
+  id         bigint generated always as identity primary key,
+  user_id    uuid references auth.users(id) on delete set null,
+  name       text not null check (char_length(name) between 1 and 64),  -- 'app_open' | 'score_edit' | ...
+  props      jsonb not null default '{}'::jsonb,
+  created_at timestamptz not null default now()
+);
+create index if not exists events_created_at_idx on public.events (created_at);
+create index if not exists events_name_created_idx on public.events (name, created_at);
+
+alter table public.events enable row level security;
+
+-- registra só os próprios eventos; leitura só admin (público não lê telemetria)
+create policy "events_insert" on public.events for insert with check (user_id = auth.uid());
+create policy "events_read"   on public.events for select using (public.is_admin());
+
+-- ---------------------------------------------------------------------------
 -- Vire admin: faça login uma vez (com seu e-mail) e rode, com SEU id:
 --   update public.profiles set role = 'admin' where user_id = '<seu-uuid>';
 -- (pegue o uuid em Authentication > Users)

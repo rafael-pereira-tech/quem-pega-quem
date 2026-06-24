@@ -46,3 +46,4 @@ reservado para o template.
 | 0002 | Anexo C como fonte da verdade     | Accepted |
 | 0003 | Supabase: auth anônima + RLS      | Accepted |
 | 0004 | Tooling e gate de qualidade       | Accepted |
+| 0005 | Telemetria de uso (CF + events)   | Accepted |
