@@ -43,6 +43,18 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Barra de rolagem no tema do app, quando o SO/navegador resolve exibi-la.
+   Só as propriedades PADRÃO (scrollbar-width/-color são herdadas, então
+   cascateiam do html para todos os contêineres roláveis): elas afinam e
+   recolorem sem forçar a barra a ficar sempre visível — quem usa scrollbar
+   overlay (auto-hide) mantém o comportamento. Chromium 121+, Firefox e Edge;
+   Safari segue com o nativo (já discreto). Evita-se `::-webkit-scrollbar` de
+   propósito, pois ele tornaria a barra persistente no overlay do macOS. */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
 /* Indicador de foco unificado para teclado.
    :focus-visible só dispara em foco por teclado, então o mouse não vê o anel.
    O outline fica fora do elemento (com offset), logo é visível em qualquer
