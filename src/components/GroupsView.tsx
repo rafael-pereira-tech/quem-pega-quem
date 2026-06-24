@@ -37,8 +37,10 @@ export function GroupsView() {
   return (
     <div className="space-y-3">
       {/* Progresso — fixo no topo da área rolável para manter a sensação de
-          avanço enquanto se rola pelos grupos. */}
-      <div className="bg-canvas/95 sticky top-0 z-10 flex items-center gap-2 py-2 backdrop-blur">
+          avanço enquanto se rola pelos grupos. Fundo opaco + margens negativas
+          para sangrar até as bordas do contêiner (tanto px-4 mobile quanto
+          px-3.5 desktop) e impedir que os cards vazem por baixo. */}
+      <div className="bg-canvas border-hairline sticky top-0 z-10 -mx-4 flex items-center gap-2 border-b px-4 py-2">
         <div className="bg-surface h-1.5 flex-1 overflow-hidden rounded-full">
           <div
             className="h-full rounded-full transition-all"
