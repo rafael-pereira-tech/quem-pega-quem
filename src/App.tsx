@@ -59,7 +59,7 @@ export function App() {
                   const v = e.target.value.trim();
                   if (v && v !== session.nickname) void session.setNickname(v);
                 }}
-                className="bg-surface ring-border focus:ring-live w-20 rounded-md px-2 py-1 text-sm ring-1 outline-none"
+                className="bg-surface ring-border w-20 rounded-md px-2 py-1 text-sm ring-1"
               />
             )}
             {session.isAdmin && (

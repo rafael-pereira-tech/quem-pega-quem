@@ -19,7 +19,7 @@ export function ScoreBox({ value, onChange, disabled, label }: ScoreBoxProps) {
         const v = e.target.value;
         onChange(v === '' ? null : Math.max(0, Math.floor(Number(v))));
       }}
-      className="w-9 rounded-md bg-slate-800 py-1 text-center text-slate-100 tabular-nums ring-1 ring-slate-700 outline-none focus:ring-2 focus:ring-emerald-500 disabled:cursor-not-allowed disabled:opacity-60"
+      className="bg-raised text-text-hi ring-border w-9 rounded-md py-1 text-center tabular-nums ring-1 disabled:cursor-not-allowed disabled:opacity-60"
     />
   );
 }
