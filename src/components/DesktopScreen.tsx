@@ -13,7 +13,10 @@ export function DesktopScreen() {
   return (
     <div className="flex h-full">
       {/* Esquerda — input dos grupos */}
-      <aside className="border-hairline flex w-[392px] shrink-0 flex-col border-r">
+      <aside
+        aria-label="Última rodada dos grupos"
+        className="border-hairline flex w-[392px] shrink-0 flex-col border-r"
+      >
         <div className="flex items-center justify-between px-4 pt-3 pb-2">
           <h2 className="font-display text-[22px] font-extrabold tracking-wide whitespace-nowrap uppercase">
             Última rodada
@@ -28,7 +31,7 @@ export function DesktopScreen() {
       </aside>
 
       {/* Direita — mata-mata */}
-      <section className="flex flex-1 flex-col overflow-hidden">
+      <section aria-label="Mata-mata" className="flex flex-1 flex-col overflow-hidden">
         <div className="flex items-center gap-3 px-5 pt-3 pb-2">
           <h2 className="font-display text-[22px] font-extrabold tracking-wide uppercase">
             Mata-mata
@@ -44,6 +47,7 @@ export function DesktopScreen() {
               <button
                 key={p}
                 onClick={() => setPane(p)}
+                aria-pressed={pane === p}
                 className={`font-display rounded-md px-3 py-1 font-bold tracking-wide uppercase ${
                   pane === p ? 'bg-live text-white' : 'text-text-mid'
                 }`}

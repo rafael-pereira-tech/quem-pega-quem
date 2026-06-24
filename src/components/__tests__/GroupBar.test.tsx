@@ -43,4 +43,22 @@ describe("<GroupBar> — pílula 'melhor terceiro'", () => {
     await userEvent.click(screen.getByRole('button', { name: /Grupo/ }));
     expect(screen.getByTitle(/fora do corte/)).toBeInTheDocument();
   });
+
+  it('o toggle do grupo expõe aria-expanded e ele alterna no clique', async () => {
+    render(
+      <GroupBar standing={standing} matches={[]} onScore={vi.fn()} thirdQualified thirdRank={1} />,
+    );
+    const toggle = screen.getByRole('button', { name: /Grupo/ });
+    expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await userEvent.click(toggle);
+    expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  });
+
+  it('as setas de rodada têm nome acessível', () => {
+    render(
+      <GroupBar standing={standing} matches={[]} onScore={vi.fn()} thirdQualified thirdRank={1} />,
+    );
+    expect(screen.getByRole('button', { name: 'Rodada anterior' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Próxima rodada' })).toBeInTheDocument();
+  });
 });

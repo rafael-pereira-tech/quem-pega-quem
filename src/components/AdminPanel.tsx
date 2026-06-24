@@ -90,13 +90,13 @@ export function AdminPanel({ userId }: { userId: string }) {
                       <ScoreBox
                         value={v.h}
                         onChange={(x) => setDraftFor(m.id, { h: x })}
-                        label="casa"
+                        label={`Gols de ${teamName(m.home)} (casa)`}
                       />
                       <span className="text-slate-600">×</span>
                       <ScoreBox
                         value={v.a}
                         onChange={(x) => setDraftFor(m.id, { a: x })}
-                        label="fora"
+                        label={`Gols de ${teamName(m.away)} (fora)`}
                       />
                       <span className="flex-1 truncate">{teamName(m.away)}</span>
                       <button
