@@ -36,8 +36,9 @@ export function GroupsView() {
 
   return (
     <div className="space-y-3">
-      {/* Progresso */}
-      <div className="flex items-center gap-2">
+      {/* Progresso — fixo no topo da área rolável para manter a sensação de
+          avanço enquanto se rola pelos grupos. */}
+      <div className="bg-canvas/95 sticky top-0 z-10 flex items-center gap-2 py-2 backdrop-blur">
         <div className="bg-surface h-1.5 flex-1 overflow-hidden rounded-full">
           <div
             className="h-full rounded-full transition-all"
