@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90 90" width="90" height="90" role="img" aria-label="Quem-Pega-Quem">
+  <!-- Brand symbol — direção B "Chave": confrontos (vermelho/amarelo) convergindo
+       por um arco verde até o ponto campeão (lime). Geometria canônica do handoff. -->
+  <rect width="90" height="90" rx="20" fill="#141A24"/>
+  <!-- confrontos -->
+  <rect x="18" y="24.5" width="28" height="4" rx="2" fill="#FF2D55"/>
+  <rect x="18" y="61.5" width="28" height="4" rx="2" fill="#FFB400"/>
+  <!-- arco "]" (cruzamento) -->
+  <path d="M46 26.5 H54 A5 5 0 0 1 59 31.5 V58.5 A5 5 0 0 1 54 63.5 H46"
+        fill="none" stroke="#36C275" stroke-width="4" stroke-linecap="butt" stroke-linejoin="round"/>
+  <!-- ponto campeão -->
+  <circle cx="65.5" cy="45" r="6.5" fill="#C6F24E"/>
+</svg>

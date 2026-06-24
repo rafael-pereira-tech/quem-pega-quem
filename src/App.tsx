@@ -4,6 +4,7 @@ import { AdminPanel } from './components/AdminPanel';
 import { Bracket } from './components/Bracket';
 import { DesktopScreen } from './components/DesktopScreen';
 import { GroupsView } from './components/GroupsView';
+import { BrandMark } from './components/Logo';
 import { ThirdsView } from './components/ThirdsView';
 import { useIsDesktop } from './hooks/useIsDesktop';
 import { useSimulation } from './hooks/useSimulation';
@@ -34,6 +35,7 @@ export function App() {
       <header className="bg-canvas/95 border-hairline shrink-0 border-b backdrop-blur">
         <div className="flex items-center justify-between gap-2 px-4 pt-3 pb-2">
           <div className="flex items-center gap-2">
+            <BrandMark size={28} decorative />
             <h1 className="font-display text-xl leading-none font-extrabold tracking-tight uppercase">
               Quem<span className="text-live">-</span>Pega<span className="text-live">-</span>Quem
             </h1>
