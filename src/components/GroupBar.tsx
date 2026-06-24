@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 import { teamsById } from '../data/static';
 import { useFlip } from '../hooks/useFlip';
+import { useSwipe } from '../hooks/useSwipe';
 import { groupColor, groupColorAlpha, groupTextColor } from '../lib/groupColors';
+import { slideIn } from '../lib/motion';
 
 import { Flag } from './Flag';
 import { MatchCard } from './MatchCard';
@@ -62,6 +64,30 @@ export function GroupBar({
   const order = standing.table.map((r) => r.team).join(',');
   const pillsRef = useFlip<HTMLSpanElement>(order);
   const tableRef = useFlip<HTMLTableSectionElement>(expanded ? `open:${order}` : 'closed');
+
+  // Navegação entre rodadas com slide direcional (botões ‹ › e swipe no card).
+  const [dir, setDir] = useState<1 | -1>(1);
+  const matchesRef = useRef<HTMLDivElement>(null);
+  const firstRound = useRef(true);
+
+  const changeRound = (next: number) => {
+    if (next < 1 || next > 3 || next === round) return;
+    setDir(next > round ? 1 : -1);
+    setRound(next as Round);
+  };
+
+  useLayoutEffect(() => {
+    if (firstRound.current) {
+      firstRound.current = false;
+      return;
+    }
+    if (matchesRef.current) slideIn(matchesRef.current, dir === 1 ? 28 : -28);
+  }, [round, dir]);
+
+  const swipe = useSwipe(
+    () => changeRound(round + 1),
+    () => changeRound(round - 1),
+  );
 
   return (
     <div className="space-y-2.5">
@@ -191,11 +217,11 @@ export function GroupBar({
         )}
       </div>
 
-      {/* Card de jogos (aberto) */}
-      <div className="bg-surface ring-hairline overflow-hidden rounded-[14px] ring-1">
+      {/* Card de jogos (aberto) — swipe horizontal troca de rodada */}
+      <div className="bg-surface ring-hairline overflow-hidden rounded-[14px] ring-1" {...swipe}>
         <div className="border-hairline flex items-center justify-between border-b px-3 py-2">
           <button
-            onClick={() => setRound((r) => Math.max(1, r - 1) as Round)}
+            onClick={() => changeRound(round - 1)}
             disabled={round === 1}
             aria-label="Rodada anterior"
             className="bg-bg ring-border disabled:text-text-faint enabled:text-lime grid h-7 w-7 shrink-0 place-items-center rounded-full ring-1"
@@ -206,7 +232,7 @@ export function GroupBar({
             {ROUND_LABEL[round]} · Jogos
           </span>
           <button
-            onClick={() => setRound((r) => Math.min(3, r + 1) as Round)}
+            onClick={() => changeRound(round + 1)}
             disabled={round === 3}
             aria-label="Próxima rodada"
             className="bg-bg ring-border disabled:text-text-faint enabled:text-lime grid h-7 w-7 shrink-0 place-items-center rounded-full ring-1"
@@ -214,7 +240,7 @@ export function GroupBar({
             <span aria-hidden="true">›</span>
           </button>
         </div>
-        <div className="divide-hairline divide-y px-3">
+        <div ref={matchesRef} className="divide-hairline divide-y px-3">
           {roundMatches.map((m) => (
             <MatchCard key={m.id} match={m} onScore={(h, a) => onScore(m.id, h, a)} />
           ))}
