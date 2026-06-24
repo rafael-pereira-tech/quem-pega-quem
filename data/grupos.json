@@ -1035,8 +1035,16 @@
         "matchday": 2,
         "home": "COL",
         "away": "COD",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 1,
+        "awayGoals": 0,
+        "cards": {
+          "COL": {
+            "yellow": 1
+          },
+          "COD": {
+            "yellow": 1
+          }
+        }
       },
       {
         "matchday": 3,
@@ -1120,8 +1128,13 @@
         "matchday": 2,
         "home": "PAN",
         "away": "CRO",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 0,
+        "awayGoals": 1,
+        "cards": {
+          "PAN": {
+            "yellow": 1
+          }
+        }
       },
       {
         "matchday": 3,
