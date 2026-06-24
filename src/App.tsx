@@ -32,6 +32,12 @@ export function App() {
 
   return (
     <div className="bg-canvas text-text-hi flex h-screen flex-col overflow-hidden">
+      <a
+        href="#conteudo"
+        className="focus:bg-surface focus:ring-border sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:px-3 focus:py-2 focus:text-sm focus:ring-1"
+      >
+        Pular para o conteúdo
+      </a>
       <header className="bg-canvas/95 border-hairline shrink-0 border-b backdrop-blur">
         <div className="flex items-center justify-between gap-2 px-4 pt-3 pb-2">
           <div className="flex items-center gap-2">
@@ -83,12 +89,13 @@ export function App() {
 
         {/* Abas só no mobile */}
         {!showAdmin && !isDesktop && (
-          <nav className="flex gap-1 rounded-none px-4 pb-2.5">
+          <nav aria-label="Seções" className="flex gap-1 rounded-none px-4 pb-2.5">
             <div className="bg-surface flex w-full gap-1 rounded-[13px] p-[5px]">
               {TABS.map((t) => (
                 <button
                   key={t}
                   onClick={() => setTab(t)}
+                  aria-current={tab === t ? 'page' : undefined}
                   className={`font-display flex-1 rounded-[9px] py-1.5 text-sm font-bold tracking-wide uppercase ${
                     tab === t ? 'bg-live text-white' : 'text-text-mid'
                   }`}
@@ -101,15 +108,23 @@ export function App() {
         )}
       </header>
 
-      <main className="flex-1 overflow-hidden">
+      <main id="conteudo" tabIndex={-1} className="flex-1 overflow-hidden">
         {showAdmin ? (
           <div className="h-full overflow-auto p-4">
+            <h2 className="sr-only">Administração — resultados oficiais</h2>
             <AdminPanel userId={session.userId!} />
           </div>
         ) : isDesktop ? (
           <DesktopScreen />
         ) : (
           <div className="mx-auto h-full max-w-md overflow-auto px-4 py-4">
+            <h2 className="sr-only">
+              {tab === 'grupos'
+                ? 'Grupos'
+                : tab === 'terceiros'
+                  ? 'Melhores terceiros'
+                  : 'Chave do mata-mata'}
+            </h2>
             {tab === 'grupos' ? (
               <GroupsView />
             ) : tab === 'terceiros' ? (

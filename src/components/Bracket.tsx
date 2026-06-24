@@ -122,6 +122,8 @@ export function Bracket({ games }: { games: ResolvedKnockoutGame[] }) {
           <button
             key={s}
             onClick={() => setSide(s)}
+            aria-pressed={side === s}
+            aria-label={s === 'L' ? 'Lado esquerdo' : 'Lado direito'}
             className={`font-display flex-1 rounded-md py-1.5 text-sm font-bold tracking-wide uppercase ${
               side === s ? 'bg-lime text-canvas' : 'text-text-mid'
             }`}

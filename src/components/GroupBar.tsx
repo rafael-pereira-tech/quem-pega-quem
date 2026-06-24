@@ -65,6 +65,7 @@ export function GroupBar({
       >
         <button
           onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
           className="flex w-full items-center gap-2.5 px-3 py-2.5 text-left"
         >
           <span
@@ -100,7 +101,12 @@ export function GroupBar({
               );
             })}
           </span>
-          <span className={`text-text-low transition ${expanded ? 'rotate-180' : ''}`}>▾</span>
+          <span
+            aria-hidden="true"
+            className={`text-text-low transition ${expanded ? 'rotate-180' : ''}`}
+          >
+            ▾
+          </span>
         </button>
 
         {expanded && (
@@ -183,9 +189,10 @@ export function GroupBar({
           <button
             onClick={() => setRound((r) => Math.max(1, r - 1) as Round)}
             disabled={round === 1}
+            aria-label="Rodada anterior"
             className="bg-bg ring-border disabled:text-text-faint enabled:text-lime grid h-7 w-7 shrink-0 place-items-center rounded-full ring-1"
           >
-            ‹
+            <span aria-hidden="true">‹</span>
           </button>
           <span className="font-display text-[15px] font-extrabold tracking-wide uppercase">
             {ROUND_LABEL[round]} · Jogos
@@ -193,9 +200,10 @@ export function GroupBar({
           <button
             onClick={() => setRound((r) => Math.min(3, r + 1) as Round)}
             disabled={round === 3}
+            aria-label="Próxima rodada"
             className="bg-bg ring-border disabled:text-text-faint enabled:text-lime grid h-7 w-7 shrink-0 place-items-center rounded-full ring-1"
           >
-            ›
+            <span aria-hidden="true">›</span>
           </button>
         </div>
         <div className="divide-hairline divide-y px-3">
