@@ -47,3 +47,4 @@ reservado para o template.
 | 0003 | Supabase: auth anônima + RLS      | Accepted |
 | 0004 | Tooling e gate de qualidade       | Accepted |
 | 0005 | Telemetria de uso (CF + events)   | Accepted |
+| 0006 | Login de admin por magic link     | Accepted |
