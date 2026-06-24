@@ -50,4 +50,28 @@ describe('<MatchCard>', () => {
     await userEvent.click(screen.getAllByLabelText('+1')[0]!);
     expect(onScore).toHaveBeenCalledWith(0, null);
   });
+
+  it('cada placar tem nome acessível por time e mando', () => {
+    render(<MatchCard match={base} onScore={() => {}} />);
+    expect(screen.getByLabelText('Gols de BRA — mandante')).toBeInTheDocument();
+    expect(screen.getByLabelText('Gols de ARG — visitante')).toBeInTheDocument();
+  });
+
+  it('Tab vai de placar em placar, pulando os botões +/−', async () => {
+    const user = userEvent.setup();
+    render(<MatchCard match={base} onScore={() => {}} />);
+    const [home, away] = screen.getAllByRole('spinbutton');
+
+    await user.tab();
+    expect(home).toHaveFocus();
+    await user.tab();
+    expect(away).toHaveFocus();
+  });
+
+  it('os botões +/− ficam fora da ordem de Tab', () => {
+    render(<MatchCard match={{ ...base, homeGoals: 1, awayGoals: 1 }} onScore={() => {}} />);
+    for (const btn of [...screen.getAllByLabelText('+1'), ...screen.getAllByLabelText('-1')]) {
+      expect(btn).toHaveAttribute('tabindex', '-1');
+    }
+  });
 });

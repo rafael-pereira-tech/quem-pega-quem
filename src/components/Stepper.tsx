@@ -1,11 +1,15 @@
+import { scoreFieldProps } from '../lib/scoreFocus';
+
 interface StepperProps {
   value: number | null;
   onChange: (v: number | null) => void;
   disabled?: boolean;
+  /** Nome acessível do campo (ex.: "Gols de BRA — mandante"). */
+  label?: string;
 }
 
 /** Stepper horizontal: − [número editável] +. */
-export function Stepper({ value, onChange, disabled }: StepperProps) {
+export function Stepper({ value, onChange, disabled, label }: StepperProps) {
   const inc = () => onChange(value === null ? 0 : value + 1);
   const dec = () => {
     if (value === null || value <= 0) return;
@@ -20,14 +24,17 @@ export function Stepper({ value, onChange, disabled }: StepperProps) {
         onClick={dec}
         disabled={minusDisabled}
         aria-label="-1"
+        tabIndex={-1}
         className={`grid h-[22px] w-[22px] place-items-center rounded-full leading-none font-bold transition active:scale-95 ${minusDisabled ? 'bg-surface-dim text-text-faint ring-hairline cursor-not-allowed ring-1' : 'bg-raised text-text-mid ring-border ring-1'}`}
       >
         −
       </button>
       <input
+        {...scoreFieldProps}
         type="number"
         min={0}
         inputMode="numeric"
+        aria-label={label}
         disabled={disabled}
         value={value ?? ''}
         onChange={(e) => {
@@ -42,6 +49,7 @@ export function Stepper({ value, onChange, disabled }: StepperProps) {
         onClick={inc}
         disabled={disabled}
         aria-label="+1"
+        tabIndex={-1}
         className="bg-live grid h-[22px] w-[22px] place-items-center rounded-full leading-none font-bold text-white transition active:scale-95 disabled:opacity-40"
       >
         +
