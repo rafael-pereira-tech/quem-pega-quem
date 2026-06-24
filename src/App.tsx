@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { AdminPanel } from './components/AdminPanel';
 import { Bracket } from './components/Bracket';
@@ -10,6 +10,7 @@ import { useIsDesktop } from './hooks/useIsDesktop';
 import { useSimulation } from './hooks/useSimulation';
 import { useStore } from './state/store';
 import { hasSupabase } from './supabase/client';
+import { setAnalyticsUser, trackEvent } from './supabase/events';
 import { useSession } from './supabase/session';
 import { useOfficialSync } from './supabase/useOfficialSync';
 
@@ -26,6 +27,17 @@ export function App() {
   const [tab, setTab] = useState<Tab>('grupos');
   const [adminView, setAdminView] = useState(false);
   const showAdmin = adminView && session.isAdmin && session.userId;
+
+  // Telemetria: liga a sessão à analytics e registra a abertura uma vez.
+  const openedRef = useRef(false);
+  useEffect(() => {
+    if (!session.ready || !session.userId) return;
+    setAnalyticsUser(session.userId);
+    if (!openedRef.current) {
+      openedRef.current = true;
+      trackEvent('app_open');
+    }
+  }, [session.ready, session.userId]);
 
   const complete = result.standings.filter((s) => s.complete).length;
   const thirds = result.thirds.qualifiedGroups.length;
@@ -70,7 +82,13 @@ export function App() {
             )}
             {session.isAdmin && (
               <button
-                onClick={() => setAdminView((v) => !v)}
+                onClick={() =>
+                  setAdminView((v) => {
+                    const next = !v;
+                    if (next) trackEvent('admin_open');
+                    return next;
+                  })
+                }
                 className={`ring-border rounded-md px-2 py-1.5 font-mono text-[10px] uppercase ring-1 ${
                   adminView ? 'bg-third text-black' : 'text-third'
                 }`}
@@ -79,7 +97,12 @@ export function App() {
               </button>
             )}
             <button
-              onClick={() => confirm('Limpar seus palpites?') && reset()}
+              onClick={() => {
+                if (confirm('Limpar seus palpites?')) {
+                  reset();
+                  trackEvent('reset');
+                }
+              }}
               className="ring-border text-text-mid rounded-md px-2 py-1.5 font-mono text-[10px] uppercase ring-1"
             >
               reset
