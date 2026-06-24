@@ -2,6 +2,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 import { emptyScenario, type OfficialResult, type ScenarioData } from '../lib/buildInput';
+import { trackScoreEditOnce } from '../supabase/events';
 
 import type { KnockoutScore } from '../engine/types';
 
@@ -22,15 +23,18 @@ export const useStore = create<AppState>()(
       scenario: emptyScenario(),
       official: {},
 
-      setGroupScore: (matchId, homeGoals, awayGoals) =>
+      setGroupScore: (matchId, homeGoals, awayGoals) => {
+        trackScoreEditOnce();
         set((s) => ({
           scenario: {
             ...s.scenario,
             groupScores: { ...s.scenario.groupScores, [matchId]: { homeGoals, awayGoals } },
           },
-        })),
+        }));
+      },
 
-      setKoScore: (id, patch) =>
+      setKoScore: (id, patch) => {
+        trackScoreEditOnce();
         set((s) => {
           const prev: KnockoutScore = s.scenario.koScores[id] ?? {
             homeGoals: null,
@@ -42,7 +46,8 @@ export const useStore = create<AppState>()(
               koScores: { ...s.scenario.koScores, [id]: { ...prev, ...patch } },
             },
           };
-        }),
+        });
+      },
 
       setOfficial: (results) => set({ official: results }),
 
