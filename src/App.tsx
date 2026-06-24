@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
+import { AdminAuth } from './components/AdminAuth';
 import { AdminPanel } from './components/AdminPanel';
 import { Bracket } from './components/Bracket';
 import { DesktopScreen } from './components/DesktopScreen';
@@ -95,6 +96,13 @@ export function App() {
               >
                 {adminView ? '← app' : 'admin'}
               </button>
+            )}
+            {hasSupabase && session.ready && (
+              <AdminAuth
+                email={session.email}
+                signInWithOtp={session.signInWithOtp}
+                signOut={session.signOut}
+              />
             )}
             <button
               onClick={() => {
