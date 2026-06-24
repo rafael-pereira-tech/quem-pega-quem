@@ -34,7 +34,7 @@ export function Stepper({ value, onChange, disabled }: StepperProps) {
           const v = e.target.value;
           onChange(v === '' ? null : Math.max(0, Math.floor(Number(v))));
         }}
-        className="font-display text-text-hi focus:border-live disabled:text-text-hi w-6 border-b-2 border-[#2c3442] bg-transparent text-center text-2xl leading-none font-extrabold tabular-nums outline-none disabled:border-transparent"
+        className="font-display text-text-hi focus:border-live disabled:text-text-hi w-6 border-b-2 border-[#2c3442] bg-transparent text-center text-2xl leading-none font-extrabold tabular-nums disabled:border-transparent"
         placeholder="–"
       />
       <button
@@ -42,7 +42,7 @@ export function Stepper({ value, onChange, disabled }: StepperProps) {
         onClick={inc}
         disabled={disabled}
         aria-label="+1"
-        className="bg-live focus:ring-live/25 grid h-[22px] w-[22px] place-items-center rounded-full leading-none font-bold text-white transition focus:ring-4 focus:outline-none active:scale-95 disabled:opacity-40"
+        className="bg-live grid h-[22px] w-[22px] place-items-center rounded-full leading-none font-bold text-white transition active:scale-95 disabled:opacity-40"
       >
         +
       </button>

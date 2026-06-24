@@ -21,6 +21,10 @@
   --color-card-yellow: #ffc400;
   --color-card-red: #f4324c;
 
+  /* Foco: ciano dedicado, distinto dos status (vermelho/lime/âmbar/verde)
+     pra que o anel de foco nunca seja confundido com um estado do jogo. */
+  --color-focus: #45c4ff;
+
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body: 'Barlow', sans-serif;
   --font-mono: 'Space Mono', monospace;
@@ -37,6 +41,22 @@ body {
   color: var(--color-text-hi);
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Indicador de foco unificado para teclado.
+   :focus-visible só dispara em foco por teclado, então o mouse não vê o anel.
+   O outline fica fora do elemento (com offset), logo é visível em qualquer
+   fundo — inclusive sobre as abas preenchidas. */
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Alvos focados por código (skip-link, contêineres com tabindex=-1) não
+   devem exibir o anel — só recebem foco para leitura/rolagem. */
+[tabindex='-1']:focus {
+  outline: none;
 }
 
 /* Esconde as setinhas dos inputs number */
@@ -61,4 +81,20 @@ input[type='number'] {
 }
 .live-dot {
   animation: qpq-pulse 1.4s ease-in-out infinite;
+}
+
+/* Respeita quem pediu menos movimento: a bolinha "ao vivo" para de pulsar e
+   transições/animações viram quase instantâneas (sem remover o estado final). */
+@media (prefers-reduced-motion: reduce) {
+  .live-dot {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
