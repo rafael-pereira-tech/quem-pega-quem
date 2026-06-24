@@ -9,6 +9,10 @@ const THRESHOLD = 45; // px mínimos no eixo X para contar como swipe
  * sem `preventDefault`, então não atrapalha a rolagem vertical: só dispara
  * quando o movimento é claramente horizontal (|dx| > limiar e > |dy|).
  *
+ * Quando age, chama `stopPropagation`: assim, com áreas de swipe aninhadas, a
+ * de dentro consome o gesto e a de fora não dispara junto (ex.: trocar de
+ * rodada num card vence a troca de aba do contêiner externo).
+ *
  * Retorna handlers para espalhar no contêiner alvo.
  */
 export function useSwipe(onLeft: () => void, onRight: () => void) {
@@ -27,6 +31,7 @@ export function useSwipe(onLeft: () => void, onRight: () => void) {
       const dx = t.clientX - s.x;
       const dy = t.clientY - s.y;
       if (Math.abs(dx) < THRESHOLD || Math.abs(dx) <= Math.abs(dy)) return;
+      e.stopPropagation();
       (dx < 0 ? onLeft : onRight)();
     },
   };

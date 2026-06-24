@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 import { AdminPanel } from './components/AdminPanel';
 import { Bracket } from './components/Bracket';
@@ -8,6 +8,8 @@ import { BrandMark } from './components/Logo';
 import { ThirdsView } from './components/ThirdsView';
 import { useIsDesktop } from './hooks/useIsDesktop';
 import { useSimulation } from './hooks/useSimulation';
+import { useSwipe } from './hooks/useSwipe';
+import { slideIn } from './lib/motion';
 import { useStore } from './state/store';
 import { hasSupabase } from './supabase/client';
 import { setAnalyticsUser, trackEvent } from './supabase/events';
@@ -38,6 +40,33 @@ export function App() {
       trackEvent('app_open');
     }
   }, [session.ready, session.userId]);
+
+  // Navegação entre abas (mobile) com swipe e slide direcional, igual às
+  // rodadas. Um swipe interno (trocar rodada num card) consome o gesto e não
+  // chega aqui — ver useSwipe.
+  const tabIndex = TABS.indexOf(tab);
+  const [tabDir, setTabDir] = useState<1 | -1>(1);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const firstTab = useRef(true);
+
+  const goToTab = (next: number) => {
+    if (next < 0 || next >= TABS.length || next === tabIndex) return;
+    setTabDir(next > tabIndex ? 1 : -1);
+    setTab(TABS[next]!);
+  };
+
+  useLayoutEffect(() => {
+    if (firstTab.current) {
+      firstTab.current = false;
+      return;
+    }
+    if (contentRef.current) slideIn(contentRef.current, tabDir === 1 ? 32 : -32);
+  }, [tab, tabDir]);
+
+  const tabSwipe = useSwipe(
+    () => goToTab(tabIndex + 1),
+    () => goToTab(tabIndex - 1),
+  );
 
   const complete = result.standings.filter((s) => s.complete).length;
   const thirds = result.thirds.qualifiedGroups.length;
@@ -114,10 +143,10 @@ export function App() {
         {!showAdmin && !isDesktop && (
           <nav aria-label="Seções" className="flex gap-1 rounded-none px-4 pb-2.5">
             <div className="bg-surface flex w-full gap-1 rounded-[13px] p-[5px]">
-              {TABS.map((t) => (
+              {TABS.map((t, i) => (
                 <button
                   key={t}
-                  onClick={() => setTab(t)}
+                  onClick={() => goToTab(i)}
                   aria-current={tab === t ? 'page' : undefined}
                   className={`font-display flex-1 rounded-[9px] py-1.5 text-sm font-bold tracking-wide uppercase ${
                     tab === t ? 'bg-live text-white' : 'text-text-mid'
@@ -140,7 +169,11 @@ export function App() {
         ) : isDesktop ? (
           <DesktopScreen />
         ) : (
-          <div className="mx-auto h-full max-w-md overflow-auto px-4 py-4">
+          <div
+            ref={contentRef}
+            {...tabSwipe}
+            className="mx-auto h-full max-w-md overflow-auto px-4 py-4"
+          >
             <h2 className="sr-only">
               {tab === 'grupos'
                 ? 'Grupos'

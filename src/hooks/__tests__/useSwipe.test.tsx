@@ -54,4 +54,24 @@ describe('useSwipe', () => {
     expect(onLeft).not.toHaveBeenCalled();
     expect(onRight).not.toHaveBeenCalled();
   });
+
+  it('um swipe aninhado consome o gesto: o de dentro age, o de fora não', () => {
+    const inner = vi.fn();
+    const outer = vi.fn();
+    function Nested() {
+      const out = useSwipe(outer, outer);
+      const inn = useSwipe(inner, inner);
+      return (
+        <div data-testid="outer" {...out}>
+          <div data-testid="inner" {...inn}>
+            x
+          </div>
+        </div>
+      );
+    }
+    render(<Nested />);
+    swipe(screen.getByTestId('inner'), 200, 110); // dx = -90
+    expect(inner).toHaveBeenCalledOnce();
+    expect(outer).not.toHaveBeenCalled();
+  });
 });
