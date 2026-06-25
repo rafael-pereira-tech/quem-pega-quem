@@ -87,15 +87,31 @@
         "matchday": 3,
         "home": "CZE",
         "away": "MEX",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 0,
+        "awayGoals": 3,
+        "cards": {
+          "CZE": {
+            "yellow": 1
+          },
+          "MEX": {
+            "yellow": 1
+          }
+        }
       },
       {
         "matchday": 3,
         "home": "RSA",
         "away": "KOR",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 1,
+        "awayGoals": 0,
+        "cards": {
+          "RSA": {
+            "yellow": 1
+          },
+          "KOR": {
+            "yellow": 1
+          }
+        }
       }
     ]
   },
@@ -193,15 +209,31 @@
         "matchday": 3,
         "home": "SUI",
         "away": "CAN",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 2,
+        "awayGoals": 1,
+        "cards": {
+          "SUI": {
+            "yellow": 1
+          },
+          "CAN": {
+            "yellow": 2
+          }
+        }
       },
       {
         "matchday": 3,
         "home": "BIH",
         "away": "QAT",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 3,
+        "awayGoals": 1,
+        "cards": {
+          "BIH": {
+            "yellow": 1
+          },
+          "QAT": {
+            "yellow": 1
+          }
+        }
       }
     ]
   },
@@ -294,15 +326,28 @@
         "matchday": 3,
         "home": "SCO",
         "away": "BRA",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 0,
+        "awayGoals": 3,
+        "cards": {
+          "SCO": {
+            "yellow": 1
+          },
+          "BRA": {
+            "yellow": 2
+          }
+        }
       },
       {
         "matchday": 3,
         "home": "MAR",
         "away": "HAI",
-        "homeGoals": null,
-        "awayGoals": null
+        "homeGoals": 4,
+        "awayGoals": 2,
+        "cards": {
+          "HAI": {
+            "yellow": 3
+          }
+        }
       }
     ]
   },
