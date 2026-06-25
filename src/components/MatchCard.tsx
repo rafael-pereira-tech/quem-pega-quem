@@ -1,3 +1,5 @@
+import { shownCards } from '../lib/officialCards';
+
 import { Flag } from './Flag';
 import { Stepper } from './Stepper';
 
@@ -28,12 +30,13 @@ export function MatchCard({
   const homeWin = played && hg > ag;
   const awayWin = played && ag > hg;
 
-  const hc = live?.cards?.[match.home];
-  const ac = live?.cards?.[match.away];
-  const hy = hc?.yellow ?? 0;
-  const ay = ac?.yellow ?? 0;
-  const hr = hc?.directRed ?? 0;
-  const ar = ac?.directRed ?? 0;
+  // Cartões EXIBIDOS, derivados dos 4 tipos do fair-play (2º amarelo = 2🟨+1🟥).
+  const hcard = shownCards(live?.cards?.[match.home]);
+  const acard = shownCards(live?.cards?.[match.away]);
+  const hy = hcard.yellow;
+  const ay = acard.yellow;
+  const hr = hcard.red;
+  const ar = acard.red;
   const anyCards = hy + ay + hr + ar > 0;
 
   return (

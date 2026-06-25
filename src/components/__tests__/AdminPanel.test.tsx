@@ -57,4 +57,14 @@ describe('<AdminPanel> — controle ao vivo', () => {
       awayGoals: 0,
     });
   });
+
+  it('o toggle "detalhado" expõe 2º amarelo e amarelo+vermelho', async () => {
+    const user = userEvent.setup();
+    render(<AdminPanel userId="u1" />);
+
+    expect(screen.queryByLabelText(/^2º amarelo /)).toBeNull(); // simples por padrão
+    await user.click(screen.getByRole('button', { name: /cartões:/i }));
+    expect(screen.getAllByLabelText(/^2º amarelo /).length).toBeGreaterThan(0);
+    expect(screen.getAllByLabelText(/^Amarelo e vermelho /).length).toBeGreaterThan(0);
+  });
 });

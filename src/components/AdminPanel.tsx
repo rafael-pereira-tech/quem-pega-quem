@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { staticData, teamsById } from '../data/static';
 import { GROUP_IDS, type GroupId, type TeamId } from '../engine/types';
-import { buildCards } from '../lib/officialCards';
+import { buildCards, countsOf, fairPlayOf, type CardCounts } from '../lib/officialCards';
 import { useStore } from '../state/store';
 import { deleteOfficial, upsertOfficial } from '../supabase/official';
 
@@ -13,39 +13,40 @@ const teamName = (id: string) => teamsById.get(id)?.name || id;
 interface Draft {
   h: number | null;
   a: number | null;
-  hy: number | null; // amarelos casa
-  hr: number | null; // vermelhos casa
-  ay: number | null; // amarelos fora
-  ar: number | null; // vermelhos fora
+  home: CardCounts;
+  away: CardCounts;
 }
+
+const CARD_FIELDS = [
+  { key: 'y', icon: '🟨', aria: 'Amarelos' },
+  { key: 'yy', icon: '🟨🟨', aria: '2º amarelo' },
+  { key: 'r', icon: '🟥', aria: 'Vermelhos' },
+  { key: 'yr', icon: '🟨🟥', aria: 'Amarelo e vermelho' },
+] as const satisfies readonly { key: keyof CardCounts; icon: string; aria: string }[];
 
 export function AdminPanel({ userId }: { userId: string }) {
   const official = useStore((s) => s.official);
   const [draft, setDraft] = useState<Record<string, Draft>>({});
   const [busy, setBusy] = useState<string | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
+  const [detailed, setDetailed] = useState(false);
+
+  const fields = detailed ? CARD_FIELDS : CARD_FIELDS.filter((f) => f.key === 'y' || f.key === 'r');
 
   const valueOf = (matchId: string, home: TeamId, away: TeamId): Draft => {
     const d = draft[matchId];
     if (d) return d;
     const off = official[matchId];
-    const hc = off?.cards?.[home];
-    const ac = off?.cards?.[away];
     return {
       h: off?.homeGoals ?? null,
       a: off?.awayGoals ?? null,
-      hy: hc?.yellow ?? null,
-      hr: hc?.directRed ?? null,
-      ay: ac?.yellow ?? null,
-      ar: ac?.directRed ?? null,
+      home: countsOf(off?.cards?.[home]),
+      away: countsOf(off?.cards?.[away]),
     };
   };
 
-  const setDraftFor = (matchId: string, home: TeamId, away: TeamId, patch: Partial<Draft>) =>
-    setDraft((prev) => ({
-      ...prev,
-      [matchId]: { ...valueOf(matchId, home, away), ...patch },
-    }));
+  const update = (matchId: string, home: TeamId, away: TeamId, fn: (d: Draft) => Draft) =>
+    setDraft((prev) => ({ ...prev, [matchId]: fn(valueOf(matchId, home, away)) }));
 
   const clearDraft = (matchId: string) =>
     setDraft((prev) => {
@@ -65,7 +66,7 @@ export function AdminPanel({ userId }: { userId: string }) {
       phase: 'group',
       homeGoals: v.h,
       awayGoals: v.a,
-      cards: buildCards(m.home, m.away, v),
+      cards: buildCards(m.home, m.away, v.home, v.away),
       locked,
       userId,
     });
@@ -86,13 +87,23 @@ export function AdminPanel({ userId }: { userId: string }) {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-start justify-between gap-3">
-        <p className="text-text-mid text-sm">
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <p className="text-text-mid max-w-md text-sm">
           Lançar jogos <span className="text-live font-medium">ao vivo</span>: placar e cartões
           atualizam pra todos em tempo real. <span className="text-go font-medium">Encerrar</span>{' '}
           trava e entra na simulação de todos.
         </p>
-        {msg && <span className="text-text-hi shrink-0 text-xs">{msg}</span>}
+        <div className="flex items-center gap-2">
+          {msg && <span className="text-text-hi text-xs">{msg}</span>}
+          <button
+            onClick={() => setDetailed((d) => !d)}
+            aria-pressed={detailed}
+            title="Detalhado expõe 2º amarelo e amarelo+vermelho (fair-play fiel)"
+            className="ring-border text-text-mid shrink-0 rounded-md px-2 py-1 font-mono text-[10px] uppercase ring-1"
+          >
+            cartões: {detailed ? 'detalhado' : 'simples'}
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -133,13 +144,13 @@ export function AdminPanel({ userId }: { userId: string }) {
                         </span>
                         <ScoreBox
                           value={v.h}
-                          onChange={(x) => setDraftFor(m.id, m.home, m.away, { h: x })}
+                          onChange={(x) => update(m.id, m.home, m.away, (d) => ({ ...d, h: x }))}
                           label={`Gols de ${teamName(m.home)} (casa)`}
                         />
                         <span className="text-text-faint">×</span>
                         <ScoreBox
                           value={v.a}
-                          onChange={(x) => setDraftFor(m.id, m.home, m.away, { a: x })}
+                          onChange={(x) => update(m.id, m.home, m.away, (d) => ({ ...d, a: x }))}
                           label={`Gols de ${teamName(m.away)} (fora)`}
                         />
                         <span className="flex-1 truncate font-semibold">{teamName(m.away)}</span>
@@ -148,28 +159,43 @@ export function AdminPanel({ userId }: { userId: string }) {
                       <div className="text-text-mid mt-1.5 space-y-1 font-mono text-[10px]">
                         {(
                           [
-                            { side: 'casa', y: 'hy', r: 'hr', team: m.home },
-                            { side: 'fora', y: 'ay', r: 'ar', team: m.away },
+                            { sideKey: 'home', team: m.home },
+                            { sideKey: 'away', team: m.away },
                           ] as const
-                        ).map(({ side, y, r, team }) => (
-                          <div key={side} className="flex items-center justify-end gap-1.5">
-                            <span className="text-text-low mr-auto truncate uppercase">
-                              {teamName(team)}
-                            </span>
-                            <span aria-hidden="true">🟨</span>
-                            <ScoreBox
-                              value={v[y]}
-                              onChange={(x) => setDraftFor(m.id, m.home, m.away, { [y]: x })}
-                              label={`Amarelos ${teamName(team)}`}
-                            />
-                            <span aria-hidden="true">🟥</span>
-                            <ScoreBox
-                              value={v[r]}
-                              onChange={(x) => setDraftFor(m.id, m.home, m.away, { [r]: x })}
-                              label={`Vermelhos ${teamName(team)}`}
-                            />
-                          </div>
-                        ))}
+                        ).map(({ sideKey, team }) => {
+                          const counts = v[sideKey];
+                          const fp = fairPlayOf(counts);
+                          return (
+                            <div key={sideKey} className="flex items-center gap-1.5">
+                              <span className="text-text-low mr-auto truncate uppercase">
+                                {teamName(team)}
+                              </span>
+                              {fields.map((f) => (
+                                <span key={f.key} className="flex items-center gap-0.5">
+                                  <span aria-hidden="true">{f.icon}</span>
+                                  <ScoreBox
+                                    value={counts[f.key]}
+                                    onChange={(x) =>
+                                      update(m.id, m.home, m.away, (d) => ({
+                                        ...d,
+                                        [sideKey]: { ...d[sideKey], [f.key]: x },
+                                      }))
+                                    }
+                                    label={`${f.aria} ${teamName(team)}`}
+                                  />
+                                </span>
+                              ))}
+                              {fp < 0 && (
+                                <span
+                                  className="text-third tabular-nums"
+                                  aria-label={`Fair play ${fp}`}
+                                >
+                                  FP {fp}
+                                </span>
+                              )}
+                            </div>
+                          );
+                        })}
                       </div>
 
                       <div className="mt-2 flex items-center gap-1.5">
