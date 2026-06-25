@@ -42,7 +42,9 @@
             "yellow": 2,
             "directRed": 2
           }
-        }
+        },
+        "kickoff": "2026-06-11T16:00:00-03:00",
+        "venue": "Cidade do México / Azteca"
       },
       {
         "matchday": 1,
@@ -54,7 +56,9 @@
           "KOR": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-11T23:00:00-03:00",
+        "venue": "Zapopan / Akron"
       },
       {
         "matchday": 2,
@@ -69,7 +73,9 @@
           "RSA": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-18T13:00:00-03:00",
+        "venue": "Atlanta / Mercedes-Benz"
       },
       {
         "matchday": 2,
@@ -81,7 +87,9 @@
           "KOR": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-18T22:00:00-03:00",
+        "venue": "Zapopan / Akron"
       },
       {
         "matchday": 3,
@@ -96,7 +104,9 @@
           "MEX": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-24T22:00:00-03:00",
+        "venue": "Cidade do México / Azteca"
       },
       {
         "matchday": 3,
@@ -111,7 +121,9 @@
           "KOR": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-24T22:00:00-03:00",
+        "venue": "Guadalupe / BBVA"
       }
     ]
   },
@@ -156,7 +168,9 @@
           "BIH": {
             "yellow": 3
           }
-        }
+        },
+        "kickoff": "2026-06-12T16:00:00-03:00",
+        "venue": "Toronto / BMO Field"
       },
       {
         "matchday": 1,
@@ -171,7 +185,9 @@
           "SUI": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-13T16:00:00-03:00",
+        "venue": "Santa Clara / Levi's"
       },
       {
         "matchday": 2,
@@ -187,7 +203,9 @@
             "yellow": 2,
             "directRed": 1
           }
-        }
+        },
+        "kickoff": "2026-06-18T16:00:00-03:00",
+        "venue": "Inglewood / SoFi"
       },
       {
         "matchday": 2,
@@ -203,7 +221,9 @@
             "yellow": 1,
             "directRed": 2
           }
-        }
+        },
+        "kickoff": "2026-06-18T19:00:00-03:00",
+        "venue": "Vancouver / BC Place"
       },
       {
         "matchday": 3,
@@ -218,7 +238,9 @@
           "CAN": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-24T16:00:00-03:00",
+        "venue": "Vancouver / BC Place"
       },
       {
         "matchday": 3,
@@ -233,7 +255,9 @@
           "QAT": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-24T16:00:00-03:00",
+        "venue": "Seattle / Lumen Field"
       }
     ]
   },
@@ -275,7 +299,9 @@
           "BRA": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-13T19:00:00-03:00",
+        "venue": "East Rutherford / MetLife"
       },
       {
         "matchday": 1,
@@ -290,7 +316,9 @@
           "SCO": {
             "yellow": 3
           }
-        }
+        },
+        "kickoff": "2026-06-13T22:00:00-03:00",
+        "venue": "Foxborough / Gillette"
       },
       {
         "matchday": 2,
@@ -305,7 +333,9 @@
           "MAR": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-19T19:00:00-03:00",
+        "venue": "Foxborough / Gillette"
       },
       {
         "matchday": 2,
@@ -320,7 +350,9 @@
           "HAI": {
             "yellow": 3
           }
-        }
+        },
+        "kickoff": "2026-06-19T21:30:00-03:00",
+        "venue": "Filadélfia / Lincoln Financial"
       },
       {
         "matchday": 3,
@@ -335,7 +367,9 @@
           "BRA": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-24T19:00:00-03:00",
+        "venue": "Miami Gardens / Hard Rock"
       },
       {
         "matchday": 3,
@@ -347,7 +381,9 @@
           "HAI": {
             "yellow": 3
           }
-        }
+        },
+        "kickoff": "2026-06-24T19:00:00-03:00",
+        "venue": "Atlanta / Mercedes-Benz"
       }
     ]
   },
@@ -392,7 +428,9 @@
           "PAR": {
             "yellow": 5
           }
-        }
+        },
+        "kickoff": "2026-06-12T22:00:00-03:00",
+        "venue": "Inglewood / SoFi"
       },
       {
         "matchday": 1,
@@ -404,7 +442,9 @@
           "TUR": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-14T01:00:00-03:00",
+        "venue": "Vancouver / BC Place"
       },
       {
         "matchday": 2,
@@ -419,7 +459,9 @@
           "AUS": {
             "yellow": 4
           }
-        }
+        },
+        "kickoff": "2026-06-19T16:00:00-03:00",
+        "venue": "Seattle / Lumen Field"
       },
       {
         "matchday": 2,
@@ -435,21 +477,27 @@
             "yellow": 2,
             "directRed": 1
           }
-        }
+        },
+        "kickoff": "2026-06-20T01:00:00-03:00",
+        "venue": "Santa Clara / Levi's"
       },
       {
         "matchday": 3,
         "home": "TUR",
         "away": "USA",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-25T23:00:00-03:00",
+        "venue": "Inglewood / SoFi"
       },
       {
         "matchday": 3,
         "home": "PAR",
         "away": "AUS",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-25T23:00:00-03:00",
+        "venue": "Santa Clara / Levi's"
       }
     ]
   },
@@ -486,7 +534,9 @@
         "home": "GER",
         "away": "CUW",
         "homeGoals": 7,
-        "awayGoals": 1
+        "awayGoals": 1,
+        "kickoff": "2026-06-14T14:00:00-03:00",
+        "venue": "Houston / NRG"
       },
       {
         "matchday": 1,
@@ -501,14 +551,18 @@
           "ECU": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-14T20:00:00-03:00",
+        "venue": "Filadélfia / Lincoln Financial"
       },
       {
         "matchday": 2,
         "home": "GER",
         "away": "CIV",
         "homeGoals": 2,
-        "awayGoals": 1
+        "awayGoals": 1,
+        "kickoff": "2026-06-20T17:00:00-03:00",
+        "venue": "Toronto / BMO Field"
       },
       {
         "matchday": 2,
@@ -523,21 +577,27 @@
           "CUW": {
             "yellow": 5
           }
-        }
+        },
+        "kickoff": "2026-06-20T21:00:00-03:00",
+        "venue": "Kansas City / Arrowhead"
       },
       {
         "matchday": 3,
         "home": "ECU",
         "away": "GER",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-25T17:00:00-03:00",
+        "venue": "East Rutherford / MetLife"
       },
       {
         "matchday": 3,
         "home": "CUW",
         "away": "CIV",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-25T17:00:00-03:00",
+        "venue": "Filadélfia / Lincoln Financial"
       }
     ]
   },
@@ -579,7 +639,9 @@
           "NED": {
             "yellow": 3
           }
-        }
+        },
+        "kickoff": "2026-06-14T17:00:00-03:00",
+        "venue": "Arlington / AT&T"
       },
       {
         "matchday": 1,
@@ -591,7 +653,9 @@
           "TUN": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-14T23:00:00-03:00",
+        "venue": "Guadalupe / BBVA"
       },
       {
         "matchday": 2,
@@ -603,28 +667,36 @@
           "SWE": {
             "yellow": 3
           }
-        }
+        },
+        "kickoff": "2026-06-20T14:00:00-03:00",
+        "venue": "Houston / NRG"
       },
       {
         "matchday": 2,
         "home": "TUN",
         "away": "JPN",
         "homeGoals": 0,
-        "awayGoals": 4
+        "awayGoals": 4,
+        "kickoff": "2026-06-21T01:00:00-03:00",
+        "venue": "Guadalupe / BBVA"
       },
       {
         "matchday": 3,
         "home": "JPN",
         "away": "SWE",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-25T20:00:00-03:00",
+        "venue": "Arlington / AT&T"
       },
       {
         "matchday": 3,
         "home": "TUN",
         "away": "NED",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-25T20:00:00-03:00",
+        "venue": "Kansas City / Arrowhead"
       }
     ]
   },
@@ -669,7 +741,9 @@
           "EGY": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-15T22:00:00-03:00",
+        "venue": "Seattle / Lumen Field"
       },
       {
         "matchday": 1,
@@ -681,7 +755,9 @@
           "IRN": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-15T16:00:00-03:00",
+        "venue": "Inglewood / SoFi"
       },
       {
         "matchday": 2,
@@ -697,7 +773,9 @@
           "IRN": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-21T16:00:00-03:00",
+        "venue": "Inglewood / SoFi"
       },
       {
         "matchday": 2,
@@ -712,21 +790,27 @@
           "EGY": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-21T22:00:00-03:00",
+        "venue": "Vancouver / BC Place"
       },
       {
         "matchday": 3,
         "home": "EGY",
         "away": "IRN",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T00:00:00-03:00",
+        "venue": "Seattle / Lumen Field"
       },
       {
         "matchday": 3,
         "home": "NZL",
         "away": "BEL",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T00:00:00-03:00",
+        "venue": "Vancouver / BC Place"
       }
     ]
   },
@@ -771,7 +855,9 @@
           "CPV": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-15T13:00:00-03:00",
+        "venue": "Atlanta / Mercedes-Benz"
       },
       {
         "matchday": 1,
@@ -783,7 +869,9 @@
           "KSA": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-15T19:00:00-03:00",
+        "venue": "Miami Gardens / Hard Rock"
       },
       {
         "matchday": 2,
@@ -795,7 +883,9 @@
           "KSA": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-21T13:00:00-03:00",
+        "venue": "Atlanta / Mercedes-Benz"
       },
       {
         "matchday": 2,
@@ -810,21 +900,27 @@
           "CPV": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-21T19:00:00-03:00",
+        "venue": "Miami Gardens / Hard Rock"
       },
       {
         "matchday": 3,
         "home": "CPV",
         "away": "KSA",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-26T21:00:00-03:00",
+        "venue": "Houston / NRG"
       },
       {
         "matchday": 3,
         "home": "URU",
         "away": "ESP",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-26T21:00:00-03:00",
+        "venue": "Zapopan / Akron"
       }
     ]
   },
@@ -861,7 +957,9 @@
         "home": "FRA",
         "away": "SEN",
         "homeGoals": 3,
-        "awayGoals": 1
+        "awayGoals": 1,
+        "kickoff": "2026-06-16T16:00:00-03:00",
+        "venue": "East Rutherford / MetLife"
       },
       {
         "matchday": 1,
@@ -873,14 +971,18 @@
           "IRQ": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-16T19:00:00-03:00",
+        "venue": "Foxborough / Gillette"
       },
       {
         "matchday": 2,
         "home": "NOR",
         "away": "SEN",
         "homeGoals": 3,
-        "awayGoals": 2
+        "awayGoals": 2,
+        "kickoff": "2026-06-22T21:00:00-03:00",
+        "venue": "East Rutherford / MetLife"
       },
       {
         "matchday": 2,
@@ -892,21 +994,27 @@
           "IRQ": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-22T18:00:00-03:00",
+        "venue": "Filadélfia / Lincoln Financial"
       },
       {
         "matchday": 3,
         "home": "NOR",
         "away": "FRA",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-26T16:00:00-03:00",
+        "venue": "Foxborough / Gillette"
       },
       {
         "matchday": 3,
         "home": "SEN",
         "away": "IRQ",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-26T16:00:00-03:00",
+        "venue": "Toronto / BMO Field"
       }
     ]
   },
@@ -943,7 +1051,9 @@
         "home": "ARG",
         "away": "ALG",
         "homeGoals": 3,
-        "awayGoals": 0
+        "awayGoals": 0,
+        "kickoff": "2026-06-16T22:00:00-03:00",
+        "venue": "Kansas City / Arrowhead"
       },
       {
         "matchday": 1,
@@ -955,7 +1065,9 @@
           "AUT": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-17T01:00:00-03:00",
+        "venue": "Santa Clara / Levi's"
       },
       {
         "matchday": 2,
@@ -970,7 +1082,9 @@
           "AUT": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-22T14:00:00-03:00",
+        "venue": "Arlington / AT&T"
       },
       {
         "matchday": 2,
@@ -985,21 +1099,27 @@
           "ALG": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-23T00:00:00-03:00",
+        "venue": "Santa Clara / Levi's"
       },
       {
         "matchday": 3,
         "home": "ALG",
         "away": "AUT",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T23:00:00-03:00",
+        "venue": "Kansas City / Arrowhead"
       },
       {
         "matchday": 3,
         "home": "JOR",
         "away": "ARG",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T23:00:00-03:00",
+        "venue": "Arlington / AT&T"
       }
     ]
   },
@@ -1044,7 +1164,9 @@
           "COD": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-17T14:00:00-03:00",
+        "venue": "Houston / NRG"
       },
       {
         "matchday": 1,
@@ -1059,7 +1181,9 @@
           "COL": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-17T23:00:00-03:00",
+        "venue": "Cidade do México / Azteca"
       },
       {
         "matchday": 2,
@@ -1074,7 +1198,9 @@
           "UZB": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-23T14:00:00-03:00",
+        "venue": "Houston / NRG"
       },
       {
         "matchday": 2,
@@ -1089,21 +1215,27 @@
           "COD": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-23T23:00:00-03:00",
+        "venue": "Zapopan / Akron"
       },
       {
         "matchday": 3,
         "home": "COL",
         "away": "POR",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T20:30:00-03:00",
+        "venue": "Miami Gardens / Hard Rock"
       },
       {
         "matchday": 3,
         "home": "COD",
         "away": "UZB",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T20:30:00-03:00",
+        "venue": "Atlanta / Mercedes-Benz"
       }
     ]
   },
@@ -1140,7 +1272,9 @@
         "home": "ENG",
         "away": "CRO",
         "homeGoals": 4,
-        "awayGoals": 2
+        "awayGoals": 2,
+        "kickoff": "2026-06-17T17:00:00-03:00",
+        "venue": "Arlington / AT&T"
       },
       {
         "matchday": 1,
@@ -1155,7 +1289,9 @@
           "PAN": {
             "yellow": 2
           }
-        }
+        },
+        "kickoff": "2026-06-17T20:00:00-03:00",
+        "venue": "Toronto / BMO Field"
       },
       {
         "matchday": 2,
@@ -1167,7 +1303,9 @@
           "ENG": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-23T17:00:00-03:00",
+        "venue": "Foxborough / Gillette"
       },
       {
         "matchday": 2,
@@ -1179,21 +1317,27 @@
           "PAN": {
             "yellow": 1
           }
-        }
+        },
+        "kickoff": "2026-06-23T20:00:00-03:00",
+        "venue": "Toronto / BMO Field"
       },
       {
         "matchday": 3,
         "home": "PAN",
         "away": "ENG",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T18:00:00-03:00",
+        "venue": "East Rutherford / MetLife"
       },
       {
         "matchday": 3,
         "home": "CRO",
         "away": "GHA",
         "homeGoals": null,
-        "awayGoals": null
+        "awayGoals": null,
+        "kickoff": "2026-06-27T18:00:00-03:00",
+        "venue": "Filadélfia / Lincoln Financial"
       }
     ]
   }

@@ -75,6 +75,16 @@ describe('<MatchCard>', () => {
     }
   });
 
+  it('header mostra a agenda (Brasília + local) quando há kickoff', () => {
+    render(
+      <MatchCard
+        match={{ ...base, kickoff: '2026-06-25T16:00:00-03:00', venue: 'Nova York / MetLife' }}
+        onScore={() => {}}
+      />,
+    );
+    expect(screen.getByText('25/jun Qui 16:00 · Nova York / MetLife')).toBeInTheDocument();
+  });
+
   it('ao vivo: mostra selo AO VIVO e o placar real, mantendo os steppers do palpite', () => {
     render(
       <MatchCard

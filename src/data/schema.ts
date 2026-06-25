@@ -52,6 +52,8 @@ const groupMatchSchema = z.object({
   awayGoals: z.number().int().nonnegative().nullable(),
   cards: z.record(teamId, cardsSchema).optional(),
   locked: z.boolean().optional(),
+  kickoff: z.string().optional(), // ISO 8601 (com offset)
+  venue: z.string().optional(), // "Cidade / Estádio"
 });
 
 const groupBlockSchema = z.object({
@@ -85,6 +87,8 @@ export function loadGrupos(file: GruposFile): { teams: Team[]; matches: GroupMat
         awayGoals: m.awayGoals,
         ...(m.cards ? { cards: m.cards } : {}),
         ...(m.locked !== undefined ? { locked: m.locked } : {}),
+        ...(m.kickoff ? { kickoff: m.kickoff } : {}),
+        ...(m.venue ? { venue: m.venue } : {}),
       });
     });
   }
