@@ -13,6 +13,24 @@ export interface LiveOverlay {
   cards?: Partial<Record<string, MatchCards>> | null;
 }
 
+/** Marcador de cartões EXIBIDOS de uma seleção, ao lado do nome. */
+function CardMark({ team, y, r }: { team: string; y: number; r: number }) {
+  if (y + r === 0) return null;
+  return (
+    <span
+      className="text-text-low shrink-0 font-mono text-[10px] tabular-nums"
+      aria-label={`${team}: ${y} amarelos, ${r} vermelhos`}
+    >
+      {y > 0 && <span aria-hidden="true">🟨{y}</span>}
+      {r > 0 && (
+        <span aria-hidden="true" className={y > 0 ? 'ml-0.5' : ''}>
+          🟥{r}
+        </span>
+      )}
+    </span>
+  );
+}
+
 /** Card de jogo compacto estilo GE: cabeçalho com status + linha de placar com steppers horizontais. */
 export function MatchCard({
   match,
@@ -33,11 +51,6 @@ export function MatchCard({
   // Cartões EXIBIDOS, derivados dos 4 tipos do fair-play (2º amarelo = 2🟨+1🟥).
   const hcard = shownCards(live?.cards?.[match.home]);
   const acard = shownCards(live?.cards?.[match.away]);
-  const hy = hcard.yellow;
-  const ay = acard.yellow;
-  const hr = hcard.red;
-  const ar = acard.red;
-  const anyCards = hy + ay + hr + ar > 0;
 
   return (
     <div className="py-2.5">
@@ -59,8 +72,9 @@ export function MatchCard({
         )}
       </div>
 
-      {/* linha de placar */}
+      {/* linha de placar — cartões ao vivo ao lado de cada nome */}
       <div className="flex items-center justify-center gap-1.5">
+        {live && <CardMark team={match.home} y={hcard.yellow} r={hcard.red} />}
         <span className="font-display text-text-mid w-9 text-right text-[15px] font-bold uppercase">
           {match.home}
         </span>
@@ -98,23 +112,16 @@ export function MatchCard({
         <span className="font-display text-text-mid w-9 text-[15px] font-bold uppercase">
           {match.away}
         </span>
+        {live && <CardMark team={match.away} y={acard.yellow} r={acard.red} />}
       </div>
 
-      {/* Overlay AO VIVO: placar/cartões reais do jogo, sem mexer no palpite. */}
+      {/* Overlay AO VIVO: placar real do jogo, sem mexer no palpite. */}
       {live && (
-        <div className="border-hairline text-live mt-2 flex flex-wrap items-center justify-center gap-x-2 gap-y-0.5 border-t pt-1.5 font-mono text-[10px]">
+        <div className="border-hairline text-live mt-2 flex items-center justify-center gap-2 border-t pt-1.5 font-mono text-[10px]">
           <span className="text-text-low tracking-wide uppercase">placar</span>
           <span className="text-text-hi font-bold tabular-nums">
             {live.home ?? 0} × {live.away ?? 0}
           </span>
-          {anyCards && (
-            <span
-              className="text-text-low"
-              aria-label={`Cartões: amarelos ${hy} a ${ay}, vermelhos ${hr} a ${ar}`}
-            >
-              CA {hy}-{ay} · CV {hr}-{ar}
-            </span>
-          )}
         </div>
       )}
     </div>
