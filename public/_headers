@@ -1,0 +1,17 @@
+# Política de cache (Cloudflare Pages). Regras casam pelo caminho da REQUISIÇÃO.
+# Atenção: quando duas regras casam a mesma requisição e setam o MESMO header,
+# os valores são CONCATENADOS (vírgula) — não sobrescritos. Por isso o bloco de
+# /assets/* primeiro "desanexa" o Cache-Control herdado de /* com `! Cache-Control`
+# antes de redefinir. Ver a doc oficial do _headers do Cloudflare Pages.
+
+# HTML (incl. fallback SPA de qualquer rota → index.html) sempre revalida, pra um
+# deploy novo ser pego na hora. Sem isto, o browser poderia servir um index.html
+# velho apontando pra assets que não existem mais.
+/*
+  Cache-Control: no-cache
+
+# Assets com hash de conteúdo do Vite (index-<hash>.js|css): o nome muda quando o
+# conteúdo muda, então pode cachear pra sempre e nunca revalidar (immutable).
+/assets/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
