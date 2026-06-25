@@ -1,12 +1,17 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 
 import { useSimulation } from '../hooks/useSimulation';
 import { effectiveGroupMatches } from '../lib/buildInput';
+import { prefersReducedMotion } from '../lib/motion';
+import { firstActiveRound3Group } from '../lib/round3';
 import { useStore } from '../state/store';
 
 import { GroupBar } from './GroupBar';
 
 import type { GroupId, GroupMatch } from '../engine/types';
+
+// Rola só uma vez por carregamento da página (não a cada troca de aba).
+let didAutoScroll = false;
 
 export function GroupsView() {
   const result = useSimulation();
@@ -34,6 +39,26 @@ export function GroupsView() {
     return map;
   }, [result.thirds.rows]);
 
+  // Após carregar, desliza até o 1º grupo com jogo da rodada 3 ainda em
+  // aberto (ao vivo ou a jogar), pulando os já encerrados.
+  const targetGroup = useMemo(
+    () =>
+      firstActiveRound3Group(
+        result.standings.map((s) => s.group),
+        byGroup,
+      ),
+    [result.standings, byGroup],
+  );
+
+  useEffect(() => {
+    if (didAutoScroll || !targetGroup) return;
+    didAutoScroll = true;
+    const el = document.querySelector(`[data-group-anchor="${targetGroup}"]`);
+    if (el && typeof el.scrollIntoView === 'function') {
+      el.scrollIntoView({ block: 'start', behavior: prefersReducedMotion() ? 'auto' : 'smooth' });
+    }
+  }, [targetGroup]);
+
   return (
     <div className="space-y-3">
       {/* Progresso — fixo no topo da área rolável para manter a sensação de
@@ -55,15 +80,16 @@ export function GroupsView() {
 
       <div className="space-y-2.5">
         {result.standings.map((s) => (
-          <GroupBar
-            key={s.group}
-            standing={s}
-            matches={byGroup.get(s.group) ?? []}
-            onScore={setGroupScore}
-            thirdQualified={qualified.has(s.group)}
-            thirdRank={thirdRankByGroup.get(s.group) ?? 0}
-            official={official}
-          />
+          <div key={s.group} data-group-anchor={s.group} className="scroll-mt-14">
+            <GroupBar
+              standing={s}
+              matches={byGroup.get(s.group) ?? []}
+              onScore={setGroupScore}
+              thirdQualified={qualified.has(s.group)}
+              thirdRank={thirdRankByGroup.get(s.group) ?? 0}
+              official={official}
+            />
+          </div>
         ))}
       </div>
     </div>
