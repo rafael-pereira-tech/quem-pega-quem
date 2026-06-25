@@ -14,20 +14,26 @@ export interface LiveOverlay {
   cards?: Partial<Record<string, MatchCards>> | null;
 }
 
+/** Cartãozinho retangular (estilo real) + a contagem, com um respiro entre eles. */
+function Card({ color, n }: { color: string; n: number }) {
+  return (
+    <span className="inline-flex items-center gap-1">
+      <span aria-hidden="true" className={`inline-block h-[11px] w-2 rounded-[1.5px] ${color}`} />
+      {n}
+    </span>
+  );
+}
+
 /** Marcador de cartões EXIBIDOS de uma seleção, ao lado do placar real. */
 function CardMark({ team, y, r }: { team: string; y: number; r: number }) {
   if (y + r === 0) return null;
   return (
     <span
-      className="text-text-low shrink-0 font-mono text-[10px] tabular-nums"
+      className="text-text-low inline-flex shrink-0 items-center gap-1.5 font-mono text-[10px] tabular-nums"
       aria-label={`${team}: ${y} amarelos, ${r} vermelhos`}
     >
-      {y > 0 && <span aria-hidden="true">🟨{y}</span>}
-      {r > 0 && (
-        <span aria-hidden="true" className={y > 0 ? 'ml-0.5' : ''}>
-          🟥{r}
-        </span>
-      )}
+      {y > 0 && <Card color="bg-card-yellow" n={y} />}
+      {r > 0 && <Card color="bg-card-red" n={r} />}
     </span>
   );
 }
@@ -119,7 +125,7 @@ export function MatchCard({
 
       {/* Overlay AO VIVO: placar real + cartões ao lado de cada gol. */}
       {live && (
-        <div className="border-hairline text-live mt-2 flex items-center justify-center gap-1.5 border-t pt-1.5 font-mono text-[10px]">
+        <div className="border-hairline text-live mt-2 flex items-center justify-center gap-2.5 border-t pt-1.5 font-mono text-[10px]">
           <span className="text-text-low tracking-wide uppercase">placar</span>
           <CardMark team={match.home} y={hcard.yellow} r={hcard.red} />
           <span className="text-text-hi font-bold tabular-nums">
