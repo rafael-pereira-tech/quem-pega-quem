@@ -1,3 +1,4 @@
+import { scheduleLine } from '../lib/matchSchedule';
 import { shownCards } from '../lib/officialCards';
 
 import { Flag } from './Flag';
@@ -54,8 +55,11 @@ export function MatchCard({
 
   return (
     <div className="py-2.5">
-      {/* cabeçalho: status à direita */}
-      <div className="mb-1.5 flex items-center justify-end">
+      {/* cabeçalho: agenda à esquerda, status à direita */}
+      <div className="mb-1.5 flex items-center justify-between gap-2">
+        <span className="text-text-low min-w-0 flex-1 truncate font-mono text-[10px]">
+          {scheduleLine(match.kickoff, match.venue)}
+        </span>
         {locked ? (
           <span className="ring-border text-text-low rounded-md px-2 py-0.5 font-mono text-[10px] tracking-wider uppercase ring-1">
             Encerrado

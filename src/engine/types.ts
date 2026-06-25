@@ -62,6 +62,10 @@ export interface GroupMatch {
   cards?: Partial<Record<TeamId, MatchCards>>;
   /** Resultado oficial travado pelo job (UI/estado; o motor ignora). */
   locked?: boolean;
+  /** Início do jogo em ISO 8601 (UI/estado; o motor ignora). */
+  kickoff?: string;
+  /** Sede do jogo, "Cidade / Estádio" (UI/estado; o motor ignora). */
+  venue?: string;
 }
 
 // ---------------------------------------------------------------------------
