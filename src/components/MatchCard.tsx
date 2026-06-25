@@ -14,7 +14,7 @@ export interface LiveOverlay {
   cards?: Partial<Record<string, MatchCards>> | null;
 }
 
-/** Marcador de cartões EXIBIDOS de uma seleção, ao lado do nome. */
+/** Marcador de cartões EXIBIDOS de uma seleção, ao lado do placar real. */
 function CardMark({ team, y, r }: { team: string; y: number; r: number }) {
   if (y + r === 0) return null;
   return (
@@ -76,9 +76,8 @@ export function MatchCard({
         )}
       </div>
 
-      {/* linha de placar — cartões ao vivo ao lado de cada nome */}
+      {/* linha de placar (palpite) */}
       <div className="flex items-center justify-center gap-1.5">
-        {live && <CardMark team={match.home} y={hcard.yellow} r={hcard.red} />}
         <span className="font-display text-text-mid w-9 text-right text-[15px] font-bold uppercase">
           {match.home}
         </span>
@@ -116,16 +115,17 @@ export function MatchCard({
         <span className="font-display text-text-mid w-9 text-[15px] font-bold uppercase">
           {match.away}
         </span>
-        {live && <CardMark team={match.away} y={acard.yellow} r={acard.red} />}
       </div>
 
-      {/* Overlay AO VIVO: placar real do jogo, sem mexer no palpite. */}
+      {/* Overlay AO VIVO: placar real + cartões ao lado de cada gol. */}
       {live && (
-        <div className="border-hairline text-live mt-2 flex items-center justify-center gap-2 border-t pt-1.5 font-mono text-[10px]">
+        <div className="border-hairline text-live mt-2 flex items-center justify-center gap-1.5 border-t pt-1.5 font-mono text-[10px]">
           <span className="text-text-low tracking-wide uppercase">placar</span>
+          <CardMark team={match.home} y={hcard.yellow} r={hcard.red} />
           <span className="text-text-hi font-bold tabular-nums">
             {live.home ?? 0} × {live.away ?? 0}
           </span>
+          <CardMark team={match.away} y={acard.yellow} r={acard.red} />
         </div>
       )}
     </div>
