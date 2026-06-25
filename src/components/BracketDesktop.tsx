@@ -1,3 +1,4 @@
+import { useFlashOnChange } from '../hooks/useFlashOnChange';
 import { useSimulation } from '../hooks/useSimulation';
 import { computeLayout } from '../lib/bracketLayout';
 
@@ -42,8 +43,13 @@ function SideRow({ side }: { side: ResolvedSide }) {
 function R32Card({ game, allComplete }: { game: ResolvedKnockoutGame; allComplete: boolean }) {
   const hasThird = game.home.ref.from === 'third' || game.away.ref.from === 'third';
   const provisional = hasThird && !allComplete;
+  // Pisca a borda quando os times resolvidos ou o vencedor deste jogo mudam.
+  const flashRef = useFlashOnChange<HTMLDivElement>(
+    `${game.home.team ?? ''}|${game.away.team ?? ''}|${game.winner ?? ''}`,
+  );
   return (
     <div
+      ref={flashRef}
       className="rounded-lg px-2 py-1.5"
       style={{
         background: '#141A24',

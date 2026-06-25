@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { teamsById } from '../data/static';
+import { useFlashOnChange } from '../hooks/useFlashOnChange';
 import { computeLayout } from '../lib/bracketLayout';
 import { useStore } from '../state/store';
 
@@ -28,6 +29,11 @@ function GameCard({ game }: { game: ResolvedKnockoutGame }) {
       : null
     : (cur?.penalties ?? null);
   const tied = hg !== null && ag !== null && hg === ag;
+
+  // Pisca a borda quando os times resolvidos ou o vencedor deste jogo mudam.
+  const flashRef = useFlashOnChange<HTMLDivElement>(
+    `${game.home.team ?? ''}|${game.away.team ?? ''}|${game.winner ?? ''}`,
+  );
 
   const Row = ({
     side,
@@ -67,6 +73,7 @@ function GameCard({ game }: { game: ResolvedKnockoutGame }) {
 
   return (
     <div
+      ref={flashRef}
       className={`w-full space-y-1 rounded-[10px] p-2 ${
         locked ? 'bg-surface-dim ring-hairline ring-1' : 'bg-surface ring-border ring-1'
       }`}
