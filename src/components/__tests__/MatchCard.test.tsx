@@ -86,7 +86,8 @@ describe('<MatchCard>', () => {
     expect(screen.getByText('Ao vivo')).toBeInTheDocument();
     expect(screen.getByText('placar')).toBeInTheDocument();
     expect(screen.getByText('2 × 1')).toBeInTheDocument(); // placar real
-    expect(screen.getByText(/CA 1-0/)).toBeInTheDocument(); // amarelos casa-fora
+    // cartões ao lado do nome do mandante (BRA: 1 amarelo, 0 vermelho)
+    expect(screen.getByLabelText('BRA: 1 amarelos, 0 vermelhos')).toBeInTheDocument();
     // o palpite segue editável
     expect(screen.getAllByRole('spinbutton')).toHaveLength(2);
   });
