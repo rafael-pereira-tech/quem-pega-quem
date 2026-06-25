@@ -74,4 +74,20 @@ describe('<MatchCard>', () => {
       expect(btn).toHaveAttribute('tabindex', '-1');
     }
   });
+
+  it('ao vivo: mostra selo AO VIVO e o placar real, mantendo os steppers do palpite', () => {
+    render(
+      <MatchCard
+        match={base}
+        live={{ home: 2, away: 1, cards: { BRA: { yellow: 1, directRed: 0 } } }}
+        onScore={() => {}}
+      />,
+    );
+    expect(screen.getByText('Ao vivo')).toBeInTheDocument();
+    expect(screen.getByText('placar')).toBeInTheDocument();
+    expect(screen.getByText('2 × 1')).toBeInTheDocument(); // placar real
+    expect(screen.getByText(/CA 1-0/)).toBeInTheDocument(); // amarelos casa-fora
+    // o palpite segue editável
+    expect(screen.getAllByRole('spinbutton')).toHaveLength(2);
+  });
 });

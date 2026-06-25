@@ -62,6 +62,7 @@ export function GroupsView() {
             onScore={setGroupScore}
             thirdQualified={qualified.has(s.group)}
             thirdRank={thirdRankByGroup.get(s.group) ?? 0}
+            official={official}
           />
         ))}
       </div>
