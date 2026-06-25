@@ -10,6 +10,7 @@ import { Flag } from './Flag';
 import { MatchCard } from './MatchCard';
 
 import type { GroupMatch, GroupStanding, Round } from '../engine/types';
+import type { OfficialResult } from '../lib/buildInput';
 
 const nameOf = (id: string) => teamsById.get(id)?.name || id;
 const ROUND_LABEL: Record<Round, string> = { 1: '1ª Rodada', 2: '2ª Rodada', 3: '3ª Rodada' };
@@ -46,12 +47,15 @@ export function GroupBar({
   onScore,
   thirdQualified,
   thirdRank,
+  official = {},
 }: {
   standing: GroupStanding;
   matches: GroupMatch[];
   onScore: (matchId: string, home: number | null, away: number | null) => void;
   thirdQualified: boolean;
   thirdRank: number;
+  /** Resultados oficiais; os `locked=false` viram overlay "AO VIVO" no card. */
+  official?: Record<string, OfficialResult>;
 }) {
   const g = standing.group;
   const color = groupColor(g);
@@ -241,9 +245,16 @@ export function GroupBar({
           </button>
         </div>
         <div ref={matchesRef} className="divide-hairline divide-y px-3">
-          {roundMatches.map((m) => (
-            <MatchCard key={m.id} match={m} onScore={(h, a) => onScore(m.id, h, a)} />
-          ))}
+          {roundMatches.map((m) => {
+            const off = official[m.id];
+            const live =
+              off && off.locked === false
+                ? { home: off.homeGoals, away: off.awayGoals, cards: off.cards }
+                : undefined;
+            return (
+              <MatchCard key={m.id} match={m} live={live} onScore={(h, a) => onScore(m.id, h, a)} />
+            );
+          })}
         </div>
       </div>
     </div>
