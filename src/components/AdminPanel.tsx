@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { staticData, teamsById } from '../data/static';
-import { GROUP_IDS, type GroupId, type TeamId } from '../engine/types';
+import { GROUP_IDS, type GroupId, type GroupMatch } from '../engine/types';
 import { buildCards, countsOf, fairPlayOf, type CardCounts } from '../lib/officialCards';
 import { useStore } from '../state/store';
 import { deleteOfficial, upsertOfficial } from '../supabase/official';
@@ -33,20 +33,25 @@ export function AdminPanel({ userId }: { userId: string }) {
 
   const fields = detailed ? CARD_FIELDS : CARD_FIELDS.filter((f) => f.key === 'y' || f.key === 'r');
 
-  const valueOf = (matchId: string, home: TeamId, away: TeamId): Draft => {
-    const d = draft[matchId];
+  const valueOf = (m: GroupMatch): Draft => {
+    const d = draft[m.id];
     if (d) return d;
-    const off = official[matchId];
+    // oficial (admin) tem prioridade; senão cai na nossa base (jogo já jogado).
+    const src = official[m.id] ?? {
+      homeGoals: m.homeGoals,
+      awayGoals: m.awayGoals,
+      cards: m.cards,
+    };
     return {
-      h: off?.homeGoals ?? null,
-      a: off?.awayGoals ?? null,
-      home: countsOf(off?.cards?.[home]),
-      away: countsOf(off?.cards?.[away]),
+      h: src.homeGoals,
+      a: src.awayGoals,
+      home: countsOf(src.cards?.[m.home]),
+      away: countsOf(src.cards?.[m.away]),
     };
   };
 
-  const update = (matchId: string, home: TeamId, away: TeamId, fn: (d: Draft) => Draft) =>
-    setDraft((prev) => ({ ...prev, [matchId]: fn(valueOf(matchId, home, away)) }));
+  const update = (m: GroupMatch, fn: (d: Draft) => Draft) =>
+    setDraft((prev) => ({ ...prev, [m.id]: fn(valueOf(m)) }));
 
   const clearDraft = (matchId: string) =>
     setDraft((prev) => {
@@ -57,8 +62,8 @@ export function AdminPanel({ userId }: { userId: string }) {
 
   /** Grava o resultado: `locked=false` = ao vivo (overlay), `true` = encerrado
    *  (entra na simulação de todos). Ver ADR 0006. */
-  async function push(m: { id: string; home: TeamId; away: TeamId }, locked: boolean) {
-    const v = valueOf(m.id, m.home, m.away);
+  async function push(m: GroupMatch, locked: boolean) {
+    const v = valueOf(m);
     if (v.h === null || v.a === null) return;
     setBusy(m.id);
     const { error } = await upsertOfficial({
@@ -91,7 +96,7 @@ export function AdminPanel({ userId }: { userId: string }) {
         <p className="text-text-mid max-w-md text-sm">
           Lançar jogos <span className="text-live font-medium">ao vivo</span>: placar e cartões
           atualizam pra todos em tempo real. <span className="text-go font-medium">Encerrar</span>{' '}
-          trava e entra na simulação de todos.
+          trava e entra na simulação. Jogos já encerrados (da base) vêm travados.
         </p>
         <div className="flex items-center gap-2">
           {msg && <span className="text-text-hi text-xs">{msg}</span>}
@@ -116,13 +121,18 @@ export function AdminPanel({ userId }: { userId: string }) {
               </h3>
               <div className="space-y-2">
                 {matches.map((m) => {
-                  const v = valueOf(m.id, m.home, m.away);
+                  const v = valueOf(m);
                   const off = official[m.id];
-                  const status = !off ? 'none' : off.locked ? 'final' : 'live';
+                  // já encerrado pela nossa base → travado (read-only, sem botões)
+                  const locked = m.homeGoals !== null && m.awayGoals !== null;
+                  const status = locked || off?.locked ? 'final' : off ? 'live' : 'none';
                   const hasScore = v.h !== null && v.a !== null;
                   const disabled = !hasScore || busy === m.id;
                   return (
-                    <div key={m.id} className="bg-bg ring-hairline rounded-lg p-2 ring-1">
+                    <div
+                      key={m.id}
+                      className={`ring-hairline rounded-lg p-2 ring-1 ${locked ? 'bg-surface-dim' : 'bg-bg'}`}
+                    >
                       <div className="mb-1.5 flex items-center justify-between">
                         <span className="text-text-faint font-mono text-[9px]">R{m.round}</span>
                         {status === 'live' && (
@@ -144,13 +154,15 @@ export function AdminPanel({ userId }: { userId: string }) {
                         </span>
                         <ScoreBox
                           value={v.h}
-                          onChange={(x) => update(m.id, m.home, m.away, (d) => ({ ...d, h: x }))}
+                          disabled={locked}
+                          onChange={(x) => update(m, (d) => ({ ...d, h: x }))}
                           label={`Gols de ${teamName(m.home)} (casa)`}
                         />
                         <span className="text-text-faint">×</span>
                         <ScoreBox
                           value={v.a}
-                          onChange={(x) => update(m.id, m.home, m.away, (d) => ({ ...d, a: x }))}
+                          disabled={locked}
+                          onChange={(x) => update(m, (d) => ({ ...d, a: x }))}
                           label={`Gols de ${teamName(m.away)} (fora)`}
                         />
                         <span className="flex-1 truncate font-semibold">{teamName(m.away)}</span>
@@ -175,8 +187,9 @@ export function AdminPanel({ userId }: { userId: string }) {
                                   <span aria-hidden="true">{f.icon}</span>
                                   <ScoreBox
                                     value={counts[f.key]}
+                                    disabled={locked}
                                     onChange={(x) =>
-                                      update(m.id, m.home, m.away, (d) => ({
+                                      update(m, (d) => ({
                                         ...d,
                                         [sideKey]: { ...d[sideKey], [f.key]: x },
                                       }))
@@ -198,36 +211,38 @@ export function AdminPanel({ userId }: { userId: string }) {
                         })}
                       </div>
 
-                      <div className="mt-2 flex items-center gap-1.5">
-                        <button
-                          onClick={() => void push(m, false)}
-                          disabled={disabled}
-                          className="bg-live flex-1 rounded-md py-1 text-[11px] font-bold text-white uppercase disabled:opacity-40"
-                        >
-                          {status === 'final'
-                            ? 'reabrir'
-                            : status === 'live'
-                              ? 'atualizar'
-                              : 'ao vivo'}
-                        </button>
-                        <button
-                          onClick={() => void push(m, true)}
-                          disabled={disabled}
-                          className="bg-go text-canvas flex-1 rounded-md py-1 text-[11px] font-bold uppercase disabled:opacity-40"
-                        >
-                          encerrar
-                        </button>
-                        {off && (
+                      {!locked && (
+                        <div className="mt-2 flex items-center gap-1.5">
                           <button
-                            onClick={() => void remove(m.id)}
-                            disabled={busy === m.id}
-                            aria-label={`Remover oficial de ${teamName(m.home)} x ${teamName(m.away)}`}
-                            className="text-text-low hover:text-card-red px-1 text-sm"
+                            onClick={() => void push(m, false)}
+                            disabled={disabled}
+                            className="bg-live flex-1 rounded-md py-1 text-[11px] font-bold text-white uppercase disabled:opacity-40"
                           >
-                            ✕
+                            {status === 'final'
+                              ? 'reabrir'
+                              : status === 'live'
+                                ? 'atualizar'
+                                : 'ao vivo'}
                           </button>
-                        )}
-                      </div>
+                          <button
+                            onClick={() => void push(m, true)}
+                            disabled={disabled}
+                            className="bg-go text-canvas flex-1 rounded-md py-1 text-[11px] font-bold uppercase disabled:opacity-40"
+                          >
+                            encerrar
+                          </button>
+                          {off && (
+                            <button
+                              onClick={() => void remove(m.id)}
+                              disabled={busy === m.id}
+                              aria-label={`Remover oficial de ${teamName(m.home)} x ${teamName(m.away)}`}
+                              className="text-text-low hover:text-card-red px-1 text-sm"
+                            >
+                              ✕
+                            </button>
+                          )}
+                        </div>
+                      )}
                     </div>
                   );
                 })}
