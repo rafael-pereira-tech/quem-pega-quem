@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
+import { Link, NavLink, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { AdminLogin } from './components/AdminLogin';
 import { AdminPanel } from './components/AdminPanel';
@@ -16,12 +17,18 @@ import { useSession } from './supabase/session';
 import { useOfficialSync } from './supabase/useOfficialSync';
 
 type Tab = 'grupos' | 'chave' | 'terceiros';
-const TABS: Tab[] = ['grupos', 'chave', 'terceiros'];
 
-/** Rota secreta do login do admin: sem botão no app, só quem conhece chega. */
-function isLoginRoute(): boolean {
-  return typeof window !== 'undefined' && window.location.pathname.replace(/\/+$/, '') === '/admin';
-}
+const TAB_LINKS: { to: string; label: string }[] = [
+  { to: '/', label: 'grupos' },
+  { to: '/chave', label: 'chave' },
+  { to: '/terceiros', label: 'Melhores 3º' },
+];
+
+const TAB_TITLE: Record<Tab, string> = {
+  grupos: 'Grupos',
+  chave: 'Chave do mata-mata',
+  terceiros: 'Melhores terceiros',
+};
 
 export function App() {
   const result = useSimulation();
@@ -30,11 +37,8 @@ export function App() {
   const isDesktop = useIsDesktop();
   useOfficialSync();
 
-  const [tab, setTab] = useState<Tab>('grupos');
-  const [adminView, setAdminView] = useState(false);
-  const showAdmin = adminView && session.isAdmin && session.userId;
-  // Login do admin só na rota secreta /admin e enquanto não logado por e-mail.
-  const needsLogin = hasSupabase && session.ready && !session.email && isLoginRoute();
+  const location = useLocation();
+  const onAdmin = location.pathname.replace(/\/+$/, '') === '/admin';
 
   // Telemetria: liga a sessão à analytics e registra a abertura uma vez.
   const openedRef = useRef(false);
@@ -49,6 +53,23 @@ export function App() {
 
   const complete = result.standings.filter((s) => s.complete).length;
   const thirds = result.thirds.qualifiedGroups.length;
+
+  // No desktop, qualquer rota de conteúdo mostra a tela completa (DesktopScreen).
+  const content = (tab: Tab) =>
+    isDesktop ? (
+      <DesktopScreen />
+    ) : (
+      <div className="mx-auto h-full max-w-md overflow-auto px-4 py-4">
+        <h2 className="sr-only">{TAB_TITLE[tab]}</h2>
+        {tab === 'grupos' ? (
+          <GroupsView />
+        ) : tab === 'terceiros' ? (
+          <ThirdsView />
+        ) : (
+          <Bracket games={result.bracket} />
+        )}
+      </div>
+    );
 
   return (
     <div className="bg-canvas text-text-hi flex h-screen flex-col overflow-hidden">
@@ -89,20 +110,17 @@ export function App() {
               />
             )}
             {session.isAdmin && (
-              <button
-                onClick={() =>
-                  setAdminView((v) => {
-                    const next = !v;
-                    if (next) trackEvent('admin_open');
-                    return next;
-                  })
-                }
+              <Link
+                to={onAdmin ? '/' : '/admin'}
+                onClick={() => {
+                  if (!onAdmin) trackEvent('admin_open');
+                }}
                 className={`ring-border rounded-md px-2 py-1.5 font-mono text-[10px] uppercase ring-1 ${
-                  adminView ? 'bg-third text-black' : 'text-third'
+                  onAdmin ? 'bg-third text-black' : 'text-third'
                 }`}
               >
-                {adminView ? '← app' : 'admin'}
-              </button>
+                {onAdmin ? '← app' : 'admin'}
+              </Link>
             )}
             {session.email && (
               <button
@@ -127,21 +145,23 @@ export function App() {
           </div>
         </div>
 
-        {/* Abas só no mobile */}
-        {!showAdmin && !needsLogin && !isDesktop && (
+        {/* Abas só no mobile e fora do admin */}
+        {!onAdmin && !isDesktop && (
           <nav aria-label="Seções" className="flex gap-1 rounded-none px-4 pb-2.5">
             <div className="bg-surface flex w-full gap-1 rounded-[13px] p-[5px]">
-              {TABS.map((t) => (
-                <button
-                  key={t}
-                  onClick={() => setTab(t)}
-                  aria-current={tab === t ? 'page' : undefined}
-                  className={`font-display flex-1 rounded-[9px] py-1.5 text-sm font-bold tracking-wide uppercase ${
-                    tab === t ? 'bg-live text-white' : 'text-text-mid'
-                  }`}
+              {TAB_LINKS.map((t) => (
+                <NavLink
+                  key={t.to}
+                  to={t.to}
+                  end={t.to === '/'}
+                  className={({ isActive }) =>
+                    `font-display flex-1 rounded-[9px] py-1.5 text-center text-sm font-bold tracking-wide uppercase ${
+                      isActive ? 'bg-live text-white' : 'text-text-mid'
+                    }`
+                  }
                 >
-                  {t === 'terceiros' ? 'Melhores 3º' : t}
-                </button>
+                  {t.label}
+                </NavLink>
               ))}
             </div>
           </nav>
@@ -149,36 +169,28 @@ export function App() {
       </header>
 
       <main id="conteudo" tabIndex={-1} className="flex-1 overflow-hidden">
-        {needsLogin ? (
-          <>
-            <h2 className="sr-only">Login do admin</h2>
-            <AdminLogin signInWithOtp={session.signInWithOtp} />
-          </>
-        ) : showAdmin ? (
-          <div className="h-full overflow-auto p-4">
-            <h2 className="sr-only">Administração — resultados oficiais</h2>
-            <AdminPanel userId={session.userId!} />
-          </div>
-        ) : isDesktop ? (
-          <DesktopScreen />
-        ) : (
-          <div className="mx-auto h-full max-w-md overflow-auto px-4 py-4">
-            <h2 className="sr-only">
-              {tab === 'grupos'
-                ? 'Grupos'
-                : tab === 'terceiros'
-                  ? 'Melhores terceiros'
-                  : 'Chave do mata-mata'}
-            </h2>
-            {tab === 'grupos' ? (
-              <GroupsView />
-            ) : tab === 'terceiros' ? (
-              <ThirdsView />
-            ) : (
-              <Bracket games={result.bracket} />
-            )}
-          </div>
-        )}
+        <Routes>
+          <Route path="/" element={content('grupos')} />
+          <Route path="/chave" element={content('chave')} />
+          <Route path="/terceiros" element={content('terceiros')} />
+          <Route
+            path="/admin"
+            element={
+              !session.ready ? null : session.isAdmin && session.userId ? (
+                <div className="h-full overflow-auto p-4">
+                  <h2 className="sr-only">Administração — resultados oficiais</h2>
+                  <AdminPanel userId={session.userId} />
+                </div>
+              ) : (
+                <>
+                  <h2 className="sr-only">Login do admin</h2>
+                  <AdminLogin signInWithOtp={session.signInWithOtp} />
+                </>
+              )
+            }
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </main>
     </div>
   );
