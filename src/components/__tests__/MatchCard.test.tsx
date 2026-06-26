@@ -101,4 +101,20 @@ describe('<MatchCard>', () => {
     // o palpite segue editável
     expect(screen.getAllByRole('spinbutton')).toHaveLength(2);
   });
+
+  it('encerrado vence ao vivo: registro oficial pendurado (locked=false) não pinta a tira AO VIVO', () => {
+    // Jogo já travado pelo seed (3×2), mas sobrou um oficial `locked=false` 2×1.
+    render(
+      <MatchCard
+        match={{ ...base, homeGoals: 3, awayGoals: 2, locked: true }}
+        live={{ home: 2, away: 1 }}
+        onScore={() => {}}
+      />,
+    );
+    expect(screen.getByText('Encerrado')).toBeInTheDocument();
+    expect(screen.queryByText('Ao vivo')).not.toBeInTheDocument();
+    expect(screen.queryByText('placar')).not.toBeInTheDocument(); // sem overlay
+    expect(screen.queryByText('2 × 1')).not.toBeInTheDocument(); // nada do placar pendurado
+    expect(screen.getByText('3')).toBeInTheDocument(); // placar final do seed
+  });
 });
