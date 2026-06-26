@@ -1,8 +1,9 @@
+import { Fragment } from 'react';
+
 import { staticData, teamsById } from '../data/static';
 import { useSimulation } from '../hooks/useSimulation';
 import { groupColor, groupTextColor } from '../lib/groupColors';
 
-import { Cards } from './Cards';
 import { Flag } from './Flag';
 
 import type { GroupId } from '../engine/types';
@@ -51,62 +52,117 @@ export function ThirdsView() {
         </span>
       </div>
 
-      <div className="space-y-1.5">
-        {rows.map((r, i) => {
-          const slot = groupToSlot[r.group];
-          const gameId = slot ? SLOT_TO_GAME[slot] : undefined;
-          const lastIn = i === 7;
-          const out = !r.qualified;
-          return (
-            <div key={r.team}>
-              {i === 8 && (
-                <div className="my-1.5 flex items-center gap-2">
-                  <span className="text-live font-mono text-[10px] uppercase">
-                    ✂ Linha de corte
-                  </span>
-                  <span className="border-live/50 flex-1 border-t-2 border-dashed" />
-                </div>
-              )}
-              <div
-                className="flex items-center gap-2.5 rounded-[10px] px-2.5 py-2"
-                style={{
-                  borderLeft: `3px solid ${out ? '#FF2D5566' : groupColor(r.group)}`,
-                  background: out ? '#FF2D5508' : lastIn ? '#36c2750f' : '#141A24',
-                  boxShadow: lastIn ? '0 0 0 1px #36c27555' : undefined,
-                }}
-              >
-                <span
-                  className="font-display w-5 text-center text-lg font-extrabold tabular-nums"
-                  style={{ color: out ? '#FF2D55' : lastIn ? '#36C275' : undefined }}
-                >
-                  {r.rank}
-                </span>
-                <span
-                  className="shrink-0 rounded px-1 py-0.5 font-mono text-[10px]"
-                  style={{ background: groupColor(r.group), color: groupTextColor(r.group) }}
-                >
-                  3{r.group}
-                </span>
-                <Flag code={r.team} className="shrink-0 text-base" />
-                <span className={`flex-1 truncate font-semibold ${out ? 'text-text-mid' : ''}`}>
-                  {nameOf(r.team)}
-                </span>
-                <span className="text-text-mid font-mono text-[11px] tabular-nums">
-                  {r.points}·{signed(r.goalDiff)}·{r.goalsFor}
-                </span>
-                <Cards yellow={r.yellow} red={r.red} />
-                {r.qualified && slot ? (
-                  <span className="bg-go/15 text-go rounded px-1.5 py-0.5 font-mono text-[10px] whitespace-nowrap">
-                    → 1{slot}
-                    {gameId ? ` ·J${gameId}` : ''}
-                  </span>
-                ) : (
-                  <span className="text-live font-mono text-[10px] uppercase">Fora</span>
-                )}
-              </div>
-            </div>
-          );
-        })}
+      {/* Tabela no mesmo estilo da classificação dos grupos: header de colunas
+          em cima, linhas tabuladas, legenda no rodapé. */}
+      <div className="bg-surface ring-border overflow-hidden rounded-[13px] ring-1">
+        <table className="w-full text-sm">
+          <thead>
+            <tr className="text-text-low font-mono text-[9px] uppercase [&>th]:py-2">
+              <th className="w-7" />
+              <th className="w-7" />
+              <th className="w-6" />
+              <th />
+              <th className="w-7 text-center font-medium">Pts</th>
+              <th className="w-8 text-center font-medium">SG</th>
+              <th className="w-7 text-center font-medium">GP</th>
+              <th className="w-7 text-center font-medium">CA</th>
+              <th className="w-8 text-center font-medium">CV</th>
+              <th className="w-14 pr-3 text-right font-medium">pega</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((r, i) => {
+              const slot = groupToSlot[r.group];
+              const gameId = slot ? SLOT_TO_GAME[slot] : undefined;
+              const out = !r.qualified;
+              const fg = out ? '#FF2D55' : '#36C275';
+              const bg = out ? '#FF2D551a' : '#36c2751a';
+              return (
+                <Fragment key={r.team}>
+                  {i === 8 && (
+                    <tr>
+                      <td colSpan={10} className="px-3 pt-2 pb-1">
+                        <div className="flex items-center gap-2">
+                          <span className="text-live font-mono text-[9px] whitespace-nowrap uppercase">
+                            ✂ Linha de corte
+                          </span>
+                          <span className="border-live/40 flex-1 border-t border-dashed" />
+                        </div>
+                      </td>
+                    </tr>
+                  )}
+                  <tr
+                    className="border-hairline border-t"
+                    style={out ? { background: '#FF2D5508' } : undefined}
+                  >
+                    <td className="py-1.5 pl-3">
+                      <span
+                        className="font-display grid h-5 min-w-[20px] place-items-center rounded px-1 text-[12px] font-extrabold tabular-nums"
+                        style={{ background: bg, color: fg }}
+                      >
+                        {r.rank}
+                      </span>
+                    </td>
+                    <td className="py-1.5">
+                      <span
+                        className="rounded px-1 py-0.5 font-mono text-[10px]"
+                        style={{ background: groupColor(r.group), color: groupTextColor(r.group) }}
+                      >
+                        3{r.group}
+                      </span>
+                    </td>
+                    <td className="py-1.5">
+                      <Flag code={r.team} className="text-base" />
+                    </td>
+                    <td className="py-1.5">
+                      <span
+                        className={`block truncate font-semibold ${out ? 'text-text-mid' : ''}`}
+                      >
+                        {nameOf(r.team)}
+                      </span>
+                    </td>
+                    <td className="font-display py-1.5 text-center text-[15px] font-extrabold tabular-nums">
+                      {r.points}
+                    </td>
+                    <td className="text-text-mid py-1.5 text-center font-mono text-[11px] tabular-nums">
+                      {signed(r.goalDiff)}
+                    </td>
+                    <td className="text-text-low py-1.5 text-center font-mono text-[11px] tabular-nums">
+                      {r.goalsFor}
+                    </td>
+                    <td
+                      className={`py-1.5 text-center font-mono text-[11px] tabular-nums ${r.yellow ? 'text-card-yellow' : 'text-text-faint'}`}
+                    >
+                      {r.yellow}
+                    </td>
+                    <td
+                      className={`py-1.5 text-center font-mono text-[11px] tabular-nums ${r.red ? 'text-card-red' : 'text-text-faint'}`}
+                    >
+                      {r.red}
+                    </td>
+                    <td className="py-1.5 pr-3 text-right whitespace-nowrap">
+                      {r.qualified && slot ? (
+                        <span className="font-mono text-[10px]">
+                          <span className="text-go font-bold">1{slot}</span>
+                          {gameId ? <span className="text-text-faint"> ·J{gameId}</span> : null}
+                        </span>
+                      ) : (
+                        <span className="text-live font-mono text-[10px] uppercase">fora</span>
+                      )}
+                    </td>
+                  </tr>
+                </Fragment>
+              );
+            })}
+          </tbody>
+        </table>
+        <div className="border-hairline text-text-low border-t px-3 py-1.5 font-mono text-[9px]">
+          Pts pontos · SG saldo de gols · GP gols pró · CA amarelos · CV vermelhos
+          <br />
+          <span className="text-text-faint">
+            3X = 3º colocado do grupo X · “pega 1Y ·Jnn” = enfrenta o 1º do grupo Y no jogo nn
+          </span>
+        </div>
       </div>
     </div>
   );
