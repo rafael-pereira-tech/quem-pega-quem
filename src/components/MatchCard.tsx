@@ -123,8 +123,10 @@ export function MatchCard({
         </span>
       </div>
 
-      {/* Overlay AO VIVO: placar real + cartões ao lado de cada gol. */}
-      {live && (
+      {/* Overlay AO VIVO: placar real + cartões ao lado de cada gol. Só enquanto
+          o jogo NÃO está encerrado — um registro oficial `locked=false` que ficou
+          pendurado não pode reabrir um jogo já travado pelo seed/admin. */}
+      {!locked && live && (
         <div className="border-hairline text-live mt-2 flex items-center justify-center gap-2.5 border-t pt-1.5 font-mono text-[10px]">
           <span className="text-text-low tracking-wide uppercase">placar</span>
           <CardMark team={match.home} y={hcard.yellow} r={hcard.red} />

@@ -485,8 +485,13 @@
         "matchday": 3,
         "home": "TUR",
         "away": "USA",
-        "homeGoals": null,
-        "awayGoals": null,
+        "homeGoals": 3,
+        "awayGoals": 2,
+        "cards": {
+          "USA": {
+            "yellow": 1
+          }
+        },
         "kickoff": "2026-06-25T23:00:00-03:00",
         "venue": "Inglewood / SoFi"
       },
@@ -494,8 +499,16 @@
         "matchday": 3,
         "home": "PAR",
         "away": "AUS",
-        "homeGoals": null,
-        "awayGoals": null,
+        "homeGoals": 0,
+        "awayGoals": 0,
+        "cards": {
+          "PAR": {
+            "yellow": 1
+          },
+          "AUS": {
+            "yellow": 1
+          }
+        },
         "kickoff": "2026-06-25T23:00:00-03:00",
         "venue": "Santa Clara / Levi's"
       }
@@ -585,8 +598,16 @@
         "matchday": 3,
         "home": "ECU",
         "away": "GER",
-        "homeGoals": null,
-        "awayGoals": null,
+        "homeGoals": 2,
+        "awayGoals": 1,
+        "cards": {
+          "ECU": {
+            "yellow": 3
+          },
+          "GER": {
+            "yellow": 1
+          }
+        },
         "kickoff": "2026-06-25T17:00:00-03:00",
         "venue": "East Rutherford / MetLife"
       },
@@ -594,8 +615,16 @@
         "matchday": 3,
         "home": "CUW",
         "away": "CIV",
-        "homeGoals": null,
-        "awayGoals": null,
+        "homeGoals": 0,
+        "awayGoals": 2,
+        "cards": {
+          "CUW": {
+            "yellow": 2
+          },
+          "CIV": {
+            "yellow": 1
+          }
+        },
         "kickoff": "2026-06-25T17:00:00-03:00",
         "venue": "Filadélfia / Lincoln Financial"
       }
@@ -684,8 +713,16 @@
         "matchday": 3,
         "home": "JPN",
         "away": "SWE",
-        "homeGoals": null,
-        "awayGoals": null,
+        "homeGoals": 1,
+        "awayGoals": 1,
+        "cards": {
+          "JPN": {
+            "yellow": 1
+          },
+          "SWE": {
+            "yellow": 2
+          }
+        },
         "kickoff": "2026-06-25T20:00:00-03:00",
         "venue": "Arlington / AT&T"
       },
@@ -693,8 +730,8 @@
         "matchday": 3,
         "home": "TUN",
         "away": "NED",
-        "homeGoals": null,
-        "awayGoals": null,
+        "homeGoals": 1,
+        "awayGoals": 3,
         "kickoff": "2026-06-25T20:00:00-03:00",
         "venue": "Kansas City / Arrowhead"
       }
