@@ -8,6 +8,7 @@ import type {
   GroupMatch,
   KnockoutGameDef,
   KnockoutRound,
+  KnockoutScore,
   Side,
   Team,
 } from "../engine/types";
@@ -181,4 +182,36 @@ export function loadStructure(
     away: bracketSide(g.away),
   }));
   return [...r32, ...rest];
+}
+
+// ---------------------------------------------------------------------------
+// data/knockout-results.json — [{ match, round, home, away, homeGoals,
+// awayGoals, aet?, penalties? }] (32 jogos, R32→final, resultado oficial)
+// ---------------------------------------------------------------------------
+const knockoutResultSchema = z.object({
+  match: z.number().int(),
+  round: z.string(),
+  home: teamId,
+  away: teamId,
+  homeGoals: z.number().int().nonnegative(),
+  awayGoals: z.number().int().nonnegative(),
+  aet: z.boolean().optional(),
+  penalties: z.object({ home: z.number().int(), away: z.number().int() }).optional(),
+});
+export const knockoutResultsFileSchema = z.array(knockoutResultSchema);
+
+/** Resultado oficial por id de jogo ("73" → placar). O `locked` entra na fusão. */
+export function loadKnockoutResults(
+  file: z.infer<typeof knockoutResultsFileSchema>,
+): Record<string, KnockoutScore> {
+  return Object.fromEntries(
+    file.map((g) => [
+      String(g.match),
+      {
+        homeGoals: g.homeGoals,
+        awayGoals: g.awayGoals,
+        ...(g.penalties ? { penalties: g.penalties } : {}),
+      },
+    ]),
+  );
 }

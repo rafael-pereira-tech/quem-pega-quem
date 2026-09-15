@@ -1,0 +1,110 @@
+[
+  { "match": 73, "round": "R32", "home": "RSA", "away": "CAN", "homeGoals": 0, "awayGoals": 1 },
+  {
+    "match": 74,
+    "round": "R32",
+    "home": "GER",
+    "away": "PAR",
+    "homeGoals": 1,
+    "awayGoals": 1,
+    "aet": true,
+    "penalties": { "home": 3, "away": 4 }
+  },
+  {
+    "match": 75,
+    "round": "R32",
+    "home": "NED",
+    "away": "MAR",
+    "homeGoals": 1,
+    "awayGoals": 1,
+    "aet": true,
+    "penalties": { "home": 2, "away": 3 }
+  },
+  { "match": 76, "round": "R32", "home": "BRA", "away": "JPN", "homeGoals": 2, "awayGoals": 1 },
+  { "match": 77, "round": "R32", "home": "FRA", "away": "SWE", "homeGoals": 3, "awayGoals": 0 },
+  { "match": 78, "round": "R32", "home": "CIV", "away": "NOR", "homeGoals": 1, "awayGoals": 2 },
+  { "match": 79, "round": "R32", "home": "MEX", "away": "ECU", "homeGoals": 2, "awayGoals": 0 },
+  { "match": 80, "round": "R32", "home": "ENG", "away": "COD", "homeGoals": 2, "awayGoals": 1 },
+  { "match": 81, "round": "R32", "home": "USA", "away": "BIH", "homeGoals": 2, "awayGoals": 0 },
+  {
+    "match": 82,
+    "round": "R32",
+    "home": "BEL",
+    "away": "SEN",
+    "homeGoals": 3,
+    "awayGoals": 2,
+    "aet": true
+  },
+  { "match": 83, "round": "R32", "home": "POR", "away": "CRO", "homeGoals": 2, "awayGoals": 1 },
+  { "match": 84, "round": "R32", "home": "ESP", "away": "AUT", "homeGoals": 3, "awayGoals": 0 },
+  { "match": 85, "round": "R32", "home": "SUI", "away": "ALG", "homeGoals": 2, "awayGoals": 0 },
+  {
+    "match": 86,
+    "round": "R32",
+    "home": "ARG",
+    "away": "CPV",
+    "homeGoals": 3,
+    "awayGoals": 2,
+    "aet": true
+  },
+  { "match": 87, "round": "R32", "home": "COL", "away": "GHA", "homeGoals": 1, "awayGoals": 0 },
+  {
+    "match": 88,
+    "round": "R32",
+    "home": "AUS",
+    "away": "EGY",
+    "homeGoals": 1,
+    "awayGoals": 1,
+    "aet": true,
+    "penalties": { "home": 2, "away": 4 }
+  },
+  { "match": 89, "round": "R16", "home": "PAR", "away": "FRA", "homeGoals": 0, "awayGoals": 1 },
+  { "match": 90, "round": "R16", "home": "CAN", "away": "MAR", "homeGoals": 0, "awayGoals": 3 },
+  { "match": 91, "round": "R16", "home": "BRA", "away": "NOR", "homeGoals": 1, "awayGoals": 2 },
+  { "match": 92, "round": "R16", "home": "MEX", "away": "ENG", "homeGoals": 2, "awayGoals": 3 },
+  { "match": 93, "round": "R16", "home": "POR", "away": "ESP", "homeGoals": 0, "awayGoals": 1 },
+  { "match": 94, "round": "R16", "home": "USA", "away": "BEL", "homeGoals": 1, "awayGoals": 4 },
+  { "match": 95, "round": "R16", "home": "ARG", "away": "EGY", "homeGoals": 3, "awayGoals": 2 },
+  {
+    "match": 96,
+    "round": "R16",
+    "home": "SUI",
+    "away": "COL",
+    "homeGoals": 0,
+    "awayGoals": 0,
+    "aet": true,
+    "penalties": { "home": 4, "away": 3 }
+  },
+  { "match": 97, "round": "QF", "home": "FRA", "away": "MAR", "homeGoals": 2, "awayGoals": 0 },
+  { "match": 98, "round": "QF", "home": "ESP", "away": "BEL", "homeGoals": 2, "awayGoals": 1 },
+  {
+    "match": 99,
+    "round": "QF",
+    "home": "NOR",
+    "away": "ENG",
+    "homeGoals": 1,
+    "awayGoals": 2,
+    "aet": true
+  },
+  {
+    "match": 100,
+    "round": "QF",
+    "home": "ARG",
+    "away": "SUI",
+    "homeGoals": 3,
+    "awayGoals": 1,
+    "aet": true
+  },
+  { "match": 101, "round": "SF", "home": "FRA", "away": "ESP", "homeGoals": 0, "awayGoals": 2 },
+  { "match": 102, "round": "SF", "home": "ENG", "away": "ARG", "homeGoals": 1, "awayGoals": 2 },
+  { "match": 103, "round": "THIRD", "home": "FRA", "away": "ENG", "homeGoals": 4, "awayGoals": 6 },
+  {
+    "match": 104,
+    "round": "FINAL",
+    "home": "ESP",
+    "away": "ARG",
+    "homeGoals": 1,
+    "awayGoals": 0,
+    "aet": true
+  }
+]

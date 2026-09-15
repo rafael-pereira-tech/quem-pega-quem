@@ -13,7 +13,6 @@ import {
 const playedSeed = staticData.seedMatches.find(
   (m) => m.homeGoals !== null && m.awayGoals !== null,
 )!;
-const openSeed = staticData.seedMatches.find((m) => m.homeGoals === null && m.awayGoals === null)!;
 
 describe('effectiveGroupMatches — fusão oficial > seed > palpite', () => {
   it('retorna todos os jogos-semente', () => {
@@ -27,44 +26,43 @@ describe('effectiveGroupMatches — fusão oficial > seed > palpite', () => {
     expect(m.awayGoals).toBe(playedSeed.awayGoals);
   });
 
-  it('jogo aberto sem palpite: null e editável', () => {
-    const m = effectiveGroupMatches(emptyScenario(), {}).find((x) => x.id === openSeed.id)!;
-    expect(m.locked).toBe(false);
-    expect(m.homeGoals).toBeNull();
-    expect(m.awayGoals).toBeNull();
+  it('torneio completo: nenhum jogo aberto, todos os 72 travados', () => {
+    const matches = effectiveGroupMatches(emptyScenario(), {});
+    expect(matches.every((m) => m.locked)).toBe(true);
+    expect(matches.some((m) => m.homeGoals === null || m.awayGoals === null)).toBe(false);
   });
 
-  it('palpite preenche um jogo aberto sem travar', () => {
+  it('palpite não sobrescreve seed jogado', () => {
     const scenario: ScenarioData = {
       ...emptyScenario(),
-      groupScores: { [openSeed.id]: { homeGoals: 2, awayGoals: 1 } },
+      groupScores: { [playedSeed.id]: { homeGoals: 9, awayGoals: 9 } },
     };
-    const m = effectiveGroupMatches(scenario, {}).find((x) => x.id === openSeed.id)!;
-    expect(m.homeGoals).toBe(2);
-    expect(m.awayGoals).toBe(1);
-    expect(m.locked).toBe(false);
+    const m = effectiveGroupMatches(scenario, {}).find((x) => x.id === playedSeed.id)!;
+    expect(m.homeGoals).toBe(playedSeed.homeGoals);
+    expect(m.awayGoals).toBe(playedSeed.awayGoals);
+    expect(m.locked).toBe(true);
   });
 
-  it('oficial travado vence seed e palpite, e traz cartões', () => {
+  it('oficial travado vence o seed jogado e traz cartões', () => {
     const official: Record<string, OfficialResult> = {
-      [openSeed.id]: {
-        matchId: openSeed.id,
+      [playedSeed.id]: {
+        matchId: playedSeed.id,
         phase: 'group',
         homeGoals: 3,
         awayGoals: 0,
-        cards: { [openSeed.home]: { yellow: 2 } },
+        cards: { [playedSeed.home]: { yellow: 2 } },
         locked: true,
       },
     };
     const scenario: ScenarioData = {
       ...emptyScenario(),
-      groupScores: { [openSeed.id]: { homeGoals: 1, awayGoals: 1 } },
+      groupScores: { [playedSeed.id]: { homeGoals: 1, awayGoals: 1 } },
     };
-    const m = effectiveGroupMatches(scenario, official).find((x) => x.id === openSeed.id)!;
+    const m = effectiveGroupMatches(scenario, official).find((x) => x.id === playedSeed.id)!;
     expect(m.locked).toBe(true);
     expect(m.homeGoals).toBe(3);
     expect(m.awayGoals).toBe(0);
-    expect(m.cards?.[openSeed.home]?.yellow).toBe(2);
+    expect(m.cards?.[playedSeed.home]?.yellow).toBe(2);
   });
 });
 
@@ -95,9 +93,8 @@ describe('buildSimulationInput', () => {
     expect(input.matches).toHaveLength(staticData.seedMatches.length);
   });
 
-  it('inclui mata-mata oficial (travado) e palpite de KO', () => {
+  it('oficial travado vence o seed do mata-mata', () => {
     const koId = staticData.structure[0]!.id;
-    const koId2 = staticData.structure[1]!.id;
     const official: Record<string, OfficialResult> = {
       [koId]: {
         matchId: koId,
@@ -109,17 +106,27 @@ describe('buildSimulationInput', () => {
         locked: true,
       },
     };
-    const scenario: ScenarioData = {
-      ...emptyScenario(),
-      koScores: { [koId2]: { homeGoals: 2, awayGoals: 2, penalties: { home: 4, away: 3 } } },
-    };
-    const input = buildSimulationInput(scenario, official);
+    const input = buildSimulationInput(emptyScenario(), official);
     expect(input.knockoutResults?.[koId]).toMatchObject({
       homeGoals: 1,
       awayGoals: 0,
       locked: true,
     });
-    expect(input.knockoutResults?.[koId2]).toMatchObject({ homeGoals: 2, awayGoals: 2 });
+  });
+
+  it('seed do mata-mata entra travado e sombreia o palpite', () => {
+    // jogo 74: Alemanha 1–1 Paraguai, pênaltis 3–4
+    const scenario: ScenarioData = {
+      ...emptyScenario(),
+      koScores: { 74: { homeGoals: 2, awayGoals: 2, penalties: { home: 4, away: 3 } } },
+    };
+    const input = buildSimulationInput(scenario, {});
+    expect(input.knockoutResults?.['74']).toMatchObject({
+      homeGoals: 1,
+      awayGoals: 1,
+      penalties: { home: 3, away: 4 },
+      locked: true,
+    });
   });
 
   it('inclui pênaltis oficiais quando ambos definidos', () => {
