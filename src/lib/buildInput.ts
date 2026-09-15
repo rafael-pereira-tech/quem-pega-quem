@@ -5,8 +5,10 @@ import type { GroupMatch, KnockoutScore, MatchCards, SimulationInput } from '../
 // ---------------------------------------------------------------------------
 // Camadas de dados:
 //   - OFICIAL (admin/Supabase): trava o jogo quando `locked`.
+//   - SEED (base): resultado real já jogado — grupos em `seedMatches`,
+//     mata-mata em `seedKnockout`. Trava como os oficiais.
 //   - CENÁRIO (usuário): palpites pros jogos ainda abertos.
-// O motor recebe a fusão: oficial-travado tem prioridade sobre o palpite.
+// O motor recebe a fusão: oficial-travado > seed jogado > palpite.
 // ---------------------------------------------------------------------------
 
 export interface OfficialResult {
@@ -83,8 +85,14 @@ export function buildSimulationInput(
           : {}),
         locked: true,
       };
-    } else if (scenario.koScores[game.id]) {
-      knockoutResults[game.id] = scenario.koScores[game.id]!;
+    } else {
+      const seed = staticData.seedKnockout[game.id];
+      const seedPlayed = seed != null && seed.homeGoals !== null && seed.awayGoals !== null;
+      if (seedPlayed) {
+        knockoutResults[game.id] = { ...seed, locked: true }; // resultado real já aconteceu
+      } else if (scenario.koScores[game.id]) {
+        knockoutResults[game.id] = scenario.koScores[game.id]!;
+      }
     }
   }
 

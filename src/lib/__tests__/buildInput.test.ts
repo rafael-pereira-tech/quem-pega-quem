@@ -93,9 +93,8 @@ describe('buildSimulationInput', () => {
     expect(input.matches).toHaveLength(staticData.seedMatches.length);
   });
 
-  it('inclui mata-mata oficial (travado) e palpite de KO', () => {
+  it('oficial travado vence o seed do mata-mata', () => {
     const koId = staticData.structure[0]!.id;
-    const koId2 = staticData.structure[1]!.id;
     const official: Record<string, OfficialResult> = {
       [koId]: {
         matchId: koId,
@@ -107,17 +106,27 @@ describe('buildSimulationInput', () => {
         locked: true,
       },
     };
-    const scenario: ScenarioData = {
-      ...emptyScenario(),
-      koScores: { [koId2]: { homeGoals: 2, awayGoals: 2, penalties: { home: 4, away: 3 } } },
-    };
-    const input = buildSimulationInput(scenario, official);
+    const input = buildSimulationInput(emptyScenario(), official);
     expect(input.knockoutResults?.[koId]).toMatchObject({
       homeGoals: 1,
       awayGoals: 0,
       locked: true,
     });
-    expect(input.knockoutResults?.[koId2]).toMatchObject({ homeGoals: 2, awayGoals: 2 });
+  });
+
+  it('seed do mata-mata entra travado e sombreia o palpite', () => {
+    // jogo 74: Alemanha 1–1 Paraguai, pênaltis 3–4
+    const scenario: ScenarioData = {
+      ...emptyScenario(),
+      koScores: { 74: { homeGoals: 2, awayGoals: 2, penalties: { home: 4, away: 3 } } },
+    };
+    const input = buildSimulationInput(scenario, {});
+    expect(input.knockoutResults?.['74']).toMatchObject({
+      homeGoals: 1,
+      awayGoals: 1,
+      penalties: { home: 3, away: 4 },
+      locked: true,
+    });
   });
 
   it('inclui pênaltis oficiais quando ambos definidos', () => {

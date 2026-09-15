@@ -4,7 +4,7 @@ import { computeLayout } from '../lib/bracketLayout';
 
 import { Flag } from './Flag';
 
-import type { ResolvedKnockoutGame, ResolvedSide } from '../engine/types';
+import type { KnockoutRound, ResolvedKnockoutGame, ResolvedSide } from '../engine/types';
 
 function sideInfo(side: ResolvedSide): { seed: string; color: string; third: boolean } {
   const ref = side.ref;
@@ -15,7 +15,15 @@ function sideInfo(side: ResolvedSide): { seed: string; color: string; third: boo
   return { seed: side.label, color: '#687087', third: false };
 }
 
-function SideRow({ side }: { side: ResolvedSide }) {
+function SideRow({
+  side,
+  goals,
+  isWinner,
+}: {
+  side: ResolvedSide;
+  goals: number | null;
+  isWinner: boolean;
+}) {
   const info = sideInfo(side);
   return (
     <div className="flex items-center gap-1.5">
@@ -31,18 +39,29 @@ function SideRow({ side }: { side: ResolvedSide }) {
         />
       )}
       <span
-        className={`truncate text-[11px] font-semibold ${side.team ? 'text-text-hi' : 'italic'}`}
+        className={`flex-1 truncate text-[11px] font-semibold ${side.team ? 'text-text-hi' : 'italic'}`}
         style={!side.team ? { color: '#FFB400' } : undefined}
       >
         {side.team ?? '3?'}
       </span>
+      {goals !== null && (
+        <span
+          className={`shrink-0 font-mono text-[11px] tabular-nums ${
+            isWinner ? 'text-lime font-bold' : 'text-text-mid'
+          }`}
+        >
+          {goals}
+        </span>
+      )}
     </div>
   );
 }
 
-function R32Card({ game, allComplete }: { game: ResolvedKnockoutGame; allComplete: boolean }) {
+function KoCard({ game, allComplete }: { game: ResolvedKnockoutGame; allComplete: boolean }) {
   const hasThird = game.home.ref.from === 'third' || game.away.ref.from === 'third';
   const provisional = hasThird && !allComplete;
+  const score = game.score;
+  const pens = score?.penalties;
   // Pisca a borda quando os times resolvidos ou o vencedor deste jogo mudam.
   const flashRef = useFlashOnChange<HTMLDivElement>(
     `${game.home.team ?? ''}|${game.away.team ?? ''}|${game.winner ?? ''}`,
@@ -50,133 +69,208 @@ function R32Card({ game, allComplete }: { game: ResolvedKnockoutGame; allComplet
   return (
     <div
       ref={flashRef}
-      className="rounded-lg px-2 py-1.5"
+      className="w-full rounded-lg px-2 py-1.5"
       style={{
         background: '#141A24',
         border: `1px solid ${provisional ? '#FFB40055' : '#36c27540'}`,
       }}
     >
-      <SideRow side={game.home} />
+      <SideRow
+        side={game.home}
+        goals={score?.homeGoals ?? null}
+        isWinner={game.winner !== undefined && game.winner === game.home.team}
+      />
       <div className="mt-1">
-        <SideRow side={game.away} />
+        <SideRow
+          side={game.away}
+          goals={score?.awayGoals ?? null}
+          isWinner={game.winner !== undefined && game.winner === game.away.team}
+        />
+      </div>
+      {pens && (
+        <div className="text-text-low mt-0.5 text-right font-mono text-[8px] tabular-nums">
+          pen {pens.home}–{pens.away}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/** Uma coluna de jogos: cada slot flex-1 centraliza o card, então o centro do
+ *  slot i fica exatamente em (i+0.5)/n — onde os conectores miram. O rótulo
+ *  (h-4) existe em TODAS as colunas pra não quebrar o alinhamento. */
+function Col({
+  label,
+  games,
+  allComplete,
+}: {
+  label: string;
+  games: ResolvedKnockoutGame[];
+  allComplete: boolean;
+}) {
+  return (
+    <div className="flex h-full w-[124px] shrink-0 flex-col">
+      <div className="text-text-low h-4 shrink-0 text-center font-mono text-[8px] tracking-[.12em]">
+        {label}
+      </div>
+      <div className="flex min-h-0 flex-1 flex-col">
+        {games.map((g) => (
+          <div key={g.id} className="flex min-h-0 flex-1 items-center py-0.5">
+            <KoCard game={g} allComplete={allComplete} />
+          </div>
+        ))}
       </div>
     </div>
   );
 }
 
-// Segmentos da escadinha (coords 0–100). Centros dos 8 cards em (i+0.5)/8.
-function segments(side: 'L' | 'R') {
-  const y = (i: number) => ((i + 0.5) / 8) * 100;
-  const r16 = [0, 1, 2, 3].map((k) => (y(2 * k) + y(2 * k + 1)) / 2);
-  const qf = [0, 1].map((j) => (r16[2 * j]! + r16[2 * j + 1]!) / 2);
-  const out: { x1: number; y1: number; x2: number; y2: number }[] = [];
-  const H = (x1: number, yy: number, x2: number) => out.push({ x1, y1: yy, x2, y2: yy });
-  const V = (x: number, ya: number, yb: number) => out.push({ x1: x, y1: ya, x2: x, y2: yb });
-
-  for (let k = 0; k < 4; k++) {
-    H(0, y(2 * k), 25);
-    H(0, y(2 * k + 1), 25);
-    V(25, y(2 * k), y(2 * k + 1));
-    H(25, r16[k]!, 50);
+/** Conector entre duas colunas (n jogos → n/2): stubs horizontais, espinha
+ *  vertical e chegada no jogo seguinte. Espelhável pro lado direito. */
+function Gap({ left, right, mirror }: { left: number; right: number; mirror?: boolean }) {
+  const segs: { x1: number; y1: number; x2: number; y2: number }[] = [];
+  for (let j = 0; j < right; j++) {
+    const yA = ((2 * j + 0.5) / left) * 100;
+    const yB = ((2 * j + 1.5) / left) * 100;
+    const yC = ((j + 0.5) / right) * 100;
+    segs.push(
+      { x1: 0, y1: yA, x2: 42, y2: yA },
+      { x1: 0, y1: yB, x2: 42, y2: yB },
+      { x1: 42, y1: Math.min(yA, yB), x2: 42, y2: Math.max(yA, yB) },
+      { x1: 42, y1: yC, x2: 100, y2: yC },
+    );
   }
-  for (let j = 0; j < 2; j++) {
-    V(50, r16[2 * j]!, r16[2 * j + 1]!);
-    H(50, qf[j]!, 75);
-  }
-  V(75, qf[0]!, qf[1]!);
-  H(75, 50, 100);
-
-  return side === 'L' ? out : out.map((s) => ({ ...s, x1: 100 - s.x1, x2: 100 - s.x2 }));
-}
-
-function Connectors({ side }: { side: 'L' | 'R' }) {
+  const lines = mirror ? segs.map((s) => ({ ...s, x1: 100 - s.x1, x2: 100 - s.x2 })) : segs;
   return (
-    <div className="relative min-w-[80px] flex-1">
-      <svg
-        className="absolute inset-0 h-full w-full"
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-      >
-        {segments(side).map((s, i) => (
-          <line
-            key={i}
-            x1={s.x1}
-            y1={s.y1}
-            x2={s.x2}
-            y2={s.y2}
-            stroke="#28303F"
-            strokeWidth={1.5}
-            vectorEffect="non-scaling-stroke"
-          />
-        ))}
-      </svg>
-      <span
-        className="text-text-low bg-bg absolute left-1/2 -translate-x-1/2 px-1 font-mono text-[8px]"
-        style={{ top: 'calc(50% - 7px)', letterSpacing: '.12em' }}
-      >
-        {side === 'L' ? 'OITAVAS · QF' : 'QF · OITAVAS'}
-      </span>
+    <div className="flex h-full shrink-0 flex-col">
+      <div className="h-4 shrink-0" />
+      <div className="relative min-h-0 min-w-[26px] flex-1">
+        <svg
+          className="absolute inset-0 h-full w-full"
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+        >
+          {lines.map((s, i) => (
+            <line
+              key={i}
+              x1={s.x1}
+              y1={s.y1}
+              x2={s.x2}
+              y2={s.y2}
+              stroke="#28303F"
+              strokeWidth={2}
+              vectorEffect="non-scaling-stroke"
+            />
+          ))}
+        </svg>
+      </div>
     </div>
   );
 }
 
-function Side({ games, allComplete }: { games: ResolvedKnockoutGame[]; allComplete: boolean }) {
+const LABELS: Record<KnockoutRound, string> = {
+  R32: '16-AVOS',
+  R16: 'OITAVAS',
+  QF: 'QUARTAS',
+  SF: 'SEMI',
+  THIRD: '3º LUGAR',
+  FINAL: 'FINAL',
+};
+
+function Half({
+  games,
+  side,
+  allComplete,
+}: {
+  games: ResolvedKnockoutGame[];
+  side: 'L' | 'R';
+  allComplete: boolean;
+}) {
+  const { col } = computeLayout(games);
+  const rounds: KnockoutRound[] = ['R32', 'R16', 'QF', 'SF'];
+  const cols = rounds.map((r) => col(r, side));
+  const mirror = side === 'R';
+  const ordered = mirror ? [...cols].reverse() : cols;
+  const gaps: { left: number; right: number }[] = mirror
+    ? [
+        { left: 2, right: 1 },
+        { left: 4, right: 2 },
+        { left: 8, right: 4 },
+      ]
+    : [
+        { left: 8, right: 4 },
+        { left: 4, right: 2 },
+        { left: 2, right: 1 },
+      ];
   return (
-    <div className="flex h-full w-[150px] shrink-0 flex-col justify-around">
-      {games.map((g) => (
-        <R32Card key={g.id} game={g} allComplete={allComplete} />
-      ))}
+    <div className="flex h-full min-h-0 flex-1">
+      {ordered.flatMap((gamesCol, i) => {
+        const round = (mirror ? [...rounds].reverse() : rounds)[i]!;
+        const els = [
+          <Col key={round} label={LABELS[round]} games={gamesCol} allComplete={allComplete} />,
+        ];
+        if (i < gaps.length) {
+          const gap = gaps[i]!;
+          els.push(<Gap key={`gap-${round}`} left={gap.left} right={gap.right} mirror={mirror} />);
+        }
+        return els;
+      })}
     </div>
   );
 }
 
 export function BracketDesktop() {
   const result = useSimulation();
-  const { col } = computeLayout(result.bracket);
+  const { final, third } = computeLayout(result.bracket);
   const allComplete = result.standings.length === 12 && result.standings.every((s) => s.complete);
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex justify-between px-1">
-        <span
-          className="text-text-low w-[150px] text-center font-mono text-[9px]"
-          style={{ letterSpacing: '.1em' }}
-        >
-          16-AVOS
-        </span>
-        <span
-          className="text-text-low w-[150px] text-center font-mono text-[9px]"
-          style={{ letterSpacing: '.1em' }}
-        >
-          16-AVOS
-        </span>
-      </div>
-      <div className="flex min-h-0 flex-1 items-stretch">
-        <Side games={col('R32', 'L')} allComplete={allComplete} />
-        <Connectors side="L" />
-        {/* Final */}
-        <div className="flex w-[160px] shrink-0 flex-col items-center justify-center gap-2.5">
-          <span className="text-3xl">🏆</span>
-          <span
-            className="font-display text-lime text-lg font-extrabold uppercase"
-            style={{ letterSpacing: '.08em' }}
-          >
-            Final
-          </span>
-          <div
-            className="w-[112px] rounded-[10px] px-2 py-3.5 text-center"
-            style={{
-              background: 'linear-gradient(180deg,#1B2230,#141A24)',
-              border: '1px solid #C6F24E44',
-              boxShadow: '0 0 24px rgba(198,242,78,.12)',
-            }}
-          >
-            <div className="text-text-low font-mono text-[9px]">campeão</div>
-            <div className="font-display text-text-faint text-2xl font-extrabold">?</div>
+    <div className="h-full min-h-0 overflow-auto">
+      <div className="flex h-full min-h-[560px] min-w-[1180px]">
+        <Half games={result.bracket} side="L" allComplete={allComplete} />
+        {/* Final + disputa do 3º no centro */}
+        <div className="flex h-full w-[150px] shrink-0 flex-col">
+          <div className="h-4 shrink-0" />
+          <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-3">
+            <span className="text-3xl">🏆</span>
+            <span
+              className="font-display text-lime text-lg font-extrabold uppercase"
+              style={{ letterSpacing: '.08em' }}
+            >
+              Final
+            </span>
+            <div
+              className="w-[132px] rounded-[10px] px-2 py-3 text-center"
+              style={{
+                background: 'linear-gradient(180deg,#1B2230,#141A24)',
+                border: '1px solid #C6F24E44',
+                boxShadow: '0 0 24px rgba(198,242,78,.12)',
+              }}
+            >
+              <div className="text-text-low font-mono text-[9px]">campeão</div>
+              <div className="font-display text-2xl font-extrabold">
+                {final?.winner ? (
+                  <span className="text-lime">{final.winner}</span>
+                ) : (
+                  <span className="text-text-faint">?</span>
+                )}
+              </div>
+              {final?.score?.homeGoals != null && final?.score?.awayGoals != null && (
+                <div className="text-text-mid font-mono text-[11px]">
+                  {final.score.homeGoals}–{final.score.awayGoals}
+                </div>
+              )}
+            </div>
+            {third && (
+              <div className="w-[132px]">
+                <div className="text-text-low mb-1 text-center font-mono text-[8px] tracking-[.12em]">
+                  3º LUGAR
+                </div>
+                <KoCard game={third} allComplete={allComplete} />
+              </div>
+            )}
           </div>
         </div>
-        <Connectors side="R" />
-        <Side games={col('R32', 'R')} allComplete={allComplete} />
+        <Half games={result.bracket} side="R" allComplete={allComplete} />
       </div>
     </div>
   );
