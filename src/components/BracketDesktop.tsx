@@ -19,10 +19,12 @@ function SideRow({
   side,
   goals,
   isWinner,
+  isLoser,
 }: {
   side: ResolvedSide;
   goals: number | null;
   isWinner: boolean;
+  isLoser: boolean;
 }) {
   const info = sideInfo(side);
   return (
@@ -31,7 +33,7 @@ function SideRow({
         {info.third && !side.team ? '3?' : info.seed}
       </span>
       {side.team ? (
-        <Flag code={side.team} className="shrink-0 text-xs" />
+        <Flag code={side.team} className={`shrink-0 text-xs ${isLoser ? 'opacity-40' : ''}`} />
       ) : (
         <span
           className="h-2.5 w-2.5 shrink-0 rounded-[3px]"
@@ -39,7 +41,7 @@ function SideRow({
         />
       )}
       <span
-        className={`flex-1 truncate text-[11px] font-semibold ${side.team ? 'text-text-hi' : 'italic'}`}
+        className={`flex-1 truncate text-[11px] font-semibold ${isWinner ? 'text-text-hi' : isLoser ? 'text-text-low opacity-70' : side.team ? 'text-text-hi' : 'italic'}`}
         style={!side.team ? { color: '#FFB400' } : undefined}
       >
         {side.team ?? '3?'}
@@ -79,12 +81,22 @@ function KoCard({ game, allComplete }: { game: ResolvedKnockoutGame; allComplete
         side={game.home}
         goals={score?.homeGoals ?? null}
         isWinner={game.winner !== undefined && game.winner === game.home.team}
+        isLoser={
+          game.winner !== undefined &&
+          game.home.team !== undefined &&
+          game.winner !== game.home.team
+        }
       />
       <div className="mt-1">
         <SideRow
           side={game.away}
           goals={score?.awayGoals ?? null}
           isWinner={game.winner !== undefined && game.winner === game.away.team}
+          isLoser={
+            game.winner !== undefined &&
+            game.away.team !== undefined &&
+            game.winner !== game.away.team
+          }
         />
       </div>
       {pens && (

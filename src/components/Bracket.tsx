@@ -51,9 +51,10 @@ function GameCard({ game }: { game: ResolvedKnockoutGame }) {
     onGoals: (v: number | null) => void;
   }) => {
     const isWinner = game.winner !== undefined && game.winner === side.team;
+    const isLoser = game.winner !== undefined && side.team !== undefined && !isWinner;
     return (
       <div
-        className={`flex items-center gap-1.5 ${isWinner ? 'text-lime font-bold' : 'text-text-hi'}`}
+        className={`flex items-center gap-1.5 ${isWinner ? 'text-lime font-bold' : isLoser ? 'text-text-low opacity-70' : 'text-text-hi'}`}
       >
         {side.team ? (
           <Flag code={side.team} className="shrink-0 text-sm" />
